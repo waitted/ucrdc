@@ -1,0 +1,15 @@
+{
+  "hash": "df1e196087fd6e10b1fbcb5d99f49c97",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"Data visualization: introduction to `ggplot`\"\ndate: \"Last updated: 2025-08-17\"\n---\n\n\n\n\n## Introduction\n\nIn this tutorial you won't make any plots, but you will learn the logic that builds up all plots in R. So please use this explanation together with another data visualization tutorial that shows the types of plots most relevant to your data.\n\n## The logic of `ggplot`\n\n`ggplot2` is a powerful R package for creating figures. It is a part of the `tidyverse` collection, so to use `ggplot`, you need to load `tidyverse`. Figures made with `ggplot` are built from several layers. You always use the same basic code structure to create a wide range of figures:\n\n1.  The `ggplot()` function creates a blank canvas for you to work on.\n2.  Geoms add the visual elements, such as points, lines, bars, or other shapes.\n3.  Other specifications can include changing axis settings, setting the theme, adding labels, etc.\n4.  You connect all these different specifications to each other using `+` signs.\n\nThe variables that you want to display on the graph must always be wrapped in an `aes()` function, which stands for aesthetics. This specification tells R to determine the value of the aesthetic (x and y axes, colors, groups, line types, etc.) based on the value of the variable. `aes()` can be specified both in the main `ggplot()` function (in which case it will apply to all geoms) or within a `geom_...()` function (then it only applies to that geom).\n\nFor line charts you use `geom_line()`, and for scatterplots `geom_point()`. You can fit a line on your scatterplot with `geom_smooth()`. If you want to fit a straight line, add `method = \"lm\"` as an argument inside `geom_smooth()`.\n\nIf you want to change the color of a point/line based on the value of a variable, specify `color = variable` **inside** the `aes()` function. If you would like all points/lines to be a particular color, specify `color = \"blue\"` **outside** the `aes()` function but still inside the geom you'd like to modify. Each geom's help file lists all characteristics that you can modify.\n\n## Saving plots\n\nOnce you make a plot, you can save `ggplot` objects to use outside of the R environment with the `ggsave` function. You can specify an existing `ggplot` object as the first argument, but by default `ggsave()` saves the last plot displayed in your Plots panel. You always need to specify the file path of the saved plot, including the preferred file format (e.g. .png, .jpg, .pdf). You can adjust the plot size with the `scale` argument or by specifying the height and width in your preferred units (the default units are inches).\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Save last plot\nggsave(\"figures/plot1.png\", scale = 1.5)\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

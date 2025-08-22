@@ -1,0 +1,15 @@
+{
+  "hash": "f666fa90f4393f4db8383cfa9ecf168d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"Writing your own functions\"\ndate: \"Last updated: 2025-08-17\"\n---\n\n\n\n\n**This tutorial is not ready yet. Please come back later.**\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

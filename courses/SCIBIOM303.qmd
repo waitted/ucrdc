@@ -1,0 +1,42 @@
+---
+layout: page
+title: "SCIBIOM303<br> Mechanisms of Disease"
+subtitle: "Spring 2025"
+date: "Last updated: `r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+# Introduction
+
+This page collects materials for the data-driven assignments in the Spring 2025 edition of Mechanisms of Disease at UCR. You can also access the related files (data and R scripts) directly on [GitHub](https://github.com/ucrdatacenter/projects/tree/main/SCIBIOM303/2025h1).
+
+# Office hours
+
+The Data Center offers office hours to help you with the data-driven assignments. You can find more information about the schedule [here](../../contact.qmd).
+
+# Preparation for Data Center workshops
+
+To participate in the workshops, you will need to have R and RStudio installed on your computer. If you don’t have these programs installed, please follow [this installation tutorial](../../tutorials/r_install.qmd).
+
+In addition, the [R basics tutorial](../../../tutorials/r_basics.qmd) on the Data Center website explains the RStudio interface, and shows how to create a new project and how to install packages.
+
+Please bring your fully charged laptop to all Data Center workshops.
+
+# Workshop materials
+
+## First workshop: introduction to R
+
+The first Data Center workshop takes place on the Monday class of week 3 (10 February). You can find the workshop handout [here](SCIBIOM303/workshop1.qmd).
+
+To prepare for the first workshop, please complete the preparatory instructions listed above.
+
+## Second workshop: heatstroke-related ambulance dispatches in Japan
+
+The second Data Center workshop takes place on the Thursday class of week 3 (13 February). You can find the workshop handout [here](SCIBIOM303/workshop2.qmd).
+
+# Assignment
+
+Following the Data Center workshop, you will work on your own projects in groups. Further details are available in the course outline. You can download all datasets from [GitHub](https://github.com/ucrdatacenter/projects/tree/main/SCIBIOM303/2025h1/data).

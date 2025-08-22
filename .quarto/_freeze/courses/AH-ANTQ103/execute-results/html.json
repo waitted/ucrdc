@@ -1,0 +1,17 @@
+{
+  "hash": "f59a7906e805c39f84f4481969af7d64",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"AH-ANTQ103<br> Introduction to Archaeology\"\nsubtitle: \"Spring 2025\"\ndate: \"Last updated: 2025-08-12\"\n---\n\n\n\n\n# Introduction\n\nThis page collects materials for the data-driven assignments in the Spring 2025 edition of Introduction to Archeology at UCR. You can also access the related files (data and R scripts) directly on [GitHub](https://github.com/ucrdatacenter/projects/tree/main/AH-ANTQ103/2025h1).\n\n# Office hours\n\nThe Data Center offers office hours to help you with the data-driven assignments. You can find more information about the schedule [here](../../contact.qmd).\n\n# Preparation for Data Center workshops\n\nTo participate in the workshops, you will need to have R and RStudio installed on your computer. If you don’t have these programs installed, please follow [this installation tutorial](../../tutorials/r_install.qmd).\n\nIn addition, the [R basics tutorial](../../../tutorials/r_basics.qmd) on the Data Center website explains the RStudio interface, and shows how to create a new project and how to install packages.\n\nPlease bring your fully charged laptop to all Data Center workshops.\n\n# Workshop materials\n\n## Workshop 1\n\n[Link](AH-ANTQ103/workshop1.qmd) to the workshop page.\n\n## Workshop 2\n\n[Link](AH-ANTQ103/workshop2.qmd) to the workshop page.\n\n## Workshop 3\n\n[Link](AH-ANTQ103/workshop3.qmd) to the workshop page.\n\n# Example of what you will learn\n\n![](AH-ANTQ103/workshop3_files/figure-gfm/plot_3-1.png)\n",
+    "supporting": [
+      "AH-ANTQ103_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,13 @@
+---
+title: "Welcome to the UCR Data Center!"
+---
+
+::: {#container style="width: 1000px;"}
+::: {#floated style="float: left; height: 150px;"}
+![](DC_logo.png){width="400"}
+:::
+
+[Learn more]() about the Data Center, or check out our [general]() and [course-specific]() resources for improving your data science skills.
+
+If you’re looking for data science support with a UCR course or your SEPR, or you’re interested in doing an internship with the Data Center, please [email us](mailto:datacenter@ucr.nl) or attend our [office hours]().
+:::

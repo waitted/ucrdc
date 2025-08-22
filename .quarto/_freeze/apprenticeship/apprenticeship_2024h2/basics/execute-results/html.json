@@ -1,0 +1,17 @@
+{
+  "hash": "455bca99229436349e8237b396e42326",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Data Center Apprenticeship:\\nR basics\"\nsubtitle: \"June 2024\" \ndate: \"Last updated: 2025-08-12\"\n---\n\n\n\n\n# Installation and setup: prepare in advance\n\nBefore the first workshop, please make sure that you have access to R and RStudio on your laptop. If you need help with the installation, please follow [this tutorial](../../../tutorials/r_install.qmd).\n\nIn addition the [R basics tutorial](../../../tutorials/r_basics.qmd) on the Data Center website explains the RStudio interface, and shows how to create a new project and how to install packages.\n\nAs a first step, please create a new project in your preferred working directory for these workshops, install the `tidyverse` package, and load it in your R session at the top of a new script. Note that packages need to be installed only once, but need to be loaded at the beginning of each new R session.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n```\n:::\n\n\n# Objectives\n\n## Why R?\n\n-   Free and open-source\n-   Reproducible\n-   Widely used in academia and industry; up-to-date with the latest technological developments\n-   Very versatile: extensive package ecosystem for statistics and more\n-   Powerful data wrangling and visualization capabilities\n-   Extensive community support (open-access books, tutorials, forums, AI tools, etc.)\n\n## Why `tidyverse`?\n\n-   Clean, consistent, intuitive, readable syntax for all steps of the data analysis process\n-   Limited set of functions that can be combined in many ways\n-   Many packages beyond core `tidyverse` with the same underlying design, grammar, and data structures, therefore easier to learn advanced techniques\n\n**Please use the links in the headers to access the individual sections.**\n\n# [Introduction to R](basics/intro.qmd)\n\n# Data analysis workflow\n\n## [Finding and importing data](basics/import.qmd)\n\n## [Data wrangling with `dplyr`](basics/clean.qmd)\n\n## Exploratory analysis\n\n### [Summary statistics](basics/summary.qmd)\n\n### [Data visualization with `ggplot2`](basics/ggplot.qmd)\n\n## [Hypothesis testing / modelling](basics/tests.qmd)\n\n# Other resources\n\n-   [Data Center collection of resources](../../../tutorials/links.qmd)\n\nNote: a major advantage of using R is the ability to define custom functions. So if some of the methods and workflows used in RMET classes do not have sufficiently straightforward R implementations, UCR can develop its own functions (and even package) to streamline the process and give students quick and easy functions. See for example the `qacr` package developed for a similar purpose at Wesleyan University: [qacr website](https://rkabacoff.github.io/qacr/articles/qacr.html).\n",
+    "supporting": [
+      "basics_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

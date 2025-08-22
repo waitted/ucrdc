@@ -1,0 +1,17 @@
+{
+  "hash": "84e3fccf96d31a137d02d4f9bafd91a9",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"SCIBIOM303<br> Mechanisms of Disease\"\nsubtitle: \"Spring 2025\"\ndate: \"Last updated: 2025-08-17\"\n---\n\n\n\n\n# Introduction\n\nThis page collects materials for the data-driven assignments in the Spring 2025 edition of Mechanisms of Disease at UCR. You can also access the related files (data and R scripts) directly on [GitHub](https://github.com/ucrdatacenter/projects/tree/main/SCIBIOM303/2025h1).\n\n# Office hours\n\nThe Data Center offers office hours to help you with the data-driven assignments. You can find more information about the schedule [here](../../contact.qmd).\n\n# Preparation for Data Center workshops\n\nTo participate in the workshops, you will need to have R and RStudio installed on your computer. If you don’t have these programs installed, please follow [this installation tutorial](../../tutorials/r_install.qmd).\n\nIn addition, the [R basics tutorial](../../../tutorials/r_basics.qmd) on the Data Center website explains the RStudio interface, and shows how to create a new project and how to install packages.\n\nPlease bring your fully charged laptop to all Data Center workshops.\n\n# Workshop materials\n\n## First workshop: introduction to R\n\nThe first Data Center workshop takes place on the Monday class of week 3 (10 February). You can find the workshop handout [here](SCIBIOM303/workshop1.qmd).\n\nTo prepare for the first workshop, please complete the preparatory instructions listed above.\n\n## Second workshop: heatstroke-related ambulance dispatches in Japan\n\nThe second Data Center workshop takes place on the Thursday class of week 3 (13 February). You can find the workshop handout [here](SCIBIOM303/workshop2.qmd).\n\n# Assignment\n\nFollowing the Data Center workshop, you will work on your own projects in groups. Further details are available in the course outline. You can download all datasets from [GitHub](https://github.com/ucrdatacenter/projects/tree/main/SCIBIOM303/2025h1/data).\n",
+    "supporting": [
+      "SCIBIOM303_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

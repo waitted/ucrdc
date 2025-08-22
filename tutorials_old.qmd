@@ -1,0 +1,62 @@
+---
+layout: page
+title: "Tutorials"
+---
+
+# Setting up R
+
+Start here if you have never used R before.
+
+-   [Installing R](tutorials/r_install.qmd)
+-   [Getting started with R and RStudio](tutorials/r_basics.qmd)
+-   [Objects and functions](tutorials/r_objects.qmd)
+
+# Introduction to R
+
+If you can find your way around R and RStudio, but want to learn more about the basics. Most of these tutorials can be used independently of each other. Any prerequisites are mentioned in the introduction of each tutorial.
+
+-   [Importing data](tutorials/r_intro_import.qmd)
+-   [Data wrangling: filtering rows and selecting columns](tutorials/r_intro_subset.qmd)
+-   [Data wrangling: creating new variables](tutorials/r_intro_mutate.qmd)
+-   [Data wrangling: summarizing data (within groups)](tutorials/r_intro_summarize.qmd)
+-   [Pivoting: data in wide and long format](tutorials/r_intro_pivot.qmd)
+-   [The tidy workflow](tutorials/r_intro_pipe.qmd)
+-   [Data visualization: introduction to ggplot2](tutorials/r_ggplot_intro.qmd)
+-   [Data visualization: distributions](tutorials/r_ggplot_univariate.qmd)
+-   [Data visualization: relationships between variables](tutorials/r_ggplot_bivariate.qmd)
+-   [Data visualization: patterns over time](tutorials/r_ggplot_timeseries.qmd)
+
+# R topics for beginners
+
+If you're familiar with basic data cleaning and visualization, but want to learn more about specific topics that are relevant to your disciplinary background or interests. The tutorials in this section can be used independently of each other.
+
+-   [Working with spatial data](tutorials/r_spatial.qmd)
+-   [Working with text](tutorials/r_text.qmd)
+-   [Statistics in R](tutorials/r_stats.qmd)
+
+# Advanced R topics
+
+If you have more experience with R (e.g. ENGDATA101) and want to learn more. These tutorials are particularly useful for students in the Data Center Apprenticeship program.
+
+-   [More on importing data](tutorials/r_adv_import.qmd)
+-   [More on data visualization](tutorials/r_adv_ggplot.qmd)
+-   [Text analysis with regular expressions](tutorials/r_regex.qmd)
+-   [Web and pdf scraping](tutorials/r_scraping.qmd)
+-   [Interactive applications with Shiny](tutorials/r_shiny.qmd)
+-   [Writing your own functions](tutorials/r_functions.qmd)
+-   [Advanced data types and functionals](tutorials/r_adv_objects.qmd)
+-   [Neuroimaging in R](tutorials/neuroimaging.qmd)
+
+# Reproducible research workflows
+
+If you want to learn more about how to make your workflows more reproducible and efficient.
+
+-   [Version control with GitHub](tutorials/github_intro.qmd)
+-   [Collaborating on GitHub](tutorials/github_collab.qmd)
+-   [Compile documents with RMarkdown/Quarto](tutorials/rmarkdown.qmd)
+-   [Write papers in LaTeX (with Overleaf)](tutorials/latex.qmd)
+
+# Other
+
+-   [Useful data sources](tutorials/data.qmd)
+-   [Additional materials](tutorials/links.qmd)

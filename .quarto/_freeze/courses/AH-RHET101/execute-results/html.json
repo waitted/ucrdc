@@ -1,0 +1,17 @@
+{
+  "hash": "129418270b5227e0fa649c480feaf167",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"AH-RHET101<br> Introduction to Rhetoric and Argumentation\"\nsubtitle: \"Spring 2025\"\ndate: \"Last updated: 2025-08-12\"\n---\n\n\n\n\n# Introduction\n\nThis page collects materials for the data-driven assignment in the Spring 2025 edition of Introduction to Rhetoric and Argumentation at UCR. You can also access the related files (data and R scripts) directly on [GitHub](https://github.com/ucrdatacenter/projects/tree/main/AH-RHET101/2025h1).\n\n# Office hours\n\nThe Data Center offers office hours to help you with the data-driven assignments. You can find more information about the schedule [here](../../contact.qmd).\n\n# Preparation for Data Center workshops\n\nTo participate in the workshops, you will need to have R and RStudio installed on your computer. If you don’t have these programs installed, please follow [this installation tutorial](../../tutorials/r_install.qmd).\n\nIn addition, the [R basics tutorial](../../../tutorials/r_basics.qmd) on the Data Center website explains the RStudio interface, and shows how to create a new project and how to install packages.\n\nPlease bring your fully charged laptop to all Data Center workshops.\n\n# Workshop materials\n\n## Workshops 1 (Digital Humanities) and 2 (Sketch Engine)\n\nPlease see the course Moodle page.\n\n## Workshop 3: Introduction to R\n\nPlease find the workshop handout [here](AH-RHET101/workshop3.qmd).\n\n## Homework assignment after workshop 3\n\nPlease open [this link](https://github.com/ucrdatacenter/projects/blob/main/AH-RHET101/2025h1/workshop3_homework.Rmd), and click on the \"Download raw file\" button (top right corner, with the downward pointing arrow). Save the file in your R project directory. Open the file in RStudio, and follow the instructions in the document to complete the assignment.\n\nIf you would like to have some more practice with the functions you learned during the 3rd workshop, you can find an optional homework assignment [here](https://github.com/ucrdatacenter/projects/blob/main/AH-RHET101/2025h1/workshop3_homework_optional.Rmd).\n\n## Workshop 4: Sentiment analysis in R\n\nPlease find the workshop handout [here](AH-RHET101/workshop4.qmd).\n\n## Homework assignment after workshop 4\n\nPlease open [this link](https://github.com/ucrdatacenter/projects/blob/main/AH-RHET101/2025h1/workshop4_homework.Rmd), and click on the \"Download raw file\" button (top right corner, with the downward pointing arrow). Save the file in your R project directory. Open the file in RStudio, and follow the instructions in the document to complete the assignment.\n",
+    "supporting": [
+      "AH-RHET101_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

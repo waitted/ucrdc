@@ -1,0 +1,11 @@
+---
+layout: page
+title: "Write papers in LaTeX (with Overleaf)"
+date: "Last updated: `r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, error = FALSE)
+```
+
+**This tutorial is not ready yet. Please come back later.**s

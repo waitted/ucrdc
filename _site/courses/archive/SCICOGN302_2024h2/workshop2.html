@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-17">
+
+<title>UCR Data Center - SCICOGN302 workshop II: Some measures of language development</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#first-steps" id="toc-first-steps" class="nav-link" data-scroll-target="#first-steps">First steps</a></li>
+  <li><a href="#accessing-the-data" id="toc-accessing-the-data" class="nav-link" data-scroll-target="#accessing-the-data">Accessing the data</a></li>
+  <li><a href="#share-of-valid-words" id="toc-share-of-valid-words" class="nav-link" data-scroll-target="#share-of-valid-words">Share of valid words</a></li>
+  <li><a href="#share-of-uncommon-words" id="toc-share-of-uncommon-words" class="nav-link" data-scroll-target="#share-of-uncommon-words">Share of uncommon words</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SCICOGN302 workshop II:<br> Some measures of language development</h1>
+<p class="subtitle lead">Fall 2024</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="learning-outcomes" class="level1">
+<h1>Learning outcomes</h1>
+<p>In this tutorial you learn the steps needed to calculate and visualize some measures of languages development over time for three children, using R and the CHILDES database of child language development. You will need these skills in the small homework assignment following this workshop, and in case you choose to complete a data assignment instead of an experiment for your final poster.</p>
+<p>You learn how to import data into R with the <code>childesr</code> package, how to use basic text analysis tools, and how to visualize your results using the <code>ggplot2</code> package.</p>
+</section>
+<section id="first-steps" class="level1">
+<h1>First steps</h1>
+<p>This tutorial assumes that you completed the <a href="../workshop1">first Data Center workshop</a> and its prerequisites.</p>
+<p>Note that if you get stuck at any point, check the help files of functions (access by running <code>?functionname</code>), look at more extensive <a href="../../../tutorials">Data Center tutorials</a>, try googling your question, attend Data Center office hours (<a href="../../../contact">schedule</a>) or email <a href="mailto:datacenter@ucr.nl">datacenter@ucr.nl</a>.</p>
+<p>The code used in this tutorial is also available on <a href="https://github.com/ucrdatacenter/projects/blob/main/SCICOGN302/2024h2/workshop2code.R">Github</a>.</p>
+</section>
+<section id="accessing-the-data" class="level1">
+<h1>Accessing the data</h1>
+<p>Our goal is to analyze speech samples from three children, calculate different measures of language development, and visualize the results. All three children were studied by Roger Brown and his students, and their data is available in the CHILDES database.</p>
+<p>First, we load the packages we need for this analysis. Make sure that all packages are installed on your computer. If not, you can install them by running <code>install.packages("packagename")</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(childesr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qdapDictionaries)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># look at all the available corpora in the data set</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>corpora <span class="ot">&lt;-</span> <span class="fu">get_corpora</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(corpora)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We are going to work with tokens and utterances a lot, so first, a little explanation on what they actually are. Utterances are data elements from a recorded piece of conversation (such as “I had good dinner”). Tokens are specific pieces of utterances (“I”, “had”, “good”, “dinner”). Utterances are usually more useful when we look into the development of a child as a whole (syntax, semantics, context of the utterance), whereas with tokens you can look into the development of a child’s vocabulary (child’s vocabulary complexity and its development over time.)</p>
+<p>When picking a child/children for your research question, it is very important to make sure you have enough data (utterances and tokens) to work with. In a study done by MacWhinney, B., &amp; Snow, C. (1990) you have a detailed overview of all the researchers who have added to the childes data set. There are some which follow a single child (Snow), some that look into the short-term speech of multiple children (Higginson), and some that follow the mothers and children as well (Howe).</p>
+<p>In this example, we will work with Brown’s addition to the data set (Brown’s corpora, specifically tokens) - data acquired from three children Adam, Eve and Sarah, collected by Roger Brown and his students. Adam was studied from 2;3 to 4;10; Eve from 1;6 to 2;3; and Sarah from 2;3 to 5;1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download tokens from the Brown corpus</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tokens <span class="ot">&lt;-</span> <span class="fu">get_tokens</span>(<span class="at">token =</span> <span class="st">"*"</span>, <span class="at">collection =</span> <span class="st">"Eng-NA"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">corpus =</span> <span class="st">"Brown"</span>, <span class="at">role =</span> <span class="st">"target_child"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="share-of-valid-words" class="level1">
+<h1>Share of valid words</h1>
+<p>One way to measure the development of the children’s language using token-level data is to evaluate whether each token is a valid English word or not, and use this information to calculate summary statistics per time period.</p>
+<p>We can introduce a variable for whether the each word is present in an English dictionary. This variable will be a logical vector, with <code>TRUE</code> and <code>FALSE</code> as possible values. The computer treats <code>TRUE</code> values as 1 and <code>FALSE</code> values as 0, so you can use mathematical operations such as averages on logical data. Then the average of the variable over a certain time period can be interpreted as the share of words that are present in an English dictionary: average values closer to zero would mean the child still has a lot of mumbling/incorrect pronunciation or misspoken words in their vocabulary, whereas a child with a score near 1 has a very developed vocabulary. This way, we can assign a value to every token, and then average it per certain time period. Afterwards, we can compare this value progression for all three children. This comparison does not look into syntax of the sentence, meaning that even a sentence “banana mango apples man” would be evaluated as entirely correct, when in reality this sentence is nonsensical. So this method certainly has its limitations, but is nevertheless interesting to look at.</p>
+<p>In order to find out which words exist in an English dictionary, we need to choose a dictionary. The <code>qdapDictionaries</code> package contains the <code>GradyAugmented</code> object, which is a character vector containing over 120,000 English words.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's check the total number of words in the GradyAugmented vector</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(GradyAugmented)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 122806</code></pre>
+</div>
+</div>
+<p>It is suggested by multiple sources that we need approximately 3000 words to be able to communicate our point in English without any problems (VocabularyFirst, 2019; Yang, 2016). This data set has 40 times that amount, so we can deem it appropriate for our purposes. Even though it’s not an exhaustive list of all English words, the chances that a child said a word that is correct and is not on the list above is very small.</p>
+<p>Now we need to compare the data sets of children’s tokens with the valid words in our English dictionary. We can define a logical condition with the <code>%in%</code> operator, which checks if each token is present in the <code>GradyAugmented</code> vector and returns <code>TRUE</code> or <code>FALSE</code> as the result. We call the new variable <code>is_valid</code> to reflect whether the token in each row is a valid word.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'is_valid' in tokens</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>valid_tokens <span class="ot">&lt;-</span> tokens <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_valid =</span> gloss <span class="sc">%in%</span> GradyAugmented)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows of gloss and is_valid to check the results</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>valid_tokens <span class="sc">|&gt;</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gloss, is_valid) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  gloss     is_valid
+  &lt;chr&gt;     &lt;lgl&gt;   
+1 yeah      TRUE    
+2 choo_choo FALSE   
+3 train     TRUE    
+4 there     TRUE    
+5 water     TRUE    
+6 water     TRUE    </code></pre>
+</div>
+</div>
+<p>Since these children are not studied from the time when they first start speaking and are therefore more likely to stutter or create their own words to fill in gaps in vocabulary, most tokens are valid words. However, there will still be some slips, such as when Adam used the word choo-choo, probably to adress a train.</p>
+<p>Looking at these “slips” may show us how developed a child’s language is. In reality, creating their own words and bridging gaps in their vocabulary is just a natural step in language development, as it is experimentation with meaning, words structures and sounds (Michigan State University Extension, 2023, Social Sci LibreTexts, 2023). However, for us it shows how “far” a child is in their language development journey.</p>
+<p>In order to get some statistics over time, let’s aggregate the data per child and age bracket, and calculate the share of valid words in each period. We use the <code>floor()</code> function to round the age to the nearest month, and then group by the child’s name and age bracket to calculate the average of the <code>is_valid</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>valid_tokens <span class="ot">&lt;-</span> tokens <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_valid =</span> gloss <span class="sc">%in%</span> GradyAugmented,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> <span class="fu">floor</span>(target_child_age)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_child_name, age) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">valid_share =</span> <span class="fu">mean</span>(is_valid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have the data where each row corresponds to one child in one month, we can visualize the data with a line chart, coloring the lines by child name.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>valid_tokens <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> valid_share, <span class="at">color =</span> target_child_name)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Development of Average Valid Word Usage Over Time"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age (months)"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average Valid Word Usage"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>After looking at the data we can see that initially, there is an increase of average valid word usage, especially for Sarah. However, there does not seem to be a stable trend, except for Eve, where there is a stable increase for period of 5 months. Her speech was recorded for shorter period of time than Adam and Sarah and at a younger age, so it’s not an entirely fair comparison with the other two. When we compare only Adam and Sarah, we can see that Adam started with a much higher average valid word usage, but Sarah caught up to Adam over time, and from about the age of 50 months, they have similar average valid word usage (85–90% of all tokens).</p>
+<p>This way of analyzing tokens may be more suitable for children that are just learning how to speak, as the figure suggests that there is a certain development period of life when there is a rise of average valid use of words, and then the trends flatten out as the vast majority of spoken tokens are valid words beyind a certain age.</p>
+</section>
+<section id="share-of-uncommon-words" class="level1">
+<h1>Share of uncommon words</h1>
+<p>Another way we can analyse and compare their vocabulary development is to look into the uniqueness of words the children use. For this we will track “valid” words from their utterances, but compare it against the 500 most common words in the English language to see how many words are NOT from this list (while still being valid words). So instead of calculating what share of total tokens are valid words, we can calculate what share of total tokens are valid but not common words.</p>
+<p>First, let’s create a vector with the most common words according to english4today.com. There is no pre-defined list of the most common words in R, so we have to create it ourselves.</p>
+<p>Useful tip: AI tools such as ChatGPT can help with formatting words/numbers into data sets and vectors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with the provided list of common words</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>common_words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"the"</span>, <span class="st">"of"</span>, <span class="st">"to"</span>, <span class="st">"and"</span>, <span class="st">"a"</span>, <span class="st">"in"</span>, <span class="st">"is"</span>, <span class="st">"it"</span>, <span class="st">"you"</span>, <span class="st">"that"</span>, <span class="st">"he"</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"was"</span>, <span class="st">"for"</span>, <span class="st">"on"</span>, <span class="st">"are"</span>, <span class="st">"with"</span>, <span class="st">"as"</span>, <span class="st">"I"</span>, <span class="st">"his"</span>, <span class="st">"they"</span>, <span class="st">"be"</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"at"</span>, <span class="st">"one"</span>, <span class="st">"have"</span>, <span class="st">"this"</span>, <span class="st">"from"</span>, <span class="st">"or"</span>, <span class="st">"had"</span>, <span class="st">"by"</span>, <span class="st">"hot"</span>, <span class="st">"but"</span>, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"some"</span>, <span class="st">"what"</span>, <span class="st">"there"</span>, <span class="st">"we"</span>, <span class="st">"can"</span>, <span class="st">"out"</span>, <span class="st">"other"</span>, <span class="st">"were"</span>, <span class="st">"all"</span>, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"your"</span>, <span class="st">"when"</span>, <span class="st">"up"</span>, <span class="st">"use"</span>, <span class="st">"word"</span>, <span class="st">"how"</span>, <span class="st">"said"</span>, <span class="st">"an"</span>, <span class="st">"each"</span>, </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"she"</span>, <span class="st">"which"</span>, <span class="st">"do"</span>, <span class="st">"their"</span>, <span class="st">"time"</span>, <span class="st">"if"</span>, <span class="st">"will"</span>, <span class="st">"way"</span>, <span class="st">"about"</span>, </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"many"</span>, <span class="st">"then"</span>, <span class="st">"them"</span>, <span class="st">"would"</span>, <span class="st">"write"</span>, <span class="st">"like"</span>, <span class="st">"so"</span>, <span class="st">"these"</span>, </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"her"</span>, <span class="st">"long"</span>, <span class="st">"make"</span>, <span class="st">"thing"</span>, <span class="st">"see"</span>, <span class="st">"him"</span>, <span class="st">"two"</span>, <span class="st">"has"</span>, <span class="st">"look"</span>, </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"more"</span>, <span class="st">"day"</span>, <span class="st">"could"</span>, <span class="st">"go"</span>, <span class="st">"come"</span>, <span class="st">"did"</span>, <span class="st">"my"</span>, <span class="st">"sound"</span>, <span class="st">"no"</span>, </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"most"</span>, <span class="st">"number"</span>, <span class="st">"who"</span>, <span class="st">"over"</span>, <span class="st">"know"</span>, <span class="st">"water"</span>, <span class="st">"than"</span>, <span class="st">"call"</span>, </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"first"</span>, <span class="st">"people"</span>, <span class="st">"may"</span>, <span class="st">"down"</span>, <span class="st">"side"</span>, <span class="st">"been"</span>, <span class="st">"now"</span>, <span class="st">"find"</span>, </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"any"</span>, <span class="st">"new"</span>, <span class="st">"work"</span>, <span class="st">"part"</span>, <span class="st">"take"</span>, <span class="st">"get"</span>, <span class="st">"place"</span>, <span class="st">"made"</span>, <span class="st">"live"</span>, </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"where"</span>, <span class="st">"after"</span>, <span class="st">"back"</span>, <span class="st">"little"</span>, <span class="st">"only"</span>, <span class="st">"round"</span>, <span class="st">"man"</span>, <span class="st">"year"</span>, </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"came"</span>, <span class="st">"show"</span>, <span class="st">"every"</span>, <span class="st">"good"</span>, <span class="st">"me"</span>, <span class="st">"give"</span>, <span class="st">"our"</span>, <span class="st">"under"</span>, <span class="st">"name"</span>, </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"very"</span>, <span class="st">"through"</span>, <span class="st">"just"</span>, <span class="st">"form"</span>, <span class="st">"much"</span>, <span class="st">"great"</span>, <span class="st">"think"</span>, <span class="st">"say"</span>, </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"help"</span>, <span class="st">"low"</span>, <span class="st">"line"</span>, <span class="st">"before"</span>, <span class="st">"turn"</span>, <span class="st">"cause"</span>, <span class="st">"same"</span>, <span class="st">"mean"</span>, </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"differ"</span>, <span class="st">"move"</span>, <span class="st">"right"</span>, <span class="st">"boy"</span>, <span class="st">"old"</span>, <span class="st">"too"</span>, <span class="st">"does"</span>, <span class="st">"tell"</span>, </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"sentence"</span>, <span class="st">"set"</span>, <span class="st">"three"</span>, <span class="st">"want"</span>, <span class="st">"air"</span>, <span class="st">"well"</span>, <span class="st">"also"</span>, <span class="st">"play"</span>, </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"small"</span>, <span class="st">"end"</span>, <span class="st">"put"</span>, <span class="st">"home"</span>, <span class="st">"read"</span>, <span class="st">"hand"</span>, <span class="st">"port"</span>, <span class="st">"large"</span>, </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"spell"</span>, <span class="st">"add"</span>, <span class="st">"even"</span>, <span class="st">"land"</span>, <span class="st">"here"</span>, <span class="st">"must"</span>, <span class="st">"big"</span>, <span class="st">"high"</span>, <span class="st">"such"</span>, </span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"follow"</span>, <span class="st">"act"</span>, <span class="st">"why"</span>, <span class="st">"ask"</span>, <span class="st">"men"</span>, <span class="st">"change"</span>, <span class="st">"went"</span>, <span class="st">"light"</span>, </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"kind"</span>, <span class="st">"off"</span>, <span class="st">"need"</span>, <span class="st">"house"</span>, <span class="st">"picture"</span>, <span class="st">"try"</span>, <span class="st">"us"</span>, <span class="st">"again"</span>, </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"animal"</span>, <span class="st">"point"</span>, <span class="st">"mother"</span>, <span class="st">"world"</span>, <span class="st">"near"</span>, <span class="st">"build"</span>, <span class="st">"self"</span>, </span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"earth"</span>, <span class="st">"father"</span>, <span class="st">"head"</span>, <span class="st">"stand"</span>, <span class="st">"own"</span>, <span class="st">"page"</span>, <span class="st">"should"</span>, <span class="st">"country"</span>, </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"found"</span>, <span class="st">"answer"</span>, <span class="st">"school"</span>, <span class="st">"grow"</span>, <span class="st">"study"</span>, <span class="st">"still"</span>, <span class="st">"learn"</span>, </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"plant"</span>, <span class="st">"cover"</span>, <span class="st">"food"</span>, <span class="st">"sun"</span>, <span class="st">"four"</span>, <span class="st">"thought"</span>, <span class="st">"let"</span>, <span class="st">"keep"</span>, </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"eye"</span>, <span class="st">"never"</span>, <span class="st">"last"</span>, <span class="st">"door"</span>, <span class="st">"between"</span>, <span class="st">"city"</span>, <span class="st">"tree"</span>, <span class="st">"cross"</span>, </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"since"</span>, <span class="st">"hard"</span>, <span class="st">"start"</span>, <span class="st">"might"</span>, <span class="st">"story"</span>, <span class="st">"saw"</span>, <span class="st">"far"</span>, <span class="st">"sea"</span>, </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"draw"</span>, <span class="st">"left"</span>, <span class="st">"late"</span>, <span class="st">"run"</span>, <span class="st">"don't"</span>, <span class="st">"while"</span>, <span class="st">"press"</span>, <span class="st">"close"</span>, </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"night"</span>, <span class="st">"real"</span>, <span class="st">"life"</span>, <span class="st">"few"</span>, <span class="st">"stop"</span>, <span class="st">"open"</span>, <span class="st">"seem"</span>, <span class="st">"together"</span>, </span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"next"</span>, <span class="st">"white"</span>, <span class="st">"children"</span>, <span class="st">"begin"</span>, <span class="st">"got"</span>, <span class="st">"walk"</span>, <span class="st">"example"</span>, <span class="st">"ease"</span>, </span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"paper"</span>, <span class="st">"often"</span>, <span class="st">"always"</span>, <span class="st">"music"</span>, <span class="st">"those"</span>, <span class="st">"both"</span>, <span class="st">"mark"</span>, <span class="st">"book"</span>, </span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"letter"</span>, <span class="st">"until"</span>, <span class="st">"mile"</span>, <span class="st">"river"</span>, <span class="st">"car"</span>, <span class="st">"feet"</span>, <span class="st">"care"</span>, <span class="st">"second"</span>, </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"group"</span>, <span class="st">"carry"</span>, <span class="st">"took"</span>, <span class="st">"rain"</span>, <span class="st">"eat"</span>, <span class="st">"room"</span>, <span class="st">"friend"</span>, <span class="st">"began"</span>, </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"idea"</span>, <span class="st">"fish"</span>, <span class="st">"mountain"</span>, <span class="st">"north"</span>, <span class="st">"once"</span>, <span class="st">"base"</span>, <span class="st">"hear"</span>, <span class="st">"horse"</span>, </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"cut"</span>, <span class="st">"sure"</span>, <span class="st">"watch"</span>, <span class="st">"color"</span>, <span class="st">"face"</span>, <span class="st">"wood"</span>, <span class="st">"main"</span>, <span class="st">"enough"</span>, </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"plain"</span>, <span class="st">"girl"</span>, <span class="st">"usual"</span>, <span class="st">"young"</span>, <span class="st">"ready"</span>, <span class="st">"above"</span>, <span class="st">"ever"</span>, <span class="st">"red"</span>, </span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"list"</span>, <span class="st">"though"</span>, <span class="st">"feel"</span>, <span class="st">"talk"</span>, <span class="st">"bird"</span>, <span class="st">"soon"</span>, <span class="st">"body"</span>, <span class="st">"dog"</span>, </span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"family"</span>, <span class="st">"direct"</span>, <span class="st">"pose"</span>, <span class="st">"leave"</span>, <span class="st">"song"</span>, <span class="st">"measure"</span>, <span class="st">"state"</span>, </span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"product"</span>, <span class="st">"black"</span>, <span class="st">"short"</span>, <span class="st">"numeral"</span>, <span class="st">"class"</span>, <span class="st">"wind"</span>, <span class="st">"question"</span>, </span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"happen"</span>, <span class="st">"complete"</span>, <span class="st">"ship"</span>, <span class="st">"area"</span>, <span class="st">"half"</span>, <span class="st">"rock"</span>, <span class="st">"order"</span>, <span class="st">"fire"</span>, </span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"south"</span>, <span class="st">"problem"</span>, <span class="st">"piece"</span>, <span class="st">"told"</span>, <span class="st">"knew"</span>, <span class="st">"pass"</span>, <span class="st">"farm"</span>, <span class="st">"top"</span>, </span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"whole"</span>, <span class="st">"king"</span>, <span class="st">"size"</span>, <span class="st">"heard"</span>, <span class="st">"best"</span>, <span class="st">"hour"</span>, <span class="st">"better"</span>, <span class="st">"true"</span>, </span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"during"</span>, <span class="st">"hundred"</span>, <span class="st">"am"</span>, <span class="st">"remember"</span>, <span class="st">"step"</span>, <span class="st">"early"</span>, <span class="st">"hold"</span>, <span class="st">"west"</span>, </span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"ground"</span>, <span class="st">"interest"</span>, <span class="st">"reach"</span>, <span class="st">"fast"</span>, <span class="st">"five"</span>, <span class="st">"sing"</span>, <span class="st">"listen"</span>, <span class="st">"six"</span>, </span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"table"</span>, <span class="st">"travel"</span>, <span class="st">"less"</span>, <span class="st">"morning"</span>, <span class="st">"ten"</span>, <span class="st">"simple"</span>, <span class="st">"several"</span>, </span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"vowel"</span>, <span class="st">"toward"</span>, <span class="st">"war"</span>, <span class="st">"lay"</span>, <span class="st">"against"</span>, <span class="st">"pattern"</span>, <span class="st">"slow"</span>, <span class="st">"center"</span>, </span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"love"</span>, <span class="st">"person"</span>, <span class="st">"money"</span>, <span class="st">"serve"</span>, <span class="st">"appear"</span>, <span class="st">"road"</span>, <span class="st">"map"</span>, <span class="st">"science"</span>, </span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"rule"</span>, <span class="st">"govern"</span>, <span class="st">"pull"</span>, <span class="st">"cold"</span>, <span class="st">"notice"</span>, <span class="st">"voice"</span>, <span class="st">"fall"</span>, <span class="st">"power"</span>, </span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"town"</span>, <span class="st">"fine"</span>, <span class="st">"certain"</span>, <span class="st">"fly"</span>, <span class="st">"unit"</span>, <span class="st">"lead"</span>, <span class="st">"cry"</span>, <span class="st">"dark"</span>, </span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"machine"</span>, <span class="st">"note"</span>, <span class="st">"wait"</span>, <span class="st">"plan"</span>, <span class="st">"figure"</span>, <span class="st">"star"</span>, <span class="st">"box"</span>, <span class="st">"noun"</span>, </span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"field"</span>, <span class="st">"rest"</span>, <span class="st">"correct"</span>, <span class="st">"able"</span>, <span class="st">"pound"</span>, <span class="st">"done"</span>, <span class="st">"beauty"</span>, <span class="st">"drive"</span>, </span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"stood"</span>, <span class="st">"contain"</span>, <span class="st">"front"</span>, <span class="st">"teach"</span>, <span class="st">"week"</span>, <span class="st">"final"</span>, <span class="st">"gave"</span>, <span class="st">"green"</span>, </span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"oh"</span>, <span class="st">"quick"</span>, <span class="st">"develop"</span>, <span class="st">"sleep"</span>, <span class="st">"warm"</span>, <span class="st">"free"</span>, <span class="st">"minute"</span>, <span class="st">"strong"</span>, </span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"special"</span>, <span class="st">"mind"</span>, <span class="st">"behind"</span>, <span class="st">"clear"</span>, <span class="st">"tail"</span>, <span class="st">"produce"</span>, <span class="st">"fact"</span>, </span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"street"</span>, <span class="st">"inch"</span>, <span class="st">"lot"</span>, <span class="st">"nothing"</span>, <span class="st">"course"</span>, <span class="st">"stay"</span>, <span class="st">"wheel"</span>, <span class="st">"full"</span>, </span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"force"</span>, <span class="st">"blue"</span>, <span class="st">"object"</span>, <span class="st">"decide"</span>, <span class="st">"surface"</span>, <span class="st">"deep"</span>, <span class="st">"moon"</span>, <span class="st">"island"</span>, </span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"foot"</span>, <span class="st">"yet"</span>, <span class="st">"busy"</span>, <span class="st">"test"</span>, <span class="st">"record"</span>, <span class="st">"boat"</span>, <span class="st">"common"</span>, <span class="st">"gold"</span>, </span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"possible"</span>, <span class="st">"plane"</span>, <span class="st">"age"</span>, <span class="st">"dry"</span>, <span class="st">"wonder"</span>, <span class="st">"laugh"</span>, <span class="st">"thousand"</span>, <span class="st">"ago"</span>, </span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"ran"</span>, <span class="st">"check"</span>, <span class="st">"game"</span>, <span class="st">"shape"</span>, <span class="st">"yes"</span>, <span class="st">"hot"</span>, <span class="st">"miss"</span>, <span class="st">"brought"</span>, <span class="st">"heat"</span>, </span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"snow"</span>, <span class="st">"bed"</span>, <span class="st">"bring"</span>, <span class="st">"sit"</span>, <span class="st">"perhaps"</span>, <span class="st">"fill"</span>, <span class="st">"east"</span>, <span class="st">"weight"</span>, </span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"language"</span>, <span class="st">"among"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s create a new variable in the tokens data that counts the number of less common valid words. We can do this step by step: first, we create a variable that checks if the word is in the vector of valid words, another variable that checks if the word is in the vector of common words, and finally a variable that checks if the word is valid but not common. The <code>!</code> operator negates the condition, so <code>!is_common</code> is <code>TRUE</code> when <code>is_common</code> is <code>FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the 'is_special' variable</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>special_tokens <span class="ot">&lt;-</span> tokens <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_valid =</span> gloss <span class="sc">%in%</span> GradyAugmented,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">is_common =</span> gloss <span class="sc">%in%</span> common_words,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">is_special =</span> is_valid <span class="sc">&amp;</span> <span class="sc">!</span>is_common)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can aggregate and plot the data the same way as before, this time calculating the share of special words per month for each child.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># share of special words per month</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>special_tokens <span class="ot">&lt;-</span> tokens <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_valid =</span> gloss <span class="sc">%in%</span> GradyAugmented,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">is_common =</span> gloss <span class="sc">%in%</span> common_words,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">is_special =</span> is_valid <span class="sc">&amp;</span> <span class="sc">!</span>is_common,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> <span class="fu">floor</span>(target_child_age)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_child_name, age) <span class="sc">|&gt;</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">special_share =</span> <span class="fu">mean</span>(is_special))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create the plot</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>special_tokens <span class="sc">|&gt;</span> </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> special_share, <span class="at">color =</span> target_child_name)) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of Special Words per Age Bracket"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age (months)"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Share of Special Words"</span>) <span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Thisp plot shows us that the share of special words is quite volatile over time, with little clear trends. For Eve, the share of special words decreases over time from above 30% to 25%, while for Adam there is a peak above 45% at around 30 months, followed by fluctuations around 25%. Sarah’s special word usage also fluctuates around 25%, with a slight dip to 20% at around 33 months. This result is not what we might have expected, as we might have thought that the share of special words would increase over time as the children expand their vocabulary.</p>
+<p>A potential issue with this measure is that it counts every time a word is repeated. So we don’t know if a child uses 100 different words or the same word 100 times.</p>
+<p>As an alternative measure, we can consider the share of unique special words out of the total number of unique words. So e.g.&nbsp;if a child says 1000 unique tokens in a month, out of which 200 are valid but not common words, the share of unique special words would be 200/1000=20%, no matter how many times each unique token is used. We can calculate this alternative metric by adding one line of code that keeps only unique combinations of child name, age, token, and special word indicator.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># share of unique special words per month</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>unique_special_tokens <span class="ot">&lt;-</span> tokens <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_valid =</span> gloss <span class="sc">%in%</span> GradyAugmented,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">is_common =</span> gloss <span class="sc">%in%</span> common_words,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">is_special =</span> is_valid <span class="sc">&amp;</span> <span class="sc">!</span>is_common,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> <span class="fu">floor</span>(target_child_age)) <span class="sc">|&gt;</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep only unique tokens per child and age bracket</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(target_child_name, age, gloss, is_special) <span class="sc">|&gt;</span> </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_child_name, age) <span class="sc">|&gt;</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">special_share =</span> <span class="fu">mean</span>(is_special))</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create the line plot</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>unique_special_tokens <span class="sc">|&gt;</span> </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> special_share, <span class="at">color =</span> target_child_name)) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of Special Words per Age Bracket"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age (months)"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Share of Special Words"</span>) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot looks very different than the previous one, but it doesn’t look much more informative. For all three children, the lines are very volatile with no clear trends over time. But if we compare the children, we see that up to the age of 50 months, Adam has a higher share of unique special words than Sarah, which is similar to the previous finding that in that age perid Adam also has a higher share of valid words.</p>
+<p>Both of these methods have the limitation that we restrict the definition of common words to the 500 most common words. According to Linguisystems Milestones Guide the typical vocabulary size of a 5-year-old is between 2200-2500. So our definition of common words is quite restrictive, and we might miss some words that are common in the context of the children’s environment. These differences in environment might also esxplain the large fluctuations between transcript recordings. Of course, you can always look for a more extensive list of common words, or even create your own list based on the data you have. You can try to redefine the list of common words, rerun the analysis. and see if the results change.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>In this example we analyzed the speech patterns of three children on the token level. We looked at whether the words they use are valid English words, and whether they are more common or more unique. While we found some evidence that the children’s language development progresses over time, the results are not as clear-cut as we might have expected, as all measures we tested are quite volatile. We also didn’t do any analysis on the syntax of the sentences, which is also an important part of language development. For that, we would need to look at the utterance level, and analyze the structure of the sentences, the length of the utterances, the complexity of the utterances, etc.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>List of sources: Hsu, M.-L. (2013). Language play: The development of linguistic consciousness and creative speech in early childhood education. In Advances in early education and day care (Vol. 17, pp.&nbsp;127–139). Emerald Group Publishing Limited. [<a href="https://doi.org/10.1108/S0270-4021(2013)0000012007" class="uri">https://doi.org/10.1108/S0270-4021(2013)0000012007</a>][<a href="https://doi.org/10.1108/S0270-4021(2013)0000012007" class="uri">https://doi.org/10.1108/S0270-4021(2013)0000012007</a>]</p>
+<p>The Education Hub. (n.d.). Effective vocabulary instruction. The Education Hub. <a href="https://theeducationhub.org.nz/effective-vocabulary-instruction/" class="uri">https://theeducationhub.org.nz/effective-vocabulary-instruction/</a></p>
+<p>Childes-db. (2019). Childes-db: A flexible and reproducible interface to the child language data exchange system. Journal of Child Language, 51, 1928–1941. <a href="https://doi.org/10.1017/s0305000900013866" class="uri">https://doi.org/10.1017/s0305000900013866</a></p>
+<p>WordReference. (n.d.). Top 2000 English words. WordReference. <a href="https://lists.wordreference.com/show/Top-2000-English-words.1/" class="uri">https://lists.wordreference.com/show/Top-2000-English-words.1/</a></p>
+<p>VocabularyFirst. (2019). How many words do I need to speak English language? VocabularyFirst. <a href="https://www.vocabularyfirst.com/how-many-words-do-i-need-to-know/" class="uri">https://www.vocabularyfirst.com/how-many-words-do-i-need-to-know/</a></p>
+<p>Yang, D. (2016). How many words do you need to know to be fluent in English? Day Translations. <a href="https://www.daytranslations.com/blog/how-many-words-to-be-fluent-in-english/" class="uri">https://www.daytranslations.com/blog/how-many-words-to-be-fluent-in-english/</a></p>
+<p>Social Sci LibreTexts. (2023). Language Development in Early Childhood.</p>
+<p>Michigan State University Extension. (2023). Language development – Part 2: Principles that are the stem and branch of speech.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

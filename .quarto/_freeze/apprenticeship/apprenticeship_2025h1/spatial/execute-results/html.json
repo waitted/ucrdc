@@ -1,0 +1,15 @@
+{
+  "hash": "c19cdc942c415837d95b83fc07b70b1d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Data Center Apprenticeship: \\nWrangling and visualizing spatial data in R\"\nsubtitle: \"January 2025\" \ndate: \"Last updated: 2025-08-09\"\n---\n\n\n\n\n# Data\n\nData on organism occurrences can be directly downloaded in a csv file from [gbif.org](https://www.gbif.org/).\\\nData on nitrogen deposition levels in the Netherlands can be downloaded from RIVM website: [rivm.nl](https://www.rivm.nl/gcn-gdn-kaarten/depositiekaarten/cijfers-achter-depositiekaarten/gdn-depositiebestanden-achterliggende-jaren).\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(terra)\n\n# import data data directly from GitHub\n\nNitrogen_2018 <- \n  rast(\"https://raw.githubusercontent.com/ucrdatacenter/projects/main/SCIENVI201/2022h1/Data/nitrogen/depo_ntot_2018.asc\")\n\nChaffinch_2018 <- \n  read_delim(\"https://raw.githubusercontent.com/ucrdatacenter/projects/main/SCIENVI201/2022h1/Data/chaffinch/chaffinch_2018.csv\",\n             delim = \"\\t\", escape_double = FALSE, trim_ws = TRUE)\n```\n:::\n\n\n# Workshop code\n\nThe code from the workshop is available [here](https://github.com/ucrdatacenter/projects/blob/main/apprenticeship/2024h1/7_spatial/spatial_code.R).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

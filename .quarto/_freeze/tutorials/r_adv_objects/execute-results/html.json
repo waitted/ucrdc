@@ -1,0 +1,15 @@
+{
+  "hash": "9e62dca2f6784601f3e909abee659c02",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"Advanced data types and functionals\"\ndate: \"Last updated: 2025-08-17\"\n---\n\n\n\n\n**This tutorial is not ready yet. Please come back later.**\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

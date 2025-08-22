@@ -1,0 +1,15 @@
+{
+  "hash": "6bc1c884cee4952f0503bf24c5df1c6f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"Compile documents with RMarkdown/Quarto\"\ndate: \"Last updated: 2025-08-17\"\n---\n\n\n\n\n**This tutorial is not ready yet. Please come back later.**\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

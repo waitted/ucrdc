@@ -1,0 +1,503 @@
+{
+  "index.qmd": {
+    "index.html": "b24fc92d"
+  },
+  "about.qmd": {
+    "about.html": "6de41cdf"
+  },
+  "r_basics.rmd": {
+    "r_basics.html": "a41507a0"
+  },
+  "tutorials.qmd": {
+    "tutorials.html": "e3cb9d4b"
+  },
+  "courses.qmd": {
+    "courses.html": "4e4805f7"
+  },
+  "apprenticeship.qmd": {
+    "apprenticeship.html": "d577e879"
+  },
+  "ai.qmd": {
+    "ai.html": "cbf90011"
+  },
+  "contact.qmd": {
+    "contact.html": "e4ca681a"
+  },
+  "tutorials_old.qmd": {
+    "tutorials_old.html": "28a10331"
+  },
+  "tutorials/data.md": {
+    "data.html": "32b7b0e4"
+  },
+  "apprenticeship/apprenticeship_2024h1/data-types.md": {
+    "data-types.html": "3065e098"
+  },
+  "apprenticeship/apprenticeship_2024h1/data-types.Rmd": {
+    "data-types.html": "e30a75d4"
+  },
+  "apprenticeship/apprenticeship_2024h1/data.md": {
+    "data.html": "f646f5c5"
+  },
+  "apprenticeship/apprenticeship_2024h1/intro.md": {
+    "intro.html": "a014ac90"
+  },
+  "apprenticeship/apprenticeship_2024h1/intro.Rmd": {
+    "intro.html": "4def5d82"
+  },
+  "apprenticeship/apprenticeship_2024h1/scraping.md": {
+    "scraping.html": "07618bd9"
+  },
+  "apprenticeship/apprenticeship_2024h1/shiny.md": {
+    "shiny.html": "9ccdb400"
+  },
+  "apprenticeship/apprenticeship_2024h1/shiny.Rmd": {
+    "shiny.html": "c58fdc0c"
+  },
+  "apprenticeship/apprenticeship_2024h1/spatial.md": {
+    "spatial.html": "3eb1955b"
+  },
+  "apprenticeship/apprenticeship_2024h1/spatial.Rmd": {
+    "spatial.html": "dc931e61"
+  },
+  "apprenticeship/apprenticeship_2024h1/statistics.md": {
+    "statistics.html": "51acebb6"
+  },
+  "apprenticeship/apprenticeship_2024h1/statistics.Rmd": {
+    "statistics.html": "72991c01"
+  },
+  "apprenticeship/apprenticeship_2024h1/strings.md": {
+    "strings.html": "92fda948"
+  },
+  "apprenticeship/apprenticeship_2024h1/strings.Rmd": {
+    "strings.html": "1efa9e51"
+  },
+  "apprenticeship/apprenticeship_2024h1/text.md": {
+    "text.html": "b0f5113c"
+  },
+  "apprenticeship/apprenticeship_2024h1/text.Rmd": {
+    "text.html": "044044b8"
+  },
+  "apprenticeship/apprenticeship_2024h1/visualization.md": {
+    "visualization.html": "50ab2674"
+  },
+  "apprenticeship/apprenticeship_2024h1.md": {
+    "apprenticeship_2024h1.html": "f840f731"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/clean.md": {
+    "clean.html": "eb818a85"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/clean.Rmd": {
+    "clean.html": "19bc7016"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/ggplot.md": {
+    "ggplot.html": "63ce9203"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/import.md": {
+    "import.html": "599aa067"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/import.Rmd": {
+    "import.html": "bbcc1f5d"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/intro.md": {
+    "intro.html": "f82f4c3f"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/intro.Rmd": {
+    "intro.html": "4a7f38ae"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/summary.md": {
+    "summary.html": "b28a31bc"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/tests.md": {
+    "tests.html": "0c8023ee"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics.md": {
+    "basics.html": "b0c80572"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics.Rmd": {
+    "basics.html": "b0e40964"
+  },
+  "apprenticeship/apprenticeship_2024h2/scraping.md": {
+    "scraping.html": "9dd51308"
+  },
+  "apprenticeship/apprenticeship_2024h2/strings.md": {
+    "strings.html": "5f01d2d1"
+  },
+  "apprenticeship/apprenticeship_2024h2/strings.Rmd": {
+    "strings.html": "572784e4"
+  },
+  "apprenticeship/apprenticeship_2024h2/text.md": {
+    "text.html": "22a79823"
+  },
+  "apprenticeship/apprenticeship_2024h2.md": {
+    "apprenticeship_2024h2.html": "fe6f00f8"
+  },
+  "apprenticeship/apprenticeship_2025h1/faculty.md": {
+    "faculty.html": "c1a27f19"
+  },
+  "apprenticeship/apprenticeship_2025h1/faculty.Rmd": {
+    "faculty.html": "22be87c1"
+  },
+  "apprenticeship/apprenticeship_2025h1/scraping.md": {
+    "scraping.html": "968c3c31"
+  },
+  "apprenticeship/apprenticeship_2024h1/data.Rmd": {
+    "data.html": "3783113a"
+  },
+  "apprenticeship/apprenticeship_2024h1/scraping.Rmd": {
+    "scraping.html": "0ee28269"
+  },
+  "apprenticeship/apprenticeship_2024h1/visualization.qmd": {
+    "visualization.html": "e998ba81"
+  },
+  "apprenticeship/apprenticeship_2024h1/visualization.Rmd": {
+    "visualization.html": "464cc661"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/ggplot.qmd": {
+    "ggplot.html": "433e8e01"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/ggplot.Rmd": {
+    "ggplot.html": "560fc1b4"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/summary.Rmd": {
+    "summary.html": "aba20e97"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/tests.Rmd": {
+    "tests.html": "69e88d0f"
+  },
+  "apprenticeship/apprenticeship_2024h2/scraping.qmd": {
+    "scraping.html": "18e710ba"
+  },
+  "apprenticeship/apprenticeship_2024h2/text.qmd": {
+    "text.html": "45ca2330"
+  },
+  "apprenticeship/apprenticeship_2025h1/scraping.Rmd": {
+    "scraping.html": "6db1a1a4"
+  },
+  "apprenticeship/apprenticeship_2025h1/spatial.Rmd": {
+    "spatial.html": "db89d58f"
+  },
+  "apprenticeship/apprenticeship_2025h1/statistics.qmd": {
+    "statistics.html": "67b460f3"
+  },
+  "apprenticeship/apprenticeship_2025h1/statistics.Rmd": {
+    "statistics.html": "5da34583"
+  },
+  "apprenticeship/apprenticeship_2025h1/strings.Rmd": {
+    "strings.html": "d2dbd5f8"
+  },
+  "apprenticeship/apprenticeship_2024h1/data-types.qmd": {
+    "data-types.html": "ee37e7d1"
+  },
+  "apprenticeship/apprenticeship_2024h1/data.qmd": {
+    "data.html": "bc571a9f"
+  },
+  "apprenticeship/apprenticeship_2024h1/intro.qmd": {
+    "intro.html": "4d998db6"
+  },
+  "apprenticeship/apprenticeship_2024h1/scraping.qmd": {
+    "scraping.html": "2b692975"
+  },
+  "apprenticeship/apprenticeship_2024h1/shiny.qmd": {
+    "shiny.html": "e8bd122d"
+  },
+  "apprenticeship/apprenticeship_2024h1/spatial.qmd": {
+    "spatial.html": "e7971758"
+  },
+  "apprenticeship/apprenticeship_2024h1/statistics.qmd": {
+    "statistics.html": "0ae36129"
+  },
+  "apprenticeship/apprenticeship_2024h1/strings.qmd": {
+    "strings.html": "1363f8d3"
+  },
+  "apprenticeship/apprenticeship_2024h1/text.qmd": {
+    "text.html": "3738c333"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/clean.qmd": {
+    "clean.html": "0dffe084"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/import.qmd": {
+    "import.html": "52e3e5f8"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/intro.qmd": {
+    "intro.html": "d695a653"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/summary.qmd": {
+    "summary.html": "37761b6f"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics/tests.qmd": {
+    "tests.html": "597df598"
+  },
+  "apprenticeship/apprenticeship_2024h2/basics.qmd": {
+    "basics.html": "83824fc8"
+  },
+  "apprenticeship/apprenticeship_2024h2/strings.qmd": {
+    "strings.html": "231cd6b3"
+  },
+  "apprenticeship/apprenticeship_2025h1/faculty.qmd": {
+    "faculty.html": "e4e594dd"
+  },
+  "apprenticeship/apprenticeship_2025h1/scraping.qmd": {
+    "scraping.html": "bdfe5c5c"
+  },
+  "apprenticeship/apprenticeship_2025h1/spatial.qmd": {
+    "spatial.html": "70cf33ef"
+  },
+  "apprenticeship/apprenticeship_2025h1/strings.qmd": {
+    "strings.html": "0d0e2112"
+  },
+  "apprenticeship/apprenticeship_2025h1/text.qmd": {
+    "text.html": "6ba4178a"
+  },
+  "apprenticeship/apprenticeship_2025h1/visualization.qmd": {
+    "visualization.html": "696b5e28"
+  },
+  "apprenticeship/apprenticeship_2025h1/workflows.qmd": {
+    "workflows.html": "5d4a58a7"
+  },
+  "apprenticeship/apprenticeship_2025h1/wrangling.qmd": {
+    "wrangling.html": "a4a40da0"
+  },
+  "apprenticeship/apprenticeship_2025h1.md": {
+    "apprenticeship_2025h1.html": "4dd1dd80"
+  },
+  "apprenticeship/call_fas.md": {
+    "call_fas.html": "eb2d3751"
+  },
+  "apprenticeship/call_students.md": {
+    "call_students.html": "b771e3b0"
+  },
+  "courses/AH-ANTQ103/workshop1.qmd": {
+    "workshop1.html": "b98c72d1"
+  },
+  "courses/AH-ANTQ103/workshop2.qmd": {
+    "workshop2.html": "5902a039"
+  },
+  "courses/AH-ANTQ103/workshop3.qmd": {
+    "workshop3.html": "e0363d73"
+  },
+  "courses/AH-ANTQ103.qmd": {
+    "AH-ANTQ103.html": "f2663d40"
+  },
+  "courses/AH-FTME101.qmd": {
+    "AH-FTME101.html": "bcf0f757"
+  },
+  "courses/AH-RHET101/workshop3.qmd": {
+    "workshop3.html": "11974996"
+  },
+  "courses/AH-RHET101/workshop4.qmd": {
+    "workshop4.html": "9f8cd955"
+  },
+  "courses/AH-RHET101.qmd": {
+    "AH-RHET101.html": "9b15a4f1"
+  },
+  "courses/archive/AH-ANTQ103_2024h1/workshop1.qmd": {
+    "workshop1.html": "83cc0d8c"
+  },
+  "courses/archive/AH-ANTQ103_2024h1/workshop2.qmd": {
+    "workshop2.html": "562f416c"
+  },
+  "courses/archive/AH-ANTQ103_2024h1/workshop3.qmd": {
+    "workshop3.html": "0b8e793d"
+  },
+  "courses/archive/AH-ANTQ103_2024h1.qmd": {
+    "AH-ANTQ103_2024h1.html": "7c86f3e5"
+  },
+  "courses/archive/AH-LING203_2023h1.qmd": {
+    "AH-LING203_2023h1.html": "a87a6305"
+  },
+  "courses/archive/SCIBIOM303_2024h1.qmd": {
+    "SCIBIOM303_2024h1.html": "0ac9ee44"
+  },
+  "courses/archive/SCICOGN302_2023h2/poster_guidelines.qmd": {
+    "poster_guidelines.html": "0b386f38"
+  },
+  "courses/archive/SCICOGN302_2023h2/workshop1.qmd": {
+    "workshop1.html": "b496fb77"
+  },
+  "courses/archive/SCICOGN302_2023h2/workshop1extra.qmd": {
+    "workshop1extra.html": "c3b453de"
+  },
+  "courses/archive/SCICOGN302_2023h2/workshop2.qmd": {
+    "workshop2.html": "59a13bf5"
+  },
+  "courses/archive/SCICOGN302_2023h2.qmd": {
+    "SCICOGN302_2023h2.html": "42f7f90e"
+  },
+  "courses/archive/SCICOGN302_2024h2/workshop1.qmd": {
+    "workshop1.html": "6227216e"
+  },
+  "courses/archive/SCICOGN302_2024h2/workshop1extra.qmd": {
+    "workshop1extra.html": "b6997b3e"
+  },
+  "courses/archive/SCICOGN302_2024h2.qmd": {
+    "SCICOGN302_2024h2.html": "47e72191"
+  },
+  "courses/archive/SCICOGN302_2024h2/workshop1_old.qmd": {
+    "workshop1_old.html": "c1d3d130"
+  },
+  "courses/archive/SCICOGN302_2024h2/workshop2.qmd": {
+    "workshop2.html": "e884217f"
+  },
+  "courses/archive/SCIENVI201_2022h1.qmd": {
+    "SCIENVI201_2022h1.html": "81f73e2c"
+  },
+  "courses/archive/SCIENVI_2023h1/Research_Assignment.qmd": {
+    "Research_Assignment.html": "b65c9132"
+  },
+  "courses/archive/SCIENVI_2023h1/SCIENVI201/Simple_Assignment.qmd": {
+    "Simple_Assignment.html": "062fc0c5"
+  },
+  "courses/archive/SCIENVI_2023h1/SCIENVI303/Simple_Assignment.qmd": {
+    "Simple_Assignment.html": "81997f13"
+  },
+  "courses/archive/SCIENVI_2023h1.qmd": {
+    "SCIENVI_2023h1.html": "81f2c969"
+  },
+  "courses/archive/SSCECON207_2022h1/workshop1.qmd": {
+    "workshop1.html": "f0b65c56"
+  },
+  "courses/archive/SSCECON207_2022h1/workshop2.qmd": {
+    "workshop2.html": "935b0e7f"
+  },
+  "courses/archive/SSCECON207_2022h1.qmd": {
+    "SSCECON207_2022h1.html": "059eee18"
+  },
+  "courses/archive/SSCECON207_2023h1/EU2009.qmd": {
+    "EU2009.html": "e082fade"
+  },
+  "courses/archive/SSCECON207_2023h1/US2001.qmd": {
+    "US2001.html": "fbd279f4"
+  },
+  "courses/archive/SSCECON207_2023h1/workshop1.qmd": {
+    "workshop1.html": "91ba0f44"
+  },
+  "courses/archive/SSCECON207_2023h1.qmd": {
+    "SSCECON207_2023h1.html": "28327d70"
+  },
+  "courses/archive/SSCECON209_2022h1.qmd": {
+    "SSCECON209_2022h1.html": "c872d2dd"
+  },
+  "courses/archive/SSCECON307_2022h2.qmd": {
+    "SSCECON307_2022h2.html": "cf24c0d2"
+  },
+  "courses/archive/SSCPOLI302_2023h2.qmd": {
+    "SSCPOLI302_2023h2.html": "c5b9715a"
+  },
+  "courses/archive/SSCPOLI302_2024h2/workshop1.qmd": {
+    "workshop1.html": "5e8a83c6"
+  },
+  "courses/archive/SSCPOLI302_2024h2/workshop2.qmd": {
+    "workshop2.html": "269cb12c"
+  },
+  "courses/archive/SSCPOLI302_2024h2/workshop3.qmd": {
+    "workshop3.html": "ac414701"
+  },
+  "courses/archive/SSCPOLI302_2024h2.qmd": {
+    "SSCPOLI302_2024h2.html": "8308fe23"
+  },
+  "courses/SCIBIOM303/workshop1.qmd": {
+    "workshop1.html": "bf3fbd75"
+  },
+  "courses/SCIBIOM303/workshop2.qmd": {
+    "workshop2.html": "8f694e71"
+  },
+  "courses/SCIBIOM303.qmd": {
+    "SCIBIOM303.html": "a33fd878"
+  },
+  "r_basics.qmd": {
+    "r_basics.html": "19d6762f"
+  },
+  "tutorials/data.qmd": {
+    "data.html": "97200fb0"
+  },
+  "tutorials/github_collab.qmd": {
+    "github_collab.html": "95100b7f"
+  },
+  "tutorials/github_intro.qmd": {
+    "github_intro.html": "0e1419e5"
+  },
+  "tutorials/latex.qmd": {
+    "latex.html": "063466cd"
+  },
+  "tutorials/links.qmd": {
+    "links.html": "942a093e"
+  },
+  "tutorials/neuroimaging.qmd": {
+    "neuroimaging.html": "b6369011"
+  },
+  "tutorials/rmarkdown.qmd": {
+    "rmarkdown.html": "cc3b4e3d"
+  },
+  "tutorials/r_adv_ggplot.qmd": {
+    "r_adv_ggplot.html": "4eb3652a"
+  },
+  "tutorials/r_adv_import.qmd": {
+    "r_adv_import.html": "fd73ac20"
+  },
+  "tutorials/r_adv_objects.qmd": {
+    "r_adv_objects.html": "665be334"
+  },
+  "tutorials/r_basics.qmd": {
+    "r_basics.html": "cf0ed0e9"
+  },
+  "tutorials/r_functions.qmd": {
+    "r_functions.html": "eb6e8e42"
+  },
+  "tutorials/r_ggplot_bivariate.qmd": {
+    "r_ggplot_bivariate.html": "173ff926"
+  },
+  "tutorials/r_ggplot_intro.qmd": {
+    "r_ggplot_intro.html": "26c26015"
+  },
+  "tutorials/r_ggplot_timeseries.qmd": {
+    "r_ggplot_timeseries.html": "b6d1c79e"
+  },
+  "tutorials/r_ggplot_univariate.qmd": {
+    "r_ggplot_univariate.html": "189cae42"
+  },
+  "tutorials/r_install.qmd": {
+    "r_install.html": "ff519d10"
+  },
+  "tutorials/r_intro_import.qmd": {
+    "r_intro_import.html": "d1ab03a9"
+  },
+  "tutorials/r_intro_merge.qmd": {
+    "r_intro_merge.html": "621b63d6"
+  },
+  "tutorials/r_intro_mutate.qmd": {
+    "r_intro_mutate.html": "77c8f38d"
+  },
+  "tutorials/r_intro_pipe.qmd": {
+    "r_intro_pipe.html": "e22d4f8f"
+  },
+  "tutorials/r_intro_pivot.qmd": {
+    "r_intro_pivot.html": "e6c44951"
+  },
+  "tutorials/r_intro_subset.qmd": {
+    "r_intro_subset.html": "9153dd76"
+  },
+  "tutorials/r_intro_summarize.qmd": {
+    "r_intro_summarize.html": "7d274cc1"
+  },
+  "tutorials/r_objects.qmd": {
+    "r_objects.html": "db22b8e9"
+  },
+  "tutorials/r_regex.qmd": {
+    "r_regex.html": "8755e9c3"
+  },
+  "tutorials/r_scraping.qmd": {
+    "r_scraping.html": "6f073589"
+  },
+  "tutorials/r_shiny.qmd": {
+    "r_shiny.html": "b4a71c15"
+  },
+  "tutorials/r_spatial.qmd": {
+    "r_spatial.html": "090cec9f"
+  },
+  "tutorials/r_stats.qmd": {
+    "r_stats.html": "5e74ab55"
+  },
+  "tutorials/r_text.qmd": {
+    "r_text.html": "08218985"
+  }
+}

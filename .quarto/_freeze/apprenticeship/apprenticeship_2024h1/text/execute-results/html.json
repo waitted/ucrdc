@@ -1,0 +1,17 @@
+{
+  "hash": "b4ef8130b8139d359b52f03a2a805d4c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Data Center Apprenticeship:\\nText analysis in R\"\nsubtitle: \"Spring 2024\" \ndate: \"Last updated: 2025-08-06\"\n---\n\n\n\n\n# Data\n\nYou can download the NASA metadata using [this link](https://raw.githubusercontent.com/ucrdatacenter/projects/main/apprenticeship/2024h1/10_text/NASAmetadata.zip). After downloading, unzip the file in your working directory and import `metadata.JSON` using the `fromJSON()` function from the `jsonlite` package.\n\n# Code\n\nThe code from the workshop is available [here](https://github.com/ucrdatacenter/projects/blob/main/apprenticeship/2024h1/10_text/text_code.R).\n\n# More on text mining\n\nSee [\"Text Mining with R: A Tidy Approach\"](https://www.tidytextmining.com/) by Julia Silge and David Robinson.\n",
+    "supporting": [
+      "text_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

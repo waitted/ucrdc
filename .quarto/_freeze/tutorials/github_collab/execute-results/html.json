@@ -1,0 +1,15 @@
+{
+  "hash": "3aac7f9ed99bae1d14a14838303a8e4e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"Collaborating on GitHub\"\ndate: \"Last updated: 2025-08-17\"\n---\n\n\n\n\n**This tutorial is not ready yet. Please come back later.**\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

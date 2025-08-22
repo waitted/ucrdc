@@ -1,0 +1,15 @@
+{
+  "hash": "600460c7eb2a57d1270420e258ba9f3d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"More on data visualization\"\ndate: \"Last updated: 2025-08-17\"\n---\n\n\n\n\n**This tutorial is not ready yet. Please come back later.**\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

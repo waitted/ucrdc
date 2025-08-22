@@ -1,0 +1,9 @@
+---
+title: "Tutorials"
+---
+
+Setting up R
+
+Start here to learn how to use R.
+
+-   [Installing R](r_basics.rmd)

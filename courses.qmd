@@ -1,0 +1,34 @@
+# Ongoing data encounters in UCR courses
+
+-   [AH-ANTQ103 - Introduction to Archeology](AH-ANTQ103.qmd)
+-   [AH-RHET101 - Introduction to Rhetoric and Argumentation](AH-RHET101.qmd)
+-   [SCIBIOM303 - Mechanisms of Disease](SCIBIOM303.qmd)
+
+# Data encounter archive
+
+-   AH-LING203 Corpus Linguistics:
+    -   [Spring 2023](archive/AH-LING203_2023h1.qmd)
+-   AH-ANTQ103 Introduction to Archeology:
+    -   [Spring 2024](archive/AH-ANTQ103_2024h1.qmd)
+-   SCIBIOM303 Mechanisms of Disease:
+    -   [Fall 2023](archive/SCIBIOM303_2024h1.qmd)
+-   SCICOGN302 Psycholinguistics:
+    -   [Fall 2023](archive/SCICOGN302_2023h2.qmd)
+    -   [Fall 2024](archive/SCICOGN302_2024h2.qmd)
+-   SCIENVI Ecology & Topics in Ecology:
+    -   [Spring 2022](archive/SCIENVI201_2022h1.qmd)
+    -   [Spring 2023](archive/SCIENVI_2023h1.qmd)
+-   SSCECON207 International Macroeconomics:
+    -   [Spring 2022](archive/SSCECON207_2022h1.qmd)
+    -   [Spring 2023 (June)](archive/SSCECON207_2023h1.qmd)
+-   SSCECON209 Money, Banking and Finance:
+    -   [Spring 2022](archive/SSCECON209_2022h1.qmd)
+-   SSCECON307 Econometrics:
+    -   [Fall 2022](archive/SSCECON307_2022h2.qmd)
+-   SSCPOLI302 European Union Politics:
+    -   [Fall 2023](archive/SSCPOLI302_2023h2.qmd)
+    -   [Fall 2024](archive/SSCPOLI302_2024h2.qmd)
+
+# Other developed data encounters
+
+-   [AH-FTME101 - Introduction to Film, Theatre, and Media](AH-FTME101.qmd)

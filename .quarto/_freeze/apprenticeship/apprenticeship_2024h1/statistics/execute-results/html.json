@@ -1,0 +1,17 @@
+{
+  "hash": "f5811f5e151d26c975a88110aff7b4e3",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Data Center Apprenticeship:\\nStatistics in R\"\nsubtitle: \"Spring 2024\" \ndate: \"Last updated: 2025-08-06\"\n---\n\n\n\n\nThe code from the workshop is available [here](https://github.com/ucrdatacenter/projects/blob/main/apprenticeship/2024h1/9_statistics/tidymodels_code.R).\n",
+    "supporting": [
+      "statistics_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

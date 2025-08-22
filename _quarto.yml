@@ -1,0 +1,49 @@
+project:
+  type: website
+
+website:
+  title: "UCR Data Center"
+  navbar:
+    pinned: true
+    search: false
+    background: primary
+    foreground: secondary
+    #logo: "DC_logo.png"
+    left:
+      - href: index.qmd
+        text: Home
+      - tutorials_old.qmd
+      #- about.qmd
+      - href: courses.qmd
+        text: Courses
+      - href: apprenticeship.qmd
+        text: Apprenticeship
+      - href: ai.qmd
+        text: Generative AI
+      - href: contact.qmd
+        text: Contact
+      
+    tools:
+      - icon: github
+        href: https://github.com/ucrdatacenter
+      - icon: instagram
+        href: https://www.instagram.com/datacenterucr
+  page-footer: 
+    center: 
+      - text: "UCR Data Center  •  2025"
+      - icon: envelope
+        href: mailto:datacenter@ucr.nl
+      - icon: github
+        href: https://github.com/ucrdatacenter
+      - icon: instagram
+        href: https://www.instagram.com/datacenterucr
+format:
+  html:
+    theme: simplex
+    css: styles.css
+    toc: true
+    mainfont: "Cormorant SC"
+    fontsize: 20px
+
+editor: visual
+

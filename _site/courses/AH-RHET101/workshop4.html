@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-12">
+
+<title>UCR Data Center - AH-RHET101 Workshop 4: Sentiment analysis in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sentiment-analysis-of-a-ted-talk" id="toc-sentiment-analysis-of-a-ted-talk" class="nav-link active" data-scroll-target="#sentiment-analysis-of-a-ted-talk">Sentiment Analysis of a TED talk</a>
+  <ul class="collapse">
+  <li><a href="#step-1-starting-up-the-r-script-and-r-project" id="toc-step-1-starting-up-the-r-script-and-r-project" class="nav-link" data-scroll-target="#step-1-starting-up-the-r-script-and-r-project">Step 1: Starting up the R Script and R project</a></li>
+  <li><a href="#step-2-tokenising-the-text-into-sentences" id="toc-step-2-tokenising-the-text-into-sentences" class="nav-link" data-scroll-target="#step-2-tokenising-the-text-into-sentences">Step 2: Tokenising the text into sentences</a></li>
+  <li><a href="#step-3-tokenising-the-text-into-words" id="toc-step-3-tokenising-the-text-into-words" class="nav-link" data-scroll-target="#step-3-tokenising-the-text-into-words">Step 3: Tokenising the text into words</a></li>
+  <li><a href="#step-4-performing-bing-sentiment-analysis" id="toc-step-4-performing-bing-sentiment-analysis" class="nav-link" data-scroll-target="#step-4-performing-bing-sentiment-analysis">Step 4: Performing Bing sentiment analysis</a></li>
+  <li><a href="#step-5-making-a-visualisation" id="toc-step-5-making-a-visualisation" class="nav-link" data-scroll-target="#step-5-making-a-visualisation">Step 5: Making a visualisation</a></li>
+  <li><a href="#step-6-if-time-improve-the-visualisation-using-facet_wrap" id="toc-step-6-if-time-improve-the-visualisation-using-facet_wrap" class="nav-link" data-scroll-target="#step-6-if-time-improve-the-visualisation-using-facet_wrap">Step 6: (If time): Improve the visualisation using facet_wrap</a></li>
+  <li><a href="#step-7.1-interpreting-results-and-investigating-usage-of-like" id="toc-step-7.1-interpreting-results-and-investigating-usage-of-like" class="nav-link" data-scroll-target="#step-7.1-interpreting-results-and-investigating-usage-of-like">Step 7.1: Interpreting results and investigating usage of like</a></li>
+  <li><a href="#step-7.2-interpreting-results-and-investigating-usage-of-corruption" id="toc-step-7.2-interpreting-results-and-investigating-usage-of-corruption" class="nav-link" data-scroll-target="#step-7.2-interpreting-results-and-investigating-usage-of-corruption">Step 7.2: Interpreting results and investigating usage of corruption</a></li>
+  <li><a href="#step-7.3-interpreting-results-and-investigating-usage-of-democracy" id="toc-step-7.3-interpreting-results-and-investigating-usage-of-democracy" class="nav-link" data-scroll-target="#step-7.3-interpreting-results-and-investigating-usage-of-democracy">Step 7.3: Interpreting results and investigating usage of democracy</a></li>
+  <li><a href="#step-8-if-time-assignment" id="toc-step-8-if-time-assignment" class="nav-link" data-scroll-target="#step-8-if-time-assignment">Step 8: If time: Assignment</a></li>
+  <li><a href="#step-9.-homework-4" id="toc-step-9.-homework-4" class="nav-link" data-scroll-target="#step-9.-homework-4">Step 9. Homework 4</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AH-RHET101 Workshop 4: Sentiment analysis in R</h1>
+<p class="subtitle lead">Spring 2025</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 12, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sentiment-analysis-of-a-ted-talk" class="level1">
+<h1>Sentiment Analysis of a TED talk</h1>
+<p><strong>Objective:</strong> In this workshop, you will learn how to perform a sentiment analysis on a TED Talk using R and the bing sentiment lexicon.</p>
+<p><strong>Sentiment analysis</strong> is a method used to determine the emotional tone behind a body of text using Natural Language Processing (NLP). It involves analysing the words in a text to classify whether the sentiment expressed is positive, negative, neutral or a specific emotion.</p>
+<p>In this workshop, you will be analysing a TED Talk by Ketakandriana Rafitoson on democracy to identify the emotional tones present in the speaker’s words and see how these emotional expressions can be interpreted to gain a deeper understanding of the speaker’s message and intent.</p>
+<p>By the end of this session, you will have gained experience with tokenising text, applying sentiment lexicons, and visualising the sentiment results. In the homework assignment, you will apply this knowledge to conduct a more complex sentiment analysis using the nrc sentiment lexicon and compare the result across different TED talks on democracy.</p>
+<section id="step-1-starting-up-the-r-script-and-r-project" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-starting-up-the-r-script-and-r-project">Step 1: Starting up the R Script and R project</h2>
+<p>Open your AH-RHET101 R project from the previous session and start a new R script for the sentiment analysis case study.</p>
+<p>Load, and if needed install, the following packages by placing and running the following code in your R script:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidytext")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2-tokenising-the-text-into-sentences" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-tokenising-the-text-into-sentences">Step 2: Tokenising the text into sentences</h2>
+<p>Before you can do any analysis, RStudio needs to know the text file you want to work. For this you need to import the text into the environment. To do this, you have to create a new object (<em>ted_lines</em>). This will store the text that is located in the .txt file by using the function <strong>readLines()</strong><em>.</em>This is a function that reads the text file line by line and stores it in a vector.</p>
+<p>To use <strong>readLines()</strong> you have to specify the path of the file. In this case, the file is located on <a href="https://github.com/ucrdatacenter/projects/blob/main/AH-RHET101/2025h1/Texts/Ted_Talk_Ketakandriana_Rafitoson.txt">GitHub</a>, and you can import it directly without having to download it using the following import code.</p>
+<p>You can use <strong>view()</strong> to open the object to understand what has happened after running the code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ted_lines <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"https://github.com/ucrdatacenter/projects/raw/refs/heads/main/AH-RHET101/2025h1/Texts/Ted_Talk_Ketakandriana_Rafitoson.txt"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(ted_lines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, when you view the object <em>ted_lines</em>, you will see that the text is not easily readable in its current format. This is because the text is stored in a single vector. It would be easier if the text was stored in a table format, where each sentence is stored in a separate row.</p>
+<p>To convert a vector into a tibble in r, you can use the function <strong>as_tibble()</strong>. However, this will store all sentences into a single row. To split the text into sentences and have each sentence stored in a new row you also have to use the function <strong>unnest_tokens()</strong> (You can learn more about the function by opening the helpfile by typing <em>?unnest_tokens</em> in your console.)</p>
+<p><strong>unnest_tokens()</strong> can tokenise, which means break up texts into, words, characters, ngrams, sentences, lines, paragraphs and more. As you are interested in sentences, the <strong>output</strong> and <strong>token</strong> should be set to “sentences” within the function. Additionally, it is useful to keep capitalisation, which can be done by setting the argument <strong>to_lower</strong> to equal FALSE. The result should be stored in a new object, which you can title <em>sentences_ted.</em> <strong>View()</strong> the result to see what has happend.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sentences_ted <span class="ot">&lt;-</span> ted_lines <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> sentences, <span class="at">input =</span> value, <span class="at">token =</span> <span class="st">"sentences"</span>, <span class="at">to_lower =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(sentences_ted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-3-tokenising-the-text-into-words" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-tokenising-the-text-into-words">Step 3: Tokenising the text into words</h2>
+<p>Now that the text has been tokenised into sentences, you and other people can process the text more easily, which is useful when you want to extract sentences that contain specific words from the text as you will be doing later.</p>
+<p>One way to know which specific words to extract, is by conducting a sentiment analysis. The goal of this is to get a general overview of the emotional loadings or sentiment that a text conveys. This is typically done by looking at the words in a text and see whether they have a positive, negative, neutral, or other emotional connotation.</p>
+<p>To do this, you should tokenise the text again but this time into words. You can reuse the code used above but change “<em>sentences”</em> into”<em>words</em>” as that is the new token you want.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>words_ted <span class="ot">&lt;-</span> ted_lines <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> value, <span class="at">token =</span> <span class="st">"words"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(words_ted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When you view the list of words, you will notice that it contains 1,864 elements. This is because it contains a lot of duplicate words. For some tasks, however, it can be useful to work with word types, and not word instances. Word types are the unique words in a text, and word instances are all words in a text including duplicates. To obtain the word types of a text you can use the function <strong>unique()</strong> which will return the word list but without any duplicates. Indeed, the word list now contains only 658 elements.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>words_ted_unique <span class="ot">&lt;-</span> words_ted <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(words_ted_unique)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-4-performing-bing-sentiment-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-performing-bing-sentiment-analysis">Step 4: Performing Bing sentiment analysis</h2>
+<p>Now, that the words and sentences of the ted talk have been properly tokenised, a sentiment analysis can be performed. To do this, you have to import an existing sentiment lexicon, which is a list of words that have been pre-labelled as positive, negative, neutral or a specific emotion.</p>
+<p>To load a sentiment lexicon in your script you can use the <strong>get_sentiment()</strong> function and store it as a new object. R offers four different sentiment lexicons for this function: <em>afinn, bing, nrc,</em> and <em>loughran</em>.</p>
+<p>For this workshop you will be using the <em>bing</em> sentiment lexicon, which contains 6786 English words which have been labelled to be either positive or negative. Note that this list is not all-encompassing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bing <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="st">"bing"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(bing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that you have the list of words of the Ted talk, as well as a sentiment lexicon, it is time to see whether any of the words in the talk match with a word that is part of the sentiment lexicon.</p>
+<p>To do this you have to combine the two tibbles, using the function <strong>inner_join()</strong>. More specifically, <strong>inner_join()</strong> will join the word values of the tibbles of <em>words_ted</em> and <em>bing</em> together, and keep only those that overlap. The result will be stored in a new object, which you can title <em>words_ted_bing</em>.</p>
+<p>In addition, it is nice to know how many times a specific word and sentiment occur together, for this you can use the function <strong>count()</strong> You can view the results using the <strong>view()</strong> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>words_ted_bing <span class="ot">&lt;-</span> words_ted <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(bing) <span class="sc">|&gt;</span>  </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, sentiment)  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(words_ted_bing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-5-making-a-visualisation" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-making-a-visualisation">Step 5: Making a visualisation</h2>
+<p>Although, the resulting word list already provides insight into the different words that are included in the talk, it would be nice if you can interpret the result in one glance with the help of a visualisation.</p>
+<p>Indeed, a visualisation will make it much clearer whether more positive or negative words have been included, and which words have been used the most.</p>
+<p>Currently, the list of words is ordered alphabetically and contains 88 different words. The visualisation would be more clear if it only includes the top 15 words of each sentiment, and orders them from most used to least used.</p>
+<p>You can do this in r by using the function <strong>slice_max()</strong>. This function will order the words by the number of times they occur and only keep the words with the highest values. To elaborate, <strong>n = 15</strong> specifies that you would like to keep the top 15 words with the highest frequency. The argument <strong>order_by</strong> specifies that the words should be ordered based on their count (<em>n</em>) instead of alphabetically. The argument <strong>by</strong> specifies that the words should be grouped based on their sentiment, so you get both the top 15 positive words and the top 15 negative words. Lastly, <strong>with_ties = FALSE</strong> specifies that you want only 15 elements even if there are other elements that have the same amount.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>words_ted_bing_arranged <span class="ot">&lt;-</span> words_ted_bing <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span> <span class="dv">15</span>, <span class="at">order_by =</span> n, <span class="at">by =</span> sentiment, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that the appropriate words have been selected for the visualisation, you can create it. For this <strong>geom_col()</strong> can be used, which is a type of bar chart. Within <strong>geom_col()</strong> you can specify that you would like the count (<em>n</em>) on the x-axis, the word on the y-axis ordered from highest to lowest frequency (<em>y = reorder(word, n))</em>, and the sentiment as the fill, so positive and negative words have different colours. The title and labels can be specified using the <strong>labs()</strong> function. NULL means that the y-axis will not be labelled.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>words_ted_bing_arranged <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Specify the aestethics in the geom_col, reorder() makes sure that the words with the highest frequency are printed at the top.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">reorder</span>(word, n), <span class="at">fill =</span> sentiment)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Label the graph properly</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Most Common Positive and Negative Words in Ted Talk"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Frequency"</span>, </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop4_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="step-6-if-time-improve-the-visualisation-using-facet_wrap" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-if-time-improve-the-visualisation-using-facet_wrap">Step 6: (If time): Improve the visualisation using facet_wrap</h2>
+<p>If time: Currently, the visualisation can easily be interpreted to see which positive and negative words have been used the most. However, to make this even clearer the negative and positive words can be split from one another. You can do this in r by using the <strong>facet_wrap()</strong> function, which will split the visualisation into two separate graphs, in this case based on their <em>sentiment</em>. The argument <strong>scales = “free”</strong> specifies that the y-axis should be free, so the words do not overlap with one another.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>words_ted_bing_arranged <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">reorder</span>(word, n), <span class="at">fill =</span> sentiment)) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Most common positive and negative words in ted talk"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Frequency"</span>, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sentiment, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop4_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="step-7.1-interpreting-results-and-investigating-usage-of-like" class="level2">
+<h2 class="anchored" data-anchor-id="step-7.1-interpreting-results-and-investigating-usage-of-like">Step 7.1: Interpreting results and investigating usage of like</h2>
+<p>Now, that we have a clear visualisation, we can see whether we can draw any interesting conclusions from the results.The most common positive word is “like”,</p>
+<p>However, in English, the word “like” can be used as a noun or verb where it has a positive connotation but it can also be used as a filler or adverb, where it denotes a similarity. As a result, sentences containing <em>“like”</em> should be investigated.</p>
+<p>This can be done using the <strong>filter()</strong>, <strong>detect_str()</strong> and <strong>pull()</strong> function. For <strong>str_detect()</strong>, you specify the pattern you are looking for in a string of text, using a regular expression in this case “<em>like</em>”. Unfortunately, discussing the exact details of regular expressions falls outside the scope of this workshop.</p>
+<p>However, it is good to know that it is a way of specifying patterns in text. <strong>str_detect()</strong> also requires an input, which in our case are the words. If a word matches the pattern it returns TRUE otherwise it will return FALSE. Using <strong>filter()</strong> it will only keep sentences that match the mattern.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sentences_ted <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Only keep sentences that contain the word "like"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(sentences, <span class="st">"like"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sentences)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "And of course, power holders don't like that."                                                                                                                                                                                                                                                                                                             
+[2] "And we do believe that citizen assemblies can be a powerful way for restoring democracy, not only in Madagascar, but elsewhere around the world.The first aim of those assemblies is to ensure that everyone understands what a true democracy looks and feels like, and then to give them practical tools in order to engage them into practical actions."
+[3] "And here I would like to say that in those assemblies, we really go beyond lofty ideals of democracy, because what we want to trigger is a collective strategy for really improving people's lives.So those who join us are totally free to pick whatever issue matters to them and any burning question."                                                 
+[4] "We would like the revolution to happen now, but we have to be patient, OK?"                                                                                                                                                                                                                                                                                
+[5] "And I would like people to feel that they have the power within their hands."                                                                                                                                                                                                                                                                              
+[6] "So how do you, like, talk to us about that and talk to us about your personal commitment."                                                                                                                                                                                                                                                                 </code></pre>
+</div>
+</div>
+<p>Look at the sentences, is <em>“like”</em> being used in a positive manner here or does it take on a different meaning? Indeed, when you look closely you can interpret this from the following sentences:</p>
+<ol type="1">
+<li>Here like is negated by the use of “don’t”, this is a downside of the current sentiment analysis as it cannot take this into account.</li>
+<li>Here like is an adverb. 3, 4, 5: Here like is used as a verb which arguable could be positive</li>
+<li>Here like is used as a filler.</li>
+</ol>
+<p>This shows that sentiment analysis are not 100% accurate and are there to give us a general idea of the sentiment of the text. However, human inspection is still needed to interpret and verify the results.</p>
+</section>
+<section id="step-7.2-interpreting-results-and-investigating-usage-of-corruption" class="level2">
+<h2 class="anchored" data-anchor-id="step-7.2-interpreting-results-and-investigating-usage-of-corruption">Step 7.2: Interpreting results and investigating usage of corruption</h2>
+<p>Luckily, many English words do only have one function, such as the word <em>“corruption”</em>. It would be interesting to see how the speaker user the word “corruption” to appeal for their case and whether any arguments or ethos, pathos, logos can be detected. This again can be done using the functions used above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sentences_ted <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Only keep sentences that contain the word "corruption"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(sentences, <span class="st">"corruption"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sentences)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Politicians promise us the moon, but they just deliver dirty governance, corruption and misery.We don't have a fair and just society where people have a say on decisions made on their behalf."                                                 
+[2] "The most important thing – The important thing is to keep preventing dictatorship from happening in my country and to keep fighting against corruption at all levels."                                                                           
+[3] "In these assemblies, when people bring their issues,we are also connecting them with safe whistleblowing platforms for reporting corruption."                                                                                                    
+[4] "KR: I mean, we are constantly attacked, you know,because of our anti-corruption commitment, because we are also outspoken about things happening in Madagascar."                                                                                 
+[5] "So we have this unit of investigative journalism, and we are conducting a lot of investigations, and there is one on sexual corruption happening in schools and universities in Madagascar, that we are really proud of because we exposed that."
+[6] "So raising this awareness drives people to sue the perpetrators of sexual corruption to court."                                                                                                                                                  </code></pre>
+</div>
+</div>
+<p>Look at the results, how does the speaker use the words corruption to frame the current political government?</p>
+<p>Some of the relevant findings may be: This talk frames the current politicians and political system in a very negative light, which becomes clear from words like <em>“corruption”</em>, <em>’dictatorship”</em>. Moreover, those who are against corruption seem to then be <em>“attacked”</em>. The words bring out emotion and there is a great contrast between the the politicians and <em>“we”</em> and <em>“I”</em>. Indeed, <em>“we are also outspoken”</em> or <em>“we are also connecting”</em> show that the speaker views itself in a more positive light fighting against this corruption.</p>
+</section>
+<section id="step-7.3-interpreting-results-and-investigating-usage-of-democracy" class="level2">
+<h2 class="anchored" data-anchor-id="step-7.3-interpreting-results-and-investigating-usage-of-democracy">Step 7.3: Interpreting results and investigating usage of democracy</h2>
+<p>Lastly, as this talk is about democracy, it can be interesting to see how this talk frames democracy. In our first workshop we discussed a digital humanities paper that investigated how parliamentary debates conceptualise democracry.</p>
+<p>The three most common cases were: 1.) Viewing democracy as a value 2.) Believing democracy is under threat and in need of defence 3.) Using democracy as leverage, trying to make a point persuasive by linking it to democracy.</p>
+<p>Does this talk frame it similarly to one of these points or something else? For this you can reuse the code above but changes <em>“corruption”</em> into <em>“democracy”</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sentences_ted <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Only keep sentences that contain the word "democracy"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(sentences, <span class="st">"democracy"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sentences)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "And we don't have democracy."                                                                                                                                                                                                                                                                                                                              
+ [2] "The idea is just to gather ordinary people from all walks of life around the idea of learning about democracy, deliberating about important public questions and then taking actions together."                                                                                                                                                            
+ [3] "And we do believe that citizen assemblies can be a powerful way for restoring democracy, not only in Madagascar, but elsewhere around the world.The first aim of those assemblies is to ensure that everyone understands what a true democracy looks and feels like, and then to give them practical tools in order to engage them into practical actions."
+ [4] "Because, you know, there is so much confusion around the notion of democracy."                                                                                                                                                                                                                                                                             
+ [5] "So we need to tell people how it is really, and we need to fill this knowledge gap about democracy."                                                                                                                                                                                                                                                       
+ [6] "And here I would like to say that in those assemblies, we really go beyond lofty ideals of democracy, because what we want to trigger is a collective strategy for really improving people's lives.So those who join us are totally free to pick whatever issue matters to them and any burning question."                                                 
+ [7] "And the gathering style is really a mix between World Café deliberation and a caucus.And we always start with very basic questions such as what is democracy?"                                                                                                                                                                                             
+ [8] "These are neighbors.These are friends, ordinary people, just, you know, from various profiles, but brought together by the idea and dream of a better democracy and a more just society."                                                                                                                                                                  
+ [9] "And we all know today that democracy is backsliding around the world.But we need a remedy."                                                                                                                                                                                                                                                                
+[10] "It's high time that we restore democracy back."                                                                                                                                                                                                                                                                                                            </code></pre>
+</div>
+</div>
+<p>Some of the relevant findings may be: This Ted Talk seems to think that democracy is under threat and needs to be <em>“restored”</em> or there is a knowledge gap to be <em>“filled”</em> or it is <em>“high time”</em> that it is <em>“restored back”</em>, or there is need for a <em>“remedy”</em>. The usage of democracy in point 7 could be said to either value democracy, or is used as leverage.</p>
+</section>
+<section id="step-8-if-time-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="step-8-if-time-assignment">Step 8: If time: Assignment</h2>
+<p>Choose another positive and negative word from the list and investigate its usage in the text. What does this word tell you about the speaker’s message and intent?</p>
+</section>
+<section id="step-9.-homework-4" class="level2">
+<h2 class="anchored" data-anchor-id="step-9.-homework-4">Step 9. Homework 4</h2>
+<p>Currently, the sentiment analysis only uses “positive” and “negative” words. However, R has another sentiment lexicon titled “nrc” which includes 10 different sentiments that are based on emotion. This could perhaps show more specific information. Additionally, you can learn compare results between texts to see whether there is a pattern. This is something you will be exploring in the homework assignment.</p>
+<p>You can find the homework assignment <a href="TBA">here</a>. Download it and save it in your current project folder.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
