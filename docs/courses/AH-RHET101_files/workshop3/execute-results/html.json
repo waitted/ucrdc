@@ -1,0 +1,15 @@
+{
+  "hash": "d7a7b700072bbbb4d43cca590d5405f7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlayout: page\ntitle: \"AH-RHET101 Workshop 3: Introduction to R\"\nsubtitle: \"Spring 2025\"\ndate: \"Last updated: 2025-08-12\"\n---\n\n\n\n\nThe data encounter in this course has three components. First, you'll follow a series of general tutorials that present the R skills you'll need for the course. Second, you'll learn how to apply these skills to a specific case study related to the course content. Then, you apply the same skills to a homework assignment.\n\nAs preparation for the workshop, you have learned to:\n\n1.  [install R](../../../tutorials/r_install)\n2.  [find your way around R and RStudio](../../../tutorials/r_basics)\n\nThe first workshop will cover the following topics (each topic links to a separate tutorial with additional details and a video explanation):\n\n1.  [Objects and functions](../../../tutorials/r_objects)\n2.  [Data wrangling: filtering rows and selecting columns](../../../tutorials/r_intro_subset) (`filter()` only)\n3.  [The tidy workflow](../../../tutorials/r_intro_pipe)\n4.  [Text analysis in R](../../../tutorials/r_text)\n5.  [Data visualization: introduction to `ggplot`](../../../tutorials/r_ggplot_intro)\n6.  [Data visualization: relationships between variables](../../../tutorials/r_ggplot_bivariate) (bar charts only)\n\nIn addition, the Data Center maintains a list of [useful resources](../../../tutorials/links) with additional tutorials and references.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

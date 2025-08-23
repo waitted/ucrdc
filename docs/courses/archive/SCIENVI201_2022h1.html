@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-17">
+
+<title>UCR Data Center - SCIENVI201EcologySpring2022</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#working-with-r-and-rstudio" id="toc-working-with-r-and-rstudio" class="nav-link" data-scroll-target="#working-with-r-and-rstudio">Working with R and RStudio</a>
+  <ul class="collapse">
+  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading">Recommended reading</a></li>
+  <li><a href="#installing-r-and-rstudio" id="toc-installing-r-and-rstudio" class="nav-link" data-scroll-target="#installing-r-and-rstudio">Installing R and RStudio</a></li>
+  <li><a href="#creating-a-project-in-rstudio" id="toc-creating-a-project-in-rstudio" class="nav-link" data-scroll-target="#creating-a-project-in-rstudio">Creating a project in RStudio</a></li>
+  </ul></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#supporting-materials" id="toc-supporting-materials" class="nav-link" data-scroll-target="#supporting-materials">Supporting materials</a>
+  <ul class="collapse">
+  <li><a href="#the-basics-of-r" id="toc-the-basics-of-r" class="nav-link" data-scroll-target="#the-basics-of-r">The basics of R</a></li>
+  <li><a href="#help-with-ggplot" id="toc-help-with-ggplot" class="nav-link" data-scroll-target="#help-with-ggplot">Help with <code>ggplot</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SCIENVI201<br>Ecology<br>Spring<br>2022</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><br>
+</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This page collects workshop materials, data sources and supplementary materials for the data-driven assignments in the Spring 2022 edition of Ecology at UCR. You can also access the related files directly on <a href="https://github.com/ucrdatacenter/projects/tree/main/SCIENVI201/2022h1">Github</a>.</p>
+<p>If you have any questions related to the assignment do not hesitate to reach Bianka during Data Center office hours (held every Wednesday 17:00 - 19:00 on <a href="https://universitycollegeroosevelt.zoom.us/j/2831128718?pwd=UmRuSzVqSTZyMndDbDRGSkV5VWFVQT09">Zoom</a>). There is no need to sign up in advance to join office hours. If this time is inconvenient for you feel free to write Bianka an email (<a href="mailto:ucrdatacenter@ucr.nl" class="email">ucrdatacenter@ucr.nl</a>) to schedule an individual meeting.</p>
+<p><br>
+</p>
+</section>
+<section id="working-with-r-and-rstudio" class="level1">
+<h1>Working with R and RStudio</h1>
+<section id="recommended-reading" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-reading">Recommended reading</h2>
+<p>It is highly recommended that you read the sections 2, 3.1-3.4 and 4-6 of <a href="https://github.com/ClaudiaBrauer/A-very-short-introduction-to-R/blob/master/documents/A%20(very)%20short%20introduction%20to%20R.pdf">A (very) short introduction to R</a> and sections 1-4 of <a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html#6.1%20Make%20a%20time%20series%20plot%20(using%20ggfortify)">How to make any plot in ggplot2?</a> before starting working with R.</p>
+</section>
+<section id="installing-r-and-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="installing-r-and-rstudio">Installing R and RStudio</h2>
+<p>R is the programming language that you use when working with data. RStudio is a development environment that makes working with R much more convenient. Both are free to download and install.</p>
+<p>To download R, go to <a href="https://cloud.r-project.org/">cloud.r-project.org</a> and follow the instructions on the page. To download RStudio, go to <a href="https://www.rstudio.com/products/rstudio/download/">rstudio.com/products/rstudio/download</a>, scroll down and download the file recommended for your operating system.</p>
+<p>When installing, you can always stick to the default settings, unless you have different preferences.</p>
+<p>In case you get stuck at any point, or would like more guidance in the installation process, feel free to check out any of the following links:</p>
+<ul>
+<li><a href="https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/">Tutorial: Getting Started with R and RStudio</a></li>
+<li><a href="https://www.youtube.com/watch?v=0Qu7Jg1Jw5A">R Tutorial: How to install R and R studio (video)</a></li>
+</ul>
+</section>
+<section id="creating-a-project-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-project-in-rstudio">Creating a project in RStudio</h2>
+<p>It is convenient to create an R project for an assignment that you are working on. A project is basically a folder that stores all files related to the assignment.</p>
+<p>You can create a project as follows:</p>
+<ul>
+<li>Open RStudio and click on “Project: (None)” in the top right corner.</li>
+<li>Open the dropdown window and click on “New Project….”</li>
+<li>In the popup window select “New Directory”, then “New Project.”</li>
+<li>Choose a sensible name for your project and enter it as the Directory Name. You can either use the default file path or change it by clicking “Browse…” next to “Create project as a subdirectory of:.”</li>
+<li>Finally, click on “Create project.”</li>
+</ul>
+<p>After a project is created, there are two easy ways of accessing it. You can either use the same dropdown window in the top right corner of RStudio that you used to create the project, and click on the name of the project there, or you can find the project folder within your files and click on the file with the .Rproj extension.</p>
+<p><br>
+</p>
+</section>
+</section>
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<center>
+</center></section>
+<section id="nitrogen-deposition-effect-on-biodiversity" class="level1 unlisted unnumbered">
+<h1 class="unlisted unnumbered"><strong>Nitrogen deposition effect on biodiversity</strong></h1>
+
+<p><img src="https://user-images.githubusercontent.com/84587448/144092109-7298977c-a6af-4146-9dde-54d51b3741b4.jpg" class="img-fluid"></p>
+<p>Nitrogen deposition is one of the main causes of current biodiversity decline (Payne, et a., 2013). This is mainly due to highly intensified agricultural practices which are very common, here, in the Netherlands. Therefore, environmentalists and ecologists have had numerous debates in recent years on how to analyze and tackle this biodiversity decline due to nitrogen. What is the response of individual species to increasing Nitrogen levels? Which species are negatively impacted and might some even benefit form this environmental change? As an ecologist, you need to know what is the species distribution and how does it correlate with increasing nitrogen deposition levels to be able to draw the right conclusion and to suggest appropriate action plans for species protection. In this assignment you will work with external source of species occurrences, will correlate these to nitrogen deposition in the Netherlands, and perform a statistical test to see what relationship there is between nitrogen deposition and the occurrences of a chosen species.</p>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">DATA</h2>
+<p>Data on organism occurrences can be directly downloaded in a csv file from <a href="https://www.gbif.org/">gbif.org</a>.<br>
+Data on nitrogen deposition levels in the Netherlands can be downloaded from RIVM website: <a href="https://www.rivm.nl/gcn-gdn-kaarten/depositiekaarten/cijfers-achter-depositiekaarten/gdn-depositiebestanden-achterliggende-jaren">rivm.nl</a>.</p>
+</section>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">LEARNING OUTCOMES</h2>
+<p>While completing this assignment, a student can gain practice in performing research with data from an external source as well as develop multiple R skills such as:</p>
+<ul>
+<li>obtaining and importing data from an online source to R,</li>
+<li>filtering and adjusting data to reach a set of desired information only,</li>
+<li>visualizing species occurrences and Nitrogen deposition levels,</li>
+<li>visualizing graphs in R,</li>
+<li>performing statistical test.</li>
+</ul>
+</section>
+<section id="research-focus" class="level2">
+<h2 class="anchored" data-anchor-id="research-focus">RESEARCH FOCUS</h2>
+<p>What is the relationship between species occurrences and nitrogen deposition levels?</p>
+</section>
+<section id="literature" class="level2">
+<h2 class="anchored" data-anchor-id="literature">LITERATURE</h2>
+<p>Suggested literature for further information:<br>
+</p>
+<p><em>de Vries, W., Erisman, J. W., Spranger, T., Stevens, C. J., &amp; van den Berg, L. (2011). Nitrogen as a threat to European terrestrial biodiversity. The European nitrogen assessment: sources, effects and policy perspectives, 436-494.</em></p>
+<p><em>Payne, R. J., Dise, N. B., Stevens, C. J., &amp; Gowing, D. J. (2013). Impact of nitrogen deposition at the species level. Proceedings of the National Academy of Sciences, 110(3), 984-987.</em></p>
+<p><em>Stevens, C. J., David, T. I., &amp; Storkey, J. (2018). Atmospheric nitrogen deposition in terrestrial ecosystems: Its impact on plant communities and consequences across trophic levels. Functional ecology, 32(7), 1757-1769.</em></p>
+<p><br>
+</p>
+</section>
+</section>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p>These assignment instructions serve you as a guide in completing your original assignment. Here, I will walk you step by step through an example of the assignment. Once you complete this, you can start with your own variation of the assignment. Creativity is very welcome. In your version of the assignment you choose:</p>
+<ul>
+<li>species of an interest</li>
+<li>year (of Nitrogen deposition and species ocurrences).</li>
+</ul>
+<center>
+</center></section>
+<section id="the-correlation-between-chaffinch-fringilla-coelebs-and-nitrogen-deposition-levels-in-the-netherlands" class="level1 unlisted unnumbered">
+<h1 class="unlisted unnumbered"><strong>The correlation between Chaffinch, <em>Fringilla coelebs</em>, and Nitrogen deposition levels in the Netherlands</strong></h1>
+<p><img src="https://user-images.githubusercontent.com/84587448/148916498-2fb3d7c6-5d03-4c85-9a0f-68f5efff1efe.jpg" class="img-fluid"></p>
+
+<p><br>
+</p>
+<p>At this step it is assumed that you have:</p>
+<ul>
+<li>installed R and RStudio (the working environment for R language),</li>
+<li>created an R project for this assignment,</li>
+<li>read the recommended reading.</li>
+</ul>
+<p>Now, open the R project you have created according to the instructions above. RStudio interface consists of four windows. Top right is the environment window storing the data and values currently in R memory. Bottom right is the plots, packages, and help window. Bottom left is the console window where you can type commands which R will execute without saving them. Top left is the script window which holds collections of commands which can be edited and saved. In this assignment we will write our code in the top left window, R Script file. If you cannot see this window click File on the top left -&gt; New File -&gt; R Script.<br>
+Two notes before we dive into the assignment: * if you have troubles understanding a code, the easiest way how to learn more about it is typing <em>?codename</em> into the console and pressing enter. For example <em>?library()</em> or <em>?ggplot()</em>. * to run a code in console (bottom left window) you press Enter, to run a code in script (top left window) you press Ctrl + Enter</p>
+<section id="libraries" class="level2">
+<h2 class="anchored" data-anchor-id="libraries">LIBRARIES</h2>
+<p>An R library or an R package is a collection of functions, data, and documentation that allows you for a clean workflow. To be able to access a package you first need to install it with the code <em>install.packages(…)</em>. You only need to install a package once. However, in order to be able to work with the packages in your RStudio environment you need to load them with the code <em>library(…)</em>. It is a good practice to have your libraries loaded on the top of your R Script so you can always come back to your code knowing which libraries you used.</p>
+<p>In this assignment we will be using the following packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tabularaster"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"terra"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sf"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidymodels"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The next step is to load the libraries in your RStudio, so they are ready to be used. To keep an overview, every section has a comment which says which library you are using.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tabularaster)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-import" class="level2">
+<h2 class="anchored" data-anchor-id="data-import">DATA IMPORT</h2>
+<section id="nitrogen-data" class="level4">
+<h4 class="anchored" data-anchor-id="nitrogen-data">Nitrogen data</h4>
+<p>Go to the website: <a href="https://www.rivm.nl/gcn-gdn-kaarten/depositiekaarten/cijfers-achter-depositiekaarten/gdn-depositiebestanden-achterliggende-jaren">rivm.nl</a>, and download <strong>total Nitrogen deposition (Total stikstof (N))</strong> from the year 2018 (ndep 2018). Once downloaded, you can see that the data is in a zipped file which cannot be worked with in RStudio. Therefore, <em>extract all</em> with the right click, and save the extracted data into a new created file called Data in your Project folder. I renamed the file from depo_ntot_2018 to nitrogen for a simple overview, but you can order your files according to your own preferences. However, remember to update your code according to your files’ names. Now, we can import the data on nitrogen deposition levels to our RStudio. We will do so with the code <em>rast(…)</em> which imports data from a raster file. Raster file stores image data in a matrix of cells organized in rows and columns. Next, we want to call this imported data Nitrogen_2018. We do so with the symbol &lt;-. If the importing was successful we should see Nitrogen_2018 data in our global environment (top right window).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(terra)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Nitrogen_2018 <span class="ot">&lt;-</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rast</span>(<span class="st">"https://raw.githubusercontent.com/ucrdatacenter/projects/main/SCIENVI201/2022h1/Data/nitrogen/depo_ntot_2018.asc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s see how does the Nitrogen deposition map looks like. At first, we want to let R know which data do we want to work with by typing down its name, Nitrogen_2018. Now, looking at the code, we can see that we connect multiple functions with this magical %&gt;% sign. This symbol %&gt;% is called a pipe. A pipe allows us to connect multiple operations in a simple format so it is easy to understand and read. If you are interested in reading more about pipes, you can do so <a href="https://r4ds.had.co.nz/pipes.html">here</a>. Next, we rewrite the Nitrogen_2018 data into a data frame, table structure of data. Followingly, we rewrite it into a tibble, a simple version of data frame which only shows first 10 rows of a data set. Run the code and look at the result, a tibble, in the console. Our tibble consists of three variables:</p>
+<ul>
+<li>x variable (longitude),</li>
+<li>y variable (latitude),</li>
+<li>depo_ntot_2018 variable (the level of deposition in mol/(ha.yea)).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(tidyverse)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Nitrogen_2018 <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="at">xy =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Having understood the structure of our data, we move forward with visualizing it. To previous lines of code we attach a ggplot. As you have read in your recommended reading, ggplot is a graphical framework for R. Our data set is already known and therefore we do not need to specify it anymore in the ggplot() line of code as a data argument. However, we still need to specify the aesthetic mapping, the x and y coordinates of our graph. In our case, it is simple as our variables are called x (longitude) and y (latitude). Our third aesthetic is a fill argument which enables us to visualize a third variable. In our case, the level of nitrogen. Once the variables are defined, we choose how do we want to visualize them. Since our data is in a raster format we will use geom_raster().</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(tidyverse)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Nitrogen_2018 <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="at">xy =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> depo_ntot_2018)) <span class="sc">+</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="species-data" class="level4">
+<h4 class="anchored" data-anchor-id="species-data">Species data</h4>
+<p>Go to the website: <a href="https://www.gbif.org/">gbif.org</a>, click get data (toolbar on the top) and select occurrences. Now select, the occurrences of your species in your preferred region. Go to the toolbar on the left, under Scientific name type: <strong>Fringilla coelebs</strong>, in Year select: <strong>2018</strong>, and finally in Country or area select: <strong>Netherlands</strong>. Click DOWNLOAD, create an account, and select SIMPLE in download options. This step might take a little while, as the request needs to be processed. In the meanwhile, create a chaffinch folder in your Data folder where you will store all the information on your species. Once the file is ready, click download, and save the data. It is again a zipped file which needs to be extracted. With the right click select <em>extract all</em> and save the data into chaffinch file in the Data folder. As a last step, rename the extracted csv file to chaffinch_2018. Now, we can import the data on chaffinch, <em>Fringilla coelebs</em>, to our Rstudio. There are two ways how to do this. One of them is selecting Files in your bottom right window in RStudio -&gt; Data -&gt; chaffinch_2018 -&gt; Import Dataset… -&gt; selecting Tab in the Delimeter options in the bottom toolbar -&gt; import. Second option how to import the data is by using the code <em>read_delim(“pathway”, delim = “</em>, escape_double = FALSE, trm_ws = TRUE) as indicated below. The argument delim defines how is the data separated. In our case it is a tab (\t). Similarly to how we named the nitrogen data, we now call our species occurrences data Chaffinch_2018 with the symbol &lt;-.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(readr)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Chaffinch_2018 <span class="ot">&lt;-</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/ucrdatacenter/projects/main/SCIENVI201/2022h1/Data/chaffinch/chaffinch_2018.csv"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s view the data set on chaffinch. This can be simply done either by clicking on Chaffinch_2018 in the global environment or by using code <em>view()</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Chaffinch_2018 <span class="sc">%&gt;%</span> <span class="fu">view</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Looking at the data set, we can see that it is quiet extensive having 50 columns and over 60000 observations (rows). We can also notice how are coordinate variables (longitude and latitude) called as we will need it in the next step. Now, we will visualize our species occurrences on a map so we have an idea of their distribution. This time, we need to specify the data we want to visualize in ggplot() as data = … argument. We want to see occurrences points on a coordinate map, in other words, dots on a graph. Therefore, we will choose geom_point() as a layer how to visualize our plot. Our mapping aesthetics are for x coordinate longitude (decimalLongitude) and for y coordinate latitude (decimalLatitude).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(tidyverse)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Chaffinch_2018) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> decimalLongitude, <span class="at">y =</span> decimalLatitude))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We could have seen that the data set is quiet big. However, we do not need all the information. Therefore, in the next step we will clean our data set to our preferred size.</p>
+</section>
+</section>
+<section id="data-tidying" class="level2">
+<h2 class="anchored" data-anchor-id="data-tidying">DATA TIDYING</h2>
+<p>For the following part of the assignment please read Introduction to <a href="https://wec.wur.nl/r/spatial/introduction.html">Spatial Data and Analysis in R</a>, sections 1.1 and 1.2.</p>
+<p>In this following code we select the variables with which we will be working: species names (species), longitude (decimalLongitude), and latitude (decimalLatitude) with the code <em>select()</em>. Furthermore, we omit all the unknown variables to avoid errors later on with the code <em>na.omit()</em>. As a last step, we convert our data frame Chaffinch_2018 into an sf object. This simply means that our spatial coordinate variables, the latitude and longitude, will be merged from two variables into one variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(tidyverse) and library(sf)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Chaffinch_2018 <span class="ot">&lt;-</span> Chaffinch_2018 <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(species, decimalLongitude, decimalLatitude) <span class="sc">%&gt;%</span> <span class="co"># in this case you can notice that we wrote down dplyr::select instead of just typing command select(). This is because the command select() is in two of our libraries. Therefore, we wanted to specify that this select is from dplyr package which is within tidyverse.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"decimalLongitude"</span>,<span class="st">"decimalLatitude"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When working with geo-spatial data, we can come across various versions of coordinate systems. Therefore, our next step is to check whether our two geo-spatial data (Nitrogen and Chaffinch) is in the same coordinate system. The code <em>crs(data)</em> tells us in which coordinate system the geo-spatial data is. Here, the Nitrogen deposition file does not have it defined, but reading the information on the data set we know that the data set is in Amersfoort coordinate system. Therefore, we can tell the Nitrogen_2018 that it is in this format. Similarly, all data occurrences from global biodiversity information facility (gbif) are recorded in gobal geographic coordinate system WGS84 (EPSG:4326). Therefore, we can also set the coordinate system for Chaffinch_2018.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries used: library(sf) and library(terra)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(Nitrogen_2018) <span class="ot">&lt;-</span> <span class="st">"+init=epsg:28992"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(Chaffinch_2018) <span class="ot">&lt;-</span> <span class="st">"+init=epsg:4326"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we can transform the chaffinch coordinate system into the same coordinate system as Nitrogen_2018 with the code <em>st_transform()</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Chaffinch_2018 <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(Chaffinch_2018, <span class="dv">28992</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we do not only want to be able to see our data on a graph but also in a numeric data set. In another words, we want to see which geo-spatial point belongs to which Nitrogen level and species occurring. Therefore, we want to merge these two files (Nitrogen_2018 and Chaffinch_2018) and write it into a table complete_data. We can do this with the code <em>extract()</em>. How does that work? Imagine having two paper maps laying on top of each other on a table. Now, you take a pin and you pin it across both of the papers from top down. R takes the information from both of the maps on this exact place where the pin was pinned and stores it in a row. Once extracted, you store this information in a tibble with <em>as_tibble()</em>. In the next step we want to add a species variable to the complete_data table which can be done with the code <em>mutate()</em>. This will help us in visualization in the next step.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library used: library(terra)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>complete_data <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">extract</span>(Nitrogen_2018, <span class="fu">vect</span>(Chaffinch_2018), <span class="at">cells =</span> T, <span class="at">xy =</span> T) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>complete_data <span class="ot">&lt;-</span> complete_data <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="st">"Fringilla coelebs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plotting" class="level2">
+<h2 class="anchored" data-anchor-id="plotting">PLOTTING</h2>
+<p>Once, we have our data sets in our desired format, we would like to look at a graph which would show us whether there is some relationship between the level of Nitrogen and species occurrences. In the following lines of code, we have three various graphs. You need to justify yourself which one is the most informative. While building the graphs think of your dependent and independent variables. Which one of the two variable should be on the x axis and which one should be on the y axis? Why?</p>
+<p>From your statistics class you might remember that a boxplot shows the distribution of a numeric data and its skewness across quartiles with middle line displaying the median. In R, we can simply built boxplot with the ggplot. We need to specify the data, the x variable, and the y variable. The labs() code enables us to add additional description to our graph such as: name of axes, title, caption, etc..</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(tidyverse)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BOXPLOT</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> complete_data) <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> depo_ntot_2018)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chaffinch, Fringilla coelebs (n)"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Nitrogen deposition (mol/(ha.year))"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our next type of graph is a histogram. A histogram displays data distribution using rectangular bars. Just as we did with the boxplot, we need to specify the data, x and y variables using ggplot(). You might notice, that in the geom_histogram code we added an extra argument binwidth = … . Binwidth groups observations that are very closely related together. Therefore, it is easier for us to see the general relationship. I believe that one picture sometimes shows more than a thousand words. Therefore, to understand what binwidth does, try to set binwidth to 1, run the code, and then set it to 100 (be sure to notice the species frequency on y axis) and run it again. When binwidth is set to 1, we see a lots of little correlations, but it is hard to observe the general relationship.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(tidyverse)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># HISTOGRAM</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> complete_data) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> depo_ntot_2018), <span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Nitrogen deposition (mol/(ha.year))"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Chaffinch, Fringilla coelebs (n)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lastly, we have a frequency polygon. Frequency polygon works similarly to a histogram with the exception that it uses a line instead of bars for the distribution display. The code is built in the very same way as the code for the histogram visualization. The only difference is the geom type.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library  used: library(tidyverse)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FREQUENCY POLYGON</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> complete_data) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">x =</span> depo_ntot_2018), <span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species occurences per Nitrogen deposition"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Nitrogen deposition (mol/(ha.year))"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Chaffinch (Fringilla coelebs) (n)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="statistical-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-analysis">STATISTICAL ANALYSIS</h2>
+<p>After visually observing the relationship, we want to see the quantitative analysis. First, we would like to adjust our data set. As you might have noticed, in our complete_data data frame, there is always only one observation of a species per row. This means that we do not know how many birds there are at a specific level of nitrogen. However, we can do so with a few lines of code. We want to create a new variable with the code <em>mutate()</em> called bins. Just as we did in the histogram and the frequency polygon, we want to group similar values of observations together. In other words, we want to round them up to 100. Therefore we want our new variable, bins, to have rounded up values of nitrogen deposition to 100. In the next step, we want to see how many species are observed at the same level of nitrogen. Since there is always just one species per row, we simply want to count the number of rows with the same nitrogen value. Lastly, we want to rename the variables according to our x and y axes, and omit the unknown variables with the <em>na.omit()</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library used: library(tidyverse)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># writing a table t with x (nitrogen levels) and y (species frequency) variables</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> complete_data <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bins =</span> <span class="fu">round</span>(depo_ntot_2018, <span class="at">digits =</span> <span class="sc">-</span><span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bins) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">x =</span> bins,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> n) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we want to visualize our newly made table t as a simple scatter plot using <em>geom_point()</em>. On the top of that we would like to add a parabola layer to see whether our data distribution could be quadratic.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualizing the relationship</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> t, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species occurences per Nitrogen deposition"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Nitrogen deposition (mol/(ha.year))"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Chaffinch (Fringilla coelebs) (n)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our last step is to demonstrate results quantitatively. This can be done with a linear model using code <em>lm()</em>. Do not stress out now. The aim of this assignment is not to learn linear modeling, but to get in touch with basic skills in R and apply it to ecology. All you need to know is that lm(y ~ poly(x, 2)) is a linear model of a quadratic order, using the data t. However, what you do need to know is the interpretation of statistics. In the table below you can see the result and the significance level of p.value. Is the quadratic relationship significant?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## library needed: library(tidymodels)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## statistical resutls</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), t) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">CONCLUSION</h2>
+<p>We learned that there is a significant quadratic relationship between occurrences of chaffinch and nitrogen deposition level. However, in ecology we can hardly find an exclusively isolated relationship. Therefore, in the next step of the assignment I would like you to reflect over how does this relationship fit into a bigger picture. What other elements, mechanisms or species have an impact on this outcome? To spark the thinking process, take a look at the figure Pathway of Nitrogen deposition by Nijssen, et. al.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://ars.els-cdn.com/content/image/1-s2.0-S0006320717302471-gr1.jpg" class="img-fluid figure-img"></p>
+<figcaption>Pathways of N deposition with direct effects and indirect effects through soil and water, affecting vegetation and fauna. The different pathways (a to j) and basic effects (1 to 6) are further explained in themain text. Pathway aandb (blue arrows) occur exclusively in aquatic systems ormoist soil types; other pathways can occur in aquatic aswell as terrestrial habitats (Nijssen, et. al, 2017).</figcaption>
+</figure>
+</div>
+<p>Nijssen and co-authors mapped in this figure 6 potential negative outcomes of extensive nitrogen deposition. As I said, one can hardly find an isolated relationship. Carry this in mind while completing your original project. In the last part of this assignment, I would like you to reflect over how does your species fit into a bigger picture. In other words, why is it influenced by nitrogen? What steps precede including what species and what mechanisms?</p>
+<p>Now go ahead and start exploring. Remember if stuck at any point, do not hesitate to reach out to Data Center.</p>
+</section>
+<section id="literature-1" class="level2">
+<h2 class="anchored" data-anchor-id="literature-1">LITERATURE</h2>
+<p><em>Nijssen, M. E., WallisDeVries, M. F., &amp; Siepel, H. (2017). Pathways for the effects of increased nitrogen deposition on fauna. Biological Conservation, 212, 423-431.</em></p>
+<p><br>
+</p>
+</section>
+</section>
+<section id="supporting-materials" class="level1">
+<h1>Supporting materials</h1>
+<section id="the-basics-of-r" class="level2">
+<h2 class="anchored" data-anchor-id="the-basics-of-r">The basics of R</h2>
+<ul>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf">Cheat sheet for importing data</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf">Cheat sheet for data manipulation</a> (including <code>filter()</code>, <code>select()</code> and the pipe operator(<code>%&gt;%</code>))</li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf">Cheat sheet for data tidying</a> (including reshaping and pivoting)</li>
+<li><a href="https://moderndive.netlify.app/1-getting-started.html#getting-started">Getting started with Data in R</a> (covers: using R and RStudio, basic terminology, introduction to packages)</li>
+<li><a href="https://rstudio-education.github.io/hopr/r-objects.html">R objects</a></li>
+<li><a href="https://r4ds.had.co.nz/pipes.html">More explanation on the pipe operator</a></li>
+<li><a href="https://r4ds.had.co.nz/workflow-projects.html">Advice on using projects</a></li>
+<li><a href="https://mdsr-book.github.io/mdsr2e/ch-dataI.html#sec:pipe">Selecting and filtering data</a></li>
+<li><a href="https://mdsr-book.github.io/mdsr2e/ch-dataII.html#data-verbs-for-converting-wide-to-narrow-and-vice-versa">Conversions between long and wide format</a></li>
+<li><a href="https://www.youtube.com/watch?v=WyrJmJWgPiU">Creating a project in RStudio (video)</a></li>
+<li><a href="https://www.youtube.com/watch?v=v6VygIgvoZU&amp;t=1s">Packages in R (video)</a></li>
+<li><a href="https://www.youtube.com/watch?v=2MVolYETR5Q">Loading a data file (video)</a></li>
+<li><a href="https://www.youtube.com/watch?v=Zc_ufg4uW4U">Data manipulation (video)</a></li>
+<li><a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Analysis and Visualization in R for Ecologists</a></li>
+</ul>
+</section>
+<section id="help-with-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="help-with-ggplot">Help with <code>ggplot</code></h2>
+<ul>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf">Cheat sheet for <code>ggplot</code></a></li>
+<li><a href="https://www.r-graph-gallery.com/">The R Graph Gallery (example plots, including full R scripts)</a></li>
+<li><a href="https://mdsr-book.github.io/mdsr2e/ch-vizII.html#a-grammar-for-data-graphics">More details on data visualization</a></li>
+<li><a href="https://www.tutorialgateway.org/save-r-ggplot-using-ggsave/">Saving plots with <code>ggsave()</code></a></li>
+<li><a href="https://www.youtube.com/watch?v=hr2X7rmkprM">Basic <code>ggplot</code> tutorial (video)</a></li>
+<li><a href="https://www.youtube.com/watch?v=1GmQ5BdAhG4">Customizing plots (video)</a></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

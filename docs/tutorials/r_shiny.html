@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-20">
+
+<title>UCR Data Center - Interactive applications with Shiny</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#the-structure-of-a-shiny-app" id="toc-the-structure-of-a-shiny-app" class="nav-link" data-scroll-target="#the-structure-of-a-shiny-app">The structure of a Shiny app</a></li>
+  <li><a href="#modifying-the-default-app" id="toc-modifying-the-default-app" class="nav-link" data-scroll-target="#modifying-the-default-app">Modifying the default app</a>
+  <ul class="collapse">
+  <li><a href="#changing-the-data-adding-initial-data-cleaning" id="toc-changing-the-data-adding-initial-data-cleaning" class="nav-link" data-scroll-target="#changing-the-data-adding-initial-data-cleaning">Changing the data, adding initial data cleaning</a></li>
+  <li><a href="#specifying-new-inputs" id="toc-specifying-new-inputs" class="nav-link" data-scroll-target="#specifying-new-inputs">Specifying new inputs</a></li>
+  <li><a href="#specifying-new-outputs-that-depend-on-the-inputs" id="toc-specifying-new-outputs-that-depend-on-the-inputs" class="nav-link" data-scroll-target="#specifying-new-outputs-that-depend-on-the-inputs">Specifying new outputs that depend on the inputs</a></li>
+  </ul></li>
+  <li><a href="#advanced-options" id="toc-advanced-options" class="nav-link" data-scroll-target="#advanced-options">Advanced options</a>
+  <ul class="collapse">
+  <li><a href="#different-layout-options" id="toc-different-layout-options" class="nav-link" data-scroll-target="#different-layout-options">Different layout options</a></li>
+  <li><a href="#reactive-objects" id="toc-reactive-objects" class="nav-link" data-scroll-target="#reactive-objects">Reactive objects</a></li>
+  <li><a href="#conditional-ui" id="toc-conditional-ui" class="nav-link" data-scroll-target="#conditional-ui">Conditional UI</a></li>
+  </ul></li>
+  <li><a href="#publishing-the-app-on-the-web" id="toc-publishing-the-app-on-the-web" class="nav-link" data-scroll-target="#publishing-the-app-on-the-web">Publishing the app on the web</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Interactive applications with Shiny</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 20, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Shiny allows you to create interactive applications using R. These applications basically function as websites, and they allow the user to control various characteristics of the output procudes on the page by adjusting the inputs in a nice, user-friendly interface. That is, the user gets to control how data that is analyzed and visualized, without the need to write any code. You can host these applications on your local device, or on the Shiny server: this latter option allows anybody on the internet to find and use your app by visiting a URL.</p>
+<p>In this tutorial, we discuss the basic layout of a Shiny app and some examples of customizing the user interface, including inputs, outputs and reactive elements. We also discuss how to publish your apps on the Shiny server, and some considerations that specifically apply to apps hosted on Shiny. Some elements of this tutorial are based on Joachim Goedhart’s <a href="https://github.com/JoachimGoedhart/A_Shiny_start">A Shiny start - Tutorial</a>. The final app script created in this tutorial is available <a href="https://github.com/ucrdatacenter/projects/blob/main/apprenticeship/2024h1/8_shiny/app.R">here</a>.</p>
+</section>
+<section id="the-structure-of-a-shiny-app" class="level1">
+<h1>The structure of a Shiny app</h1>
+<p>A Shiny app consists of two parts: the user interface (UI) and the server. The UI defines what the user sees and interacts with, and the server is the part that does the actual work of generating output. If instead of opening a plain new R script, you go to File -&gt; New File -&gt; Shiny Web App, RStudio will generate a template for a Shiny app that contains these basic structures and some examples of how to use them. The file also automatically includes loading the <code>shiny</code> package, so make sure you have it installed. In addition, let’s load <code>tidyverse</code> as usual on the top of the script.</p>
+<p>In the rest of the tutorial we will create an app similar to <a href="https://amsterdamstudygroup.shinyapps.io/A_Shiny_start/">this</a> example (although more complex) by modifying the default app script that R creates. But first, let’s have a look at some pseudo-code showing the standard contents of a Shiny app. The functions in uppercase are not real functions, but denote a category of functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages: shiny + anything else used for data wrangling and visualization</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># any data cleaning that doesn't depend on user input</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">LOAD</span>(<span class="st">"data"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># user interface: inputs, outputs, other displayed items in the order of display on the page</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># optional title</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># page layout specification (e.g. sidebar, tabs, columns, fluidRows)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">LAYOUT</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">INPUT_ELEMENT</span>(<span class="st">"id_input"</span>, ...), <span class="co"># e.g. textbox, dropdown, buttons</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">OUTPUT_ELEMENT</span>(<span class="st">"id_output"</span>), <span class="co"># e.g. plots, tables</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    OTHER_INTERFACE_ELEMENT <span class="co"># R functions generating HTML (e.g. headers, paragraphs)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># function that regenerates outputs every time inputs are modified</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># optional intermediate result: depends on input, affects output, but not displayed</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  value <span class="ot">&lt;-</span> <span class="fu">REACTIVE_OBJECT</span>({</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">FUNCTION</span>(data, input<span class="sc">$</span>id_input)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># displayed result: depends on input, possibly via intermediate reactive elements</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>id_output <span class="ot">&lt;-</span> <span class="fu">RENDER_ELEMENT</span>({</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">FUNCTION</span>(data, input<span class="sc">$</span>id_input, <span class="fu">value</span>())</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># run app given defined UI and server contents</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below you find step-by-step instructions that you can follow to add and modify functionality to a Shiny app that is created by default. With each step, the functionality (and hence complexity) of the app increases.</p>
+</section>
+<section id="modifying-the-default-app" class="level1">
+<h1>Modifying the default app</h1>
+<section id="changing-the-data-adding-initial-data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="changing-the-data-adding-initial-data-cleaning">Changing the data, adding initial data cleaning</h2>
+<p>You can use your own data in a Shiny app by loading it in the same way as you would in a regular R script. For example, you can load a CSV file with <code>read_csv()</code> from the <code>readr</code> package. In this case, let’s use the same dataset that we used in the data wrangling tutorial on animal species and their observed characteristics.</p>
+<p>You should load any data that you want to use in the app before the UI and server functions. You should also undertake any data cleaning steps that don’t depend on user input there. You do this for the purpose of efficiency: code outside the server function is only run once, when the app is started, whereas code inside the server function is run every time the user changes an input.</p>
+<p>So let’s add the code loading and cleaning the data to the top of the script; make sure to also load <code>tidyverse</code> together with the <code>shiny</code> package. In addition, let’s define a new tibble that summarizes the number of observations per year and per species so that later we can display these counts in a table in the app.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/ucrdatacenter/projects/main/apprenticeship/2024h1/1_intro/surveys.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>species_counts <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, plot_type, genus, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’ll be able to refer to these objects later when defining the <code>server</code> and <code>ui</code> functions.</p>
+</section>
+<section id="specifying-new-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="specifying-new-inputs">Specifying new inputs</h2>
+<p>The default app contains a slider input that allows the user to control the number of bins in a histogram. This slider input is only one of many possible input elements that you can add to a Shiny app. You can add a text box, a dropdown menu, a checkbox, a radio button, a date picker, and more: the list of possible inputs is available on the right side of the first page of <a href="https://ugoproto.github.io/ugo_r_doc/pdf/shiny.pdf">this cheatsheet</a>, including the main arguments each input type takes (for the full list of arguments, check the relevant help files).</p>
+<p>Let’s add a few different input elements to the app.</p>
+<p>First, let’s adjust the existing slider input to allow the user to adjust the year range from which we’ll display data. You can modify the slider input by changing the arguments of the <code>sliderInput()</code> function as follows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">"years"</span>, <span class="co"># input ID</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Year range"</span>, <span class="co"># displayed label</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="dv">1977</span>, <span class="co"># minimum value</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="dv">2002</span>, <span class="co"># maximum value</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">value =</span> <span class="dv">1977</span> <span class="co"># initial value</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also define the input characteristics by referencing the data you previously loaded. For example, you can make the slider range from the earliest to the latest year in the data by extracting the relevant information from your data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">"years"</span>, <span class="co"># input ID</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Year range"</span>, <span class="co"># displayed label</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(data<span class="sc">$</span>year), <span class="co"># minimum value</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(data<span class="sc">$</span>year), <span class="co"># maximum value</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">min</span>(data<span class="sc">$</span>year), <span class="fu">max</span>(data<span class="sc">$</span>year)) <span class="co"># initial value: two elements create a range</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, let’s add checkboxes that let the user display data from as many plot types as they want. If you want to add a single checkbox, you can use the <code>checkboxInput()</code> function, and for multiple checkboxes, you can use the <code>checkboxGroupInput()</code> function. In this case, let’s use all unique plot types in the data as the choices for the checkboxes, and let’s set the initial selection to select all plot types.</p>
+<p>Make sure that all your inputs are separated with commas inside your <code>ui</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkboxGroupInput</span>(<span class="st">"plot_type"</span>, <span class="co"># input ID</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Plot type"</span>, <span class="co"># displayed label</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">choices =</span> <span class="fu">unique</span>(data<span class="sc">$</span>plot_type), <span class="co"># choices</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">selected =</span> <span class="fu">unique</span>(data<span class="sc">$</span>plot_type) <span class="co"># initial selection</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, let’s add two more inputs: a set of radio buttons that let the user choose which of the two numerical variables to plot, and a numeric input that lets the user control the number of bins in the histogram.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">radioButtons</span>(<span class="st">"variable"</span>, <span class="co"># input ID</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Displayed variable"</span>, <span class="co"># displayed label</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">choiceNames =</span> <span class="fu">c</span>(<span class="st">"Hindfoot length"</span>, <span class="st">"Animal weight"</span>), <span class="co"># displayed choices</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">choiceValues =</span> <span class="fu">c</span>(<span class="st">"hindfoot_length"</span>, <span class="st">"weight"</span>), <span class="co"># values returned by input</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>             ),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">numericInput</span>(<span class="st">"bins"</span>, <span class="st">"Number of bins:"</span>, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you run the app now, you’ll see all the inputs show up in the sidebar panel, and you can see how they are arranged and how you can change their values. However, they are not yet connected to any outputs, so changing their values doesn’t do anything yet. Fortunately you can introduce new UI elements that take user input, but are not yet connected to an action. This is nice, as it allows you to build the UI elements gradually without breaking the app.</p>
+</section>
+<section id="specifying-new-outputs-that-depend-on-the-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="specifying-new-outputs-that-depend-on-the-inputs">Specifying new outputs that depend on the inputs</h2>
+<p>The default app creates a single output element: a histogram with the identifier “plot”. The <code>ui</code> function places this element in the main panel by including a <code>plotOutput()</code> in the <code>mainPanel()</code> function, specifying the identifier of the plot as the only argument. Then the <code>server</code> function provides the details of how to generate the plot by defining the element <code>output$plot</code> as a <code>renderPlot({})</code> function (the curly braces inside the parentheses allow us to define the plot contents as a longer code chunk including intermediate objects, line breaks, etc.).</p>
+<p>Let’s modify this default plot and add a few more outputs to the app. To change the <code>plot</code> object to a histogram of the filtered data and selected variable, we can replace the current contents of the <code>renderPlot({})</code> with code that takes our previously loaded data, filters it, and plots our selected variable.</p>
+<p>To access the values of the inputs defined by the input UI elements, we can refer to them as <code>input$input_id</code> where <code>input_id</code> is the identifier of the input element. For example, to access the value of the <code>years</code> slider, we can use <code>input$years</code> – since <code>input$years</code> has two elements, one for the minimum year and one for the maximum year selected, we can access the individual elements by subsetting the <code>input$years</code> vector. Notice that instead of calling <code>input$variable</code> in the <code>ggplot</code> function directly, we are renaming the chosen variable to <code>value</code>, and referring to the <code>value</code> variable later. The reason for this is that <code>ggplot</code> expects the variable name to be an object, not a string (i.e.&nbsp;no quotation signs), but <code>input$variable</code> is a string. The <code>rename()</code> function, however, does not care whether variables are specified as objects or strings, so we can apply this trick instead of having to use more complex functions to convert character strings to objects.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> input<span class="sc">$</span>years[<span class="dv">1</span>], year <span class="sc">&lt;=</span> input<span class="sc">$</span>years[<span class="dv">2</span>],</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         plot_type <span class="sc">%in%</span> input<span class="sc">$</span>plot_type) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"value"</span> <span class="ot">=</span> input<span class="sc">$</span>variable) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, value, genus, species, plot_type) <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>bins) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Don’t be surprised that the previous function does not work outside of a Shiny app: the <code>input</code> object is only defined inside the <code>server</code> function, so you can only access it there. Therefore if you’d like to test your code, you can do that in two ways:</p>
+<ol type="1">
+<li>Run the app and test it in the browser, making sure that all outputs look reasonable.</li>
+<li>Create a new R script, load the data, and copy the code from the <code>server</code> function into the new script, replacing all <code>input$input_id</code> references vectors that you define in that new script. (I tend to define e.g.&nbsp;<code>inputyears &lt;- c(1980, 2000)</code> at the top of the script I use for this testing, since then the only thing I need to change in the copied server code is to remove the dollar signs <code>$</code> from the input specifications.)</li>
+</ol>
+<p>Now let’s add some different output types to the app. The only difference between the different output types is the function that you use to define them in the <code>ui</code> and <code>server</code> functions: the <code>ui</code> function uses <code>typeOutput()</code> and the <code>server</code> function uses <code>renderType()</code>, where <code>type</code> is the type of output you want to create. The same <a href="https://ugoproto.github.io/ugo_r_doc/pdf/shiny.pdf">cheatsheet</a> linked above also contains a list of possible output types and the correspondence between <code>ui</code> and <code>server</code> functions (they are usually the same, but not always, see e.g.&nbsp;<code>verbatimTextOutput</code> and <code>renderPrint</code>).</p>
+<p>Let’s add a text output that displays the mean of the selected variable in the data filtered by the user’s choices, let’s call it <code>summary</code>. For that we can use the <code>renderText()</code> function in the <code>server</code> function, and the <code>textOutput()</code> function in the <code>ui</code> function. Again, the <code>textOutput()</code> just contains the object identifier, and the <code>renderText()</code> function contains a code chunk that generates the text to be displayed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside UI mainPanel() (make sure to separate from plotOutput() with a comma)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">textOutput</span>(<span class="st">"summary"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># inside server (no commas needed between output elements)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  mean <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;=</span> input<span class="sc">$</span>years[<span class="dv">1</span>], year <span class="sc">&lt;=</span> input<span class="sc">$</span>years[<span class="dv">2</span>],</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>           plot_type <span class="sc">%in%</span> input<span class="sc">$</span>plot_type) <span class="sc">|&gt;</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="st">"value"</span> <span class="ot">=</span> input<span class="sc">$</span>variable) <span class="sc">|&gt;</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(value) <span class="sc">|&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"Sample mean of "</span>, input<span class="sc">$</span>variable, <span class="st">":</span><span class="sc">\n</span><span class="st">"</span>, mean)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, let’s add a table that displays the number of different species observed in the filtered data. For this we can use our previously defined <code>species_counts</code> object, and the <code>renderTable()</code> and <code>tableOutput()</code> functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside UI mainPanel()</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tableOutput</span>(<span class="st">"counts"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># inside server</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>counts <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  species_counts <span class="sc">|&gt;</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;=</span> input<span class="sc">$</span>years[<span class="dv">1</span>], year <span class="sc">&lt;=</span> input<span class="sc">$</span>years[<span class="dv">2</span>],</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>           plot_type <span class="sc">%in%</span> input<span class="sc">$</span>plot_type) <span class="sc">|&gt;</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(genus, species) <span class="sc">|&gt;</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">sum</span>(n))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since the resulting table is quite long, it might be nicer to use another element type that gives more control over how the data is displayed: the <code>dataTableOutput()</code> and <code>renderDataTable()</code> functions from the <code>DT</code> package split the data to multiple pages, displaying only a certain number of observations at once, let the user sort the data based on each column, and additional arguments even allow the user to search for specific values in the table. So let’s install and load the <code>DT</code> package and change <code>tableOutput</code> to <code>dataTableOutput()</code> and <code>renderTable()</code> to <code>renderDataTable()</code> instead – no changes are needed in the function body.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside UI mainPanel()</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dataTableOutput</span>(<span class="st">"counts"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># inside server</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>counts <span class="ot">&lt;-</span> <span class="fu">renderDataTable</span>({</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  species_counts <span class="sc">|&gt;</span> </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;=</span> input<span class="sc">$</span>years[<span class="dv">1</span>], year <span class="sc">&lt;=</span> input<span class="sc">$</span>years[<span class="dv">2</span>],</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>           plot_type <span class="sc">%in%</span> input<span class="sc">$</span>plot_type) <span class="sc">|&gt;</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(genus, species) <span class="sc">|&gt;</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">sum</span>(n))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-options" class="level1">
+<h1>Advanced options</h1>
+<p>If you run the app now, you’ll see that all the features are there to make it work properly: the user can customize many inputs, and these inputs are immediately reflected in the outputs. However, we can do more to customize the interface of the app, and to streamline the code.</p>
+<section id="different-layout-options" class="level2">
+<h2 class="anchored" data-anchor-id="different-layout-options">Different layout options</h2>
+<p>The default app uses a sidebar layout, where the inputs are displayed in a sidebar panel on the left, and the outputs are displayed in the main panel on the right. A few possible options for different overall layout options are listed below.</p>
+<ul>
+<li>If you remove the <code>sidebarLayout(sidebarPanel(...), mainPanel(...))</code> function from the <code>ui</code> function and keep only the list of elements, the app will use a full-page layout instead, where the inputs and outputs are displayed one after the other.</li>
+<li>If you replace the <code>sidebarLayout(sidebarPanel(...), mainPanel(...))</code> function with <code>tabsetPanel(tabPanel(...), tabPanel(...))</code>, the app will use a tabbed layout, where the user can switch between different tabs, each displaying as a separate page.</li>
+<li>If you replace the <code>sidebarLayout(sidebarPanel(...), mainPanel(...))</code> function with <code>fluidRow(column(...), column(...))</code>, the app will use a column layout, where the inputs and outputs are displayed next to each other. You can adjust the width of each column and offset them to create space between the edges of the page and the page contents. Unlike the sidebar or tabset layouts, <code>fluidRow()</code> and <code>column()</code> can be used separately and interchangably: any elements inside the same <code>fluidRow()</code> are displayed next to each other, and any elements inside the same <code>column()</code> are displayed on top of each other.</li>
+<li>For other layout options, see the <a href="https://shiny.posit.co/r/articles/build/layout-guide/">Shiny layout guide</a> and the Shiny cheatsheet linked above.</li>
+</ul>
+<p>Note that the all layouts explained above are still always inside a <code>fluidPage()</code> function, which should always be the outermost function in the <code>ui</code> function.</p>
+<p>In addition to adjusting the overall layout, you can add other elements to the page to give it more structure on top of the inputs and outputs. Realize that the way the UI is structured is very similar to HTML script. After all, that’s exactly what’s happening in the background when you compile your app: R is generating HTML code that is then displayed in the browser. So it’s also possible to add other elements to the page that translate to HTML code: indeed, R has an extensive list of functions that generate HTML code, such as headers, paragraphs, horizontal lines, bold text, line breaks and more. For example, the <code>h2("header text")</code> function in Shiny corresponds to <code>&lt;h2&gt;header text&lt;/h2&gt;</code> in HTML, while a separating line can be added with <code>hr()</code>. Again, the Shiny cheatsheet contains a longer list of these functions. So let’s add some of these elements to our current definition of the UI main panel to make the app outputs better structured.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mainPanel</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">h3</span>(<span class="st">"Histogram of chosen variable"</span>), <span class="co"># header for the plot</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">"plot"</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">"summary"</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hr</span>(), <span class="co"># separating line between outputs</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">h3</span>(<span class="st">"Species counts"</span>), <span class="co"># header for the table</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dataTableOutput</span>(<span class="st">"counts"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reactive-objects" class="level2">
+<h2 class="anchored" data-anchor-id="reactive-objects">Reactive objects</h2>
+<p>Now that the app interface looks better, let’s make the code more efficient. Currently, much the code inside the <code>renderPlot()</code> and <code>renderTable()</code> functions is identical: we filter the data in the same way, and then we either plot or summarize the data. So it would be more efficient to define a new object inside the server that filters the data, and use that new, filtered data as the inputs both in the <code>renderPlot()</code> and <code>renderTable()</code> functions.</p>
+<p>The problem is that you can’t define a new object inside the <code>server</code> function like how you would define a new object in a regular R script. Instead, you need to use a special function called <code>reactive()</code> that defines a new object that is reactive to the inputs. Once you’ve called the <code>reactive({})</code> function, you can specify the code that defines the object inside the curly braces, and you can refer to the object in other elements of <code>server</code> by the name of the reactive object followed by parentheses (as if you were calling a function, which is technically what you’re doing).</p>
+<p>So let’s add an element to the <code>server</code> code that defines a new reactive object called <code>data_filtered</code> that filters the data based on the user’s choices. Then we can replace the <code>data</code> object in the <code>renderPlot()</code> and <code>renderTable()</code> functions with <code>data_filtered()</code>. Make sure to define the reactive object before the output elements that use the object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define reactive object</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  data_filtered <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    data <span class="sc">|&gt;</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">&gt;=</span> input<span class="sc">$</span>years[<span class="dv">1</span>], year <span class="sc">&lt;=</span> input<span class="sc">$</span>years[<span class="dv">2</span>],</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>             plot_type <span class="sc">%in%</span> input<span class="sc">$</span>plot_type) <span class="sc">|&gt;</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="st">"value"</span> <span class="ot">=</span> input<span class="sc">$</span>variable) <span class="sc">|&gt;</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(year, value, genus, species, plot_type)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># call reactive object and plot the value variable</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data_filtered</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>bins) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_light</span>()</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># call value variable from reactive object</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"Sample mean of "</span>, input<span class="sc">$</span>variable, <span class="st">":</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">mean</span>(<span class="fu">data_filtered</span>()<span class="sc">$</span>value))</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conditional-ui" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-ui">Conditional UI</h2>
+<p>The last change we’ll make to the app is to make the plot is to introduce a new input that appears on the interface only if a particular condition is satisfied. In this case, we want to add a checkbox that allows the user to facet the plot by plot type, but only if there is more than one plot type selected.</p>
+<p>There are multiple ways to create conditional UI elements, such as via the <code>conditionalPanel()</code> function, or by using the <code>shinyjs</code> package that allows you to hide/show UI elements. In this tutorial we’ll use the <code>uiOutput()</code> and <code>renderUI()</code> functions, which allow you to define UI elements in the <code>server</code> function.</p>
+<p>Instead of specifying the details of the input element in the <code>ui</code> function, we use <code>uiOutput()</code> to define a placeholder. Then we use <code>renderUI()</code> to actually add the input function, wrapping it in an if-statement that evaluates the input function only if a logical condition is satisfied. So let’s add these elements to the app code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside UI sidebarPanel()</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uiOutput</span>(<span class="st">"facet_ui"</span>) <span class="co"># UI element defined in server</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># inside server</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>facet_ui <span class="ot">&lt;-</span> <span class="fu">renderUI</span>({</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># display facet option only if there is more than one facet</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(input<span class="sc">$</span>plot_type) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># UI element definition</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">checkboxInput</span>(<span class="st">"facet"</span>, <span class="co"># input ID</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Facet by plot type?"</span>, <span class="co"># displayed label</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                  <span class="cn">FALSE</span> <span class="co"># initial value</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have this additional input (that outputs a logical value of length 1 for whether the plot should have facets), we need to adjust the plot output to facet the plot if <code>input$facet == TRUE</code>. So let’s add an if-statement to the <code>renderPlot()</code> function that adds the facetting if the checkbox is checked. To do so, we’ll break up the existing plotting function, assign the intermediate plot to an object, and then add the facetting to that object only if the checkbox is checked, and display the result.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># assign plot to object</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">data_filtered</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>bins) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add facetting if checkbox is checked</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (input<span class="sc">$</span>facet) p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>plot_type)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># display plot</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  p</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="publishing-the-app-on-the-web" class="level1">
+<h1>Publishing the app on the web</h1>
+<p>Currently the app works well on your own computer, but it’s not yet available on the web. To make it available on the web, you need to publish it on the Shiny server. In order to do so, you first need to make an account on <a href="https://www.shinyapps.io/">www.shinyapps.io</a>. A free account allows you to publish up to 5 apps, and you can upgrade to a paid account if you need more.</p>
+<p>Once you have an account, you can find the button to publish your app in RStudio next to the “Run App” button. When publishing an app for the first time, you’ll be asked to install the <code>rsconnect</code> package, and link your Shiny account to RStudio. You can simply follow the instructions that RStudio provides when you click the “Publish the application” button.</p>
+<p>You’ll also need to select which files you’d like upload together with your app script. This part is important if you are using data files from your computer, as your app will only work online if all necessary files are also uploaded to the Shiny server. So make sure to select all files that you are using in your app, including the data file(s) and any other files that you are sourcing in your app. On the other hand, make sure not to upload any large and/or confidential files: if your app works with such files, you should create a separate script that loads the data and cleans it, save the resulting smaller and non-confidential file that only contains the data you absolutely need, and load only that datafile in your app script. In addition, make sure that any files that your app needs are stored in the same folder as your app script and use relative file paths, since absolute file paths will not work on the Shiny server.</p>
+<p>If all goes well, your published app will be accessible at the URL <code>https://username.shinyapps.io/appname</code>, so make sure to give the app a sensible name.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

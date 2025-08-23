@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-04">
+
+<title>UCR Data Center - Faculty workshop: Introduction to R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a>
+  <ul class="collapse">
+  <li><a href="#why-r" id="toc-why-r" class="nav-link" data-scroll-target="#why-r">Why R?</a></li>
+  <li><a href="#why-tidyverse" id="toc-why-tidyverse" class="nav-link" data-scroll-target="#why-tidyverse">Why <code>tidyverse</code>?</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-r" id="toc-introduction-to-r" class="nav-link" data-scroll-target="#introduction-to-r">Introduction to R</a>
+  <ul class="collapse">
+  <li><a href="#objects-in-r" id="toc-objects-in-r" class="nav-link" data-scroll-target="#objects-in-r">Objects in R</a></li>
+  <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link" data-scroll-target="#functions-in-r">Functions in R</a></li>
+  </ul></li>
+  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing data</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data wrangling</a>
+  <ul class="collapse">
+  <li><a href="#filtering-observations" id="toc-filtering-observations" class="nav-link" data-scroll-target="#filtering-observations">Filtering observations</a></li>
+  <li><a href="#selecting-variables" id="toc-selecting-variables" class="nav-link" data-scroll-target="#selecting-variables">Selecting variables</a></li>
+  <li><a href="#creating-new-variables" id="toc-creating-new-variables" class="nav-link" data-scroll-target="#creating-new-variables">Creating new variables</a></li>
+  <li><a href="#categorical-variables-as-factors" id="toc-categorical-variables-as-factors" class="nav-link" data-scroll-target="#categorical-variables-as-factors">Categorical variables as factors</a></li>
+  <li><a href="#data-cleaning-as-a-single-pipeline" id="toc-data-cleaning-as-a-single-pipeline" class="nav-link" data-scroll-target="#data-cleaning-as-a-single-pipeline">Data cleaning as a single pipeline</a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a>
+  <ul class="collapse">
+  <li><a href="#the-logic-of-ggplot2" id="toc-the-logic-of-ggplot2" class="nav-link" data-scroll-target="#the-logic-of-ggplot2">The logic of <code>ggplot2</code></a></li>
+  <li><a href="#univariate-plots" id="toc-univariate-plots" class="nav-link" data-scroll-target="#univariate-plots">Univariate plots</a></li>
+  <li><a href="#bivariate-plots" id="toc-bivariate-plots" class="nav-link" data-scroll-target="#bivariate-plots">Bivariate plots</a></li>
+  <li><a href="#customizing-plot-features" id="toc-customizing-plot-features" class="nav-link" data-scroll-target="#customizing-plot-features">Customizing plot features</a></li>
+  <li><a href="#more-advanced-features" id="toc-more-advanced-features" class="nav-link" data-scroll-target="#more-advanced-features">More advanced features</a></li>
+  <li><a href="#saving-plots" id="toc-saving-plots" class="nav-link" data-scroll-target="#saving-plots">Saving plots</a></li>
+  </ul></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary statistics</a>
+  <ul class="collapse">
+  <li><a href="#summaries-in-the-console" id="toc-summaries-in-the-console" class="nav-link" data-scroll-target="#summaries-in-the-console">Summaries in the console</a></li>
+  <li><a href="#export-ready-summary-tables" id="toc-export-ready-summary-tables" class="nav-link" data-scroll-target="#export-ready-summary-tables">Export-ready summary tables</a></li>
+  </ul></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis testing</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Faculty workshop: Introduction to R</h1>
+<p class="subtitle lead">January 2025</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 4, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objectives" class="level1">
+<h1>Objectives</h1>
+<section id="why-r" class="level2">
+<h2 class="anchored" data-anchor-id="why-r">Why R?</h2>
+<ul>
+<li>Free and open-source</li>
+<li>Reproducible</li>
+<li>Widely used in academia and industry; up-to-date with the latest technological developments</li>
+<li>Very versatile: extensive package ecosystem for statistics and more</li>
+<li>Powerful data wrangling and visualization capabilities</li>
+<li>Extensive community support (open-access books, tutorials, forums, AI tools, etc.)</li>
+</ul>
+</section>
+<section id="why-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="why-tidyverse">Why <code>tidyverse</code>?</h2>
+<ul>
+<li>Clean, consistent, intuitive, readable syntax for all steps of the data analysis process</li>
+<li>Limited set of functions that can be combined in many ways</li>
+<li>Many packages beyond core <code>tidyverse</code> with the same underlying design, grammar, and data structures, therefore easier to learn advanced techniques</li>
+</ul>
+</section>
+</section>
+<section id="introduction-to-r" class="level1">
+<h1>Introduction to R</h1>
+<section id="objects-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="objects-in-r">Objects in R</h2>
+<p>One of the most basic types of objects in R is a vector. A vector is a collection of values of the same type, such as numbers, characters, or logicals (TRUE/FALSE). You can create a vector with the <code>c()</code> function, which stands for concatenate. If you assign a vector to an object with the assignment operator <code>&lt;-</code>, your vector will be saved in your environment so you can work with it within your current R session. Some examples of creating vectors are:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>)  <span class="co"># character vector with 3 elements</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="dv">25</span>                <span class="co"># numeric vector with 1 element</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>              <span class="co"># numeric vector with 10 elements - integers from 1 to 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To subset or extract elements from a vector, you can use square brackets <code>[ ]</code> with an index. For example, <code>v1[1]</code> returns the first element of <code>v1</code>, <code>v3[2:5]</code> returns the 2nd to 5th elements of <code>v3</code>, and <code>v3[-c(2, 4, 6)]</code> returns all but the 2nd, 4th and 6th elements of <code>v3</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>v1[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>v3[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>v3[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1  3  5  7  8  9 10</code></pre>
+</div>
+</div>
+<p>A dataframe (or “tibble” in <code>tidyverse</code>) is a special type of object that combines vectors into a rectangular table. Each column of a dataframe is a vector, and each row is an observation. usually you would load data from an external source, but you can create a dataframe with the <code>data.frame()</code> and a tibble with the <code>tibble()</code> function. You can also convert other data types such as matrices to tibbles with the <code>as_tibble()</code> function. Both functions take vectors as their arguments. Tibbles are preferred because they are more modern and have some convenient features that dataframes don’t, but for the most part, differences are minor and for the most part it does not matter whether you work with tibbles or dataframes.</p>
+<p>A simple example of creating a tibble is (make sure to load <code>tidyverse</code> first):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define vectors within the tibble() function</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Chris"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">180</span>, <span class="dv">175</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  name  height
+  &lt;chr&gt;  &lt;dbl&gt;
+1 Alice    165
+2 Bob      180
+3 Chris    175</code></pre>
+</div>
+</div>
+</section>
+<section id="functions-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="functions-in-r">Functions in R</h2>
+<p>Functions are reusable pieces of code that perform a specific task. They take arguments as inputs and return one or more pieces of output. You will mostly work with functions loaded from various packages or from the base R distribution, and in some cases you may write your own functions to avoid repetition or improve the readability of your code. We will cover writing your own functions later in the program.</p>
+<p>As with vectors, the output of a function is saved to your environment only if you assign the result to an object. For example, <code>sum(x)</code> will display the sum of the elements of the vector <code>x</code>, but <code>sum &lt;- sum(x)</code> will save this result to an object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Some important functions on vectors are</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)   <span class="co"># return the mean; add the argument na.rm = TRUE if missing values should be excluded</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.833333</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x) <span class="co"># give the length of the vector (number of elements)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(x) <span class="co"># list the unique elements of the vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 5 6 2 8</code></pre>
+</div>
+</div>
+<p>To learn more about a function and its arguments, you can use the ? operator or the help() function, for example by typing <code>?sum</code> (or equivalently, <code>?sum()</code>). It is good practice to request help files from your console and not you R script, since there is no need to save these queries for the future.</p>
+</section>
+</section>
+<section id="importing-data" class="level1">
+<h1>Importing data</h1>
+<p>R can handle practically any type of data, from simple text files to files used by other (not necessarily open-source) software and complex databases. This gives users a lot of flexibility in terms of data sources and formats.</p>
+<p>In addition to using your own data (e.g.&nbsp;as exported from a survey), the Data Center keeps a continuously updated list of useful datasets by discipline, accessible <a href="../../../../tutorials/data">here</a>.</p>
+<p>In the following, we’ll import a CSV file from a URL, but if you want to know more about importing various common file types, follow our more complete <a href="../../../../tutorials/r_adv_import">tutorial on importing data</a>.</p>
+<p>We can use the <code>read_csv()</code> function to import a <a href="https://github.com/ucrdatacenter/projects/blob/main/apprenticeship/2025h1/student_data.csv">CSV file</a> uploaded to the Data Center’s GitHub repository. The “Raw” button on the GitHub page opens the file in a plain text format, which is the format that <code>read_csv()</code> expects. Our data is based on a dataset on student characteristics and grades at a university (<a href="https://www.kaggle.com/datasets/jacksondivakarr/student-classification-dataset?resource=download">original source</a>). We assign the imported tibble to an object called <code>data</code>. <em>Note:</em> make sure to load <code>tidyverse</code> before proceeding with the rest of the tutorial.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/ucrdatacenter/projects/raw/refs/heads/main/apprenticeship/2025h1/student_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A few notes regarding importing and exporting data:</p>
+<ul>
+<li>Always make sure you know your current working directory and the relative path to your data directory. It is better to use relative rather than absolute file paths (i.e.&nbsp;<code>data/data.csv</code> instead of <code>C:/User/Project/data/data.csv</code>).</li>
+<li>Note that if you are using Windows, you may need to replace the backslashes (\) in the file path with forward slashes (/) to avoid errors.</li>
+<li>You can import files directly from URLs, although you usually need the URL of a raw file. If a file downloads immediately instead of opening in a raw format, you can try to copy that download link by right-clicking and selecting “Copy link address”; the <code>import()</code> function from the <code>rio</code> package might be successful with those links.</li>
+<li>To export data from R, you can almost always use the <code>write_...()</code> function corresponding to the desired file format, e.g.&nbsp;<code>write_csv()</code>. For Excel files the preferred export function is <code>write_xlsx()</code>, and for SPSS’s .sav files it is <code>write_sav()</code>.</li>
+<li>For other file formats, the generic <code>write()</code> function is useful; you can specify any file format, and if your input data is readable in the chosen format, the file will export properly.</li>
+<li>In all <code>write_()</code> functions you need to specify the data you’d like to save and the output file path (absolute or relative) including chosen file extension.</li>
+</ul>
+</section>
+<section id="data-wrangling" class="level1">
+<h1>Data wrangling</h1>
+<p>Data wrangling is the process of cleaning, structuring, and enriching raw data into a more usable format. The <code>dplyr</code> package is a part of the <code>tidyverse</code> and provides a set of functions that can be combined to perform the most common data wrangling tasks. The package is built around the concept of the “grammar of data manipulation”, which is a consistent set of verbs that can be combined in many ways to achieve the desired result.</p>
+<p>The main functions in <code>dplyr</code> are <code>filter()</code>, <code>select()</code>, <code>mutate()</code>, <code>arrange()</code>, <code>group_by()</code>, <code>summarize()</code>, and <code>rename()</code>. <code>dplyr</code> also provides a set of functions for combining datasets: <code>bind_rows()</code> and <code>bind_cols()</code> for row-wise and column-wise binding, and <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, and <code>full_join()</code> for joining datasets based on common variables. These functions can be combined using the pipe operator <code>|&gt;</code> (or <code>%&gt;%</code>, they are mostly equivalent) to create a data wrangling workflow. The pipe operator takes the output of the function on its left and passes it as the first argument to the function on its right. This allows you to chain multiple functions together in a single line of code, making your code more readable and easier to understand.</p>
+<p>In the following, we’ll work with the <code>data</code> object imported in the previous section and show how to use the main <code>dplyr</code> functions to clean the data so it is suitable for analysis. These steps are useful even if the input data is quite clean, as we often need to work with only a subset of observations/variables, define new variables, or aggregate the data.</p>
+<section id="filtering-observations" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-observations">Filtering observations</h2>
+<p>If we want to keep only a subset of observations, we can use the <code>filter()</code> function. We can specify a logical condition as the argument to <code>filter()</code>, and only observations that meet that condition will be kept. For example, to keep only students who are over 21 years old, we can use the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, age <span class="sc">&gt;</span> <span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 9
+      id   age sex    scholarship additional_work reading notes listening grade
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;           &lt;lgl&gt;   &lt;lgl&gt; &lt;lgl&gt;     &lt;dbl&gt;
+ 1  5005    22 Male            50 FALSE           TRUE    FALSE TRUE          4
+ 2  5015    26 Male            75 TRUE            FALSE   FALSE TRUE          4
+ 3  5016    22 Male            50 FALSE           FALSE   TRUE  FALSE         4
+ 4  5018    22 Male            50 FALSE           TRUE    FALSE FALSE         4
+ 5  5023    22 Male            50 TRUE            TRUE    TRUE  TRUE          3
+ 6  5024    25 Male            25 TRUE            TRUE    TRUE  FALSE         4
+ 7  5029    24 Male            50 FALSE           FALSE   FALSE FALSE         3
+ 8  5032    25 Male            50 TRUE            FALSE   TRUE  FALSE         3
+ 9  5040    22 Female          50 FALSE           FALSE   TRUE  TRUE          4
+10  5042    24 Male            50 TRUE            FALSE   TRUE  FALSE         4
+# ℹ 17 more rows</code></pre>
+</div>
+</div>
+<p>We can also apply logical conditions to character variables, e.g.&nbsp;to keep only students who went to a private high school and who did not receive a failing grade. Filters can be combined with AND (<code>,</code> or <code>&amp;</code>) and OR (<code>|</code>) operators into a single function. Note the use of quotation marks around character values in the logical condition and the double equal sign <code>==</code> to denote equality and <code>!=</code> for “not equal”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, sex <span class="sc">==</span> <span class="st">"Male"</span>, grade <span class="sc">!=</span> <span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 9
+      id   age sex   scholarship additional_work reading notes listening grade
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;           &lt;lgl&gt;   &lt;lgl&gt; &lt;lgl&gt;     &lt;dbl&gt;
+ 1  5001    21 Male           50 TRUE            TRUE    TRUE  FALSE         4
+ 2  5002    20 Male           50 TRUE            TRUE    FALSE TRUE          4
+ 3  5003    21 Male           50 FALSE           FALSE   FALSE FALSE         4
+ 4  5005    22 Male           50 FALSE           TRUE    FALSE TRUE          4
+ 5  5006    20 Male           50 FALSE           TRUE    FALSE TRUE          4
+ 6  5007    18 Male           75 FALSE           FALSE   TRUE  TRUE          2
+ 7  5015    26 Male           75 TRUE            FALSE   FALSE TRUE          4
+ 8  5016    22 Male           50 FALSE           FALSE   TRUE  FALSE         4
+ 9  5018    22 Male           50 FALSE           TRUE    FALSE FALSE         4
+10  5020    18 Male           50 FALSE           FALSE   FALSE TRUE          3
+# ℹ 77 more rows</code></pre>
+</div>
+</div>
+<p>Another useful logical operator is <code>%in%</code>, which allows you to filter observations based on a list of values. For example, to keep only students who receive either 75% or 100% scholarships, we can use the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, scholarship <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 65 × 9
+      id   age sex    scholarship additional_work reading notes listening grade
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;           &lt;lgl&gt;   &lt;lgl&gt; &lt;lgl&gt;     &lt;dbl&gt;
+ 1  5007    18 Male            75 FALSE           FALSE   TRUE  TRUE          2
+ 2  5012    18 Female          75 TRUE            FALSE   TRUE  FALSE         0
+ 3  5013    18 Female          75 FALSE           TRUE    FALSE FALSE         0
+ 4  5014    19 Female         100 FALSE           TRUE    FALSE FALSE         4
+ 5  5015    26 Male            75 TRUE            FALSE   FALSE TRUE          4
+ 6  5017    18 Female         100 FALSE           TRUE    FALSE FALSE         4
+ 7  5019    18 Female          75 FALSE           TRUE    FALSE FALSE         4
+ 8  5021    18 Male           100 TRUE            FALSE   FALSE TRUE          4
+ 9  5022    18 Male           100 FALSE           FALSE   FALSE FALSE         4
+10  5030    19 Male            75 FALSE           FALSE   FALSE TRUE          2
+# ℹ 55 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="selecting-variables" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-variables">Selecting variables</h2>
+<p>If we want to keep only a subset of variables, we can use the <code>select()</code> function. We can specify the variables we want to keep (or exclude, with <code>-</code> signs) as the arguments to <code>select()</code>, and only those variables will be kept. For example, to keep only the <code>Id</code> and <code>Student_Age</code> variables, we can use the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(data, id, age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 145 × 2
+      id   age
+   &lt;dbl&gt; &lt;dbl&gt;
+ 1  5001    21
+ 2  5002    20
+ 3  5003    21
+ 4  5004    18
+ 5  5005    22
+ 6  5006    20
+ 7  5007    18
+ 8  5008    18
+ 9  5009    19
+10  5010    21
+# ℹ 135 more rows</code></pre>
+</div>
+</div>
+<p>We can also select columns based on their location in the tibble or by looking for patterns in the column names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(data, id<span class="sc">:</span>sex) <span class="co"># select a range of columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 145 × 3
+      id   age sex   
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1  5001    21 Male  
+ 2  5002    20 Male  
+ 3  5003    21 Male  
+ 4  5004    18 Female
+ 5  5005    22 Male  
+ 6  5006    20 Male  
+ 7  5007    18 Male  
+ 8  5008    18 Female
+ 9  5009    19 Female
+10  5010    21 Female
+# ℹ 135 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(data, <span class="fu">starts_with</span>(<span class="st">"a"</span>)) <span class="co"># select columns that start with "a"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 145 × 2
+     age additional_work
+   &lt;dbl&gt; &lt;lgl&gt;          
+ 1    21 TRUE           
+ 2    20 TRUE           
+ 3    21 FALSE          
+ 4    18 TRUE           
+ 5    22 FALSE          
+ 6    20 FALSE          
+ 7    18 FALSE          
+ 8    18 TRUE           
+ 9    19 FALSE          
+10    21 FALSE          
+# ℹ 135 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(data, <span class="sc">-</span>grade) <span class="co"># keep everything but "grade"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 145 × 8
+      id   age sex    scholarship additional_work reading notes listening
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;           &lt;lgl&gt;   &lt;lgl&gt; &lt;lgl&gt;    
+ 1  5001    21 Male            50 TRUE            TRUE    TRUE  FALSE    
+ 2  5002    20 Male            50 TRUE            TRUE    FALSE TRUE     
+ 3  5003    21 Male            50 FALSE           FALSE   FALSE FALSE    
+ 4  5004    18 Female          50 TRUE            FALSE   TRUE  FALSE    
+ 5  5005    22 Male            50 FALSE           TRUE    FALSE TRUE     
+ 6  5006    20 Male            50 FALSE           TRUE    FALSE TRUE     
+ 7  5007    18 Male            75 FALSE           FALSE   TRUE  TRUE     
+ 8  5008    18 Female          50 TRUE            FALSE   TRUE  TRUE     
+ 9  5009    19 Female          50 FALSE           FALSE   FALSE FALSE    
+10  5010    21 Female          50 FALSE           FALSE   TRUE  FALSE    
+# ℹ 135 more rows</code></pre>
+</div>
+</div>
+<p>A pipe workflow allows us to combine the filtering and selecting operations into a single, step-by-step workflow:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">21</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 2
+      id   age
+   &lt;dbl&gt; &lt;dbl&gt;
+ 1  5005    22
+ 2  5015    26
+ 3  5016    22
+ 4  5018    22
+ 5  5023    22
+ 6  5024    25
+ 7  5029    24
+ 8  5032    25
+ 9  5040    22
+10  5042    24
+# ℹ 17 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-new-variables" class="level2">
+<h2 class="anchored" data-anchor-id="creating-new-variables">Creating new variables</h2>
+<p>If we want to create a new variable based on existing variables, we can use the <code>mutate()</code> function. We can specify the new variable name and the calculation for the new variable as the arguments to <code>mutate()</code>, and the new variable will be added to the dataset. For example, we can create a new variable <code>participation</code>, which is <code>TRUE</code> if the student does the assigned reading <em>and</em> listens in class <em>and</em> takes notes. We create this variable using a logical expression, using a simplified notation (i.e.&nbsp;not write out <code>reading == TRUE</code>, as doing so is not necessary for logical variables). Andother variable, <code>scholarship_decimal</code>, is created by dividing the <code>Scholarship</code> variable by 100 to get a variable that represents the value of scholarship as a fraction of total cost.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create new variables</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">participation =</span> reading <span class="sc">&amp;</span> notes <span class="sc">&amp;</span> listening,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">scholarship_decimal =</span> scholarship <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep only new variables and student id</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, participation, scholarship_decimal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 145 × 3
+      id participation scholarship_decimal
+   &lt;dbl&gt; &lt;lgl&gt;                       &lt;dbl&gt;
+ 1  5001 FALSE                        0.5 
+ 2  5002 FALSE                        0.5 
+ 3  5003 FALSE                        0.5 
+ 4  5004 FALSE                        0.5 
+ 5  5005 FALSE                        0.5 
+ 6  5006 FALSE                        0.5 
+ 7  5007 FALSE                        0.75
+ 8  5008 FALSE                        0.5 
+ 9  5009 FALSE                        0.5 
+10  5010 FALSE                        0.5 
+# ℹ 135 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="categorical-variables-as-factors" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-variables-as-factors">Categorical variables as factors</h2>
+<p>It is often useful to clearly define the levels of a categorical variable, especially if these levels have a meaningful ordering. For unordered categories, R provides the data type <code>factor</code>, while for ordered variables the relevant data type is <code>ordered</code>. Factor and ordered values appear as character strings when viewed, but are treated as numbers with labels internally, which makes it easier to show descriptives of the variable and include it in models. For example, we can define <code>sex</code> as a factor with two levels. If we don’t specify the levels of the factor explicitly, then the levels will be sorted alphabetically.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex)) <span class="sc">|&gt;</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># view variable types and levels by looking at the structure of the data</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [145 × 9] (S3: tbl_df/tbl/data.frame)
+ $ id             : num [1:145] 5001 5002 5003 5004 5005 ...
+ $ age            : num [1:145] 21 20 21 18 22 20 18 18 19 21 ...
+ $ sex            : Factor w/ 2 levels "Female","Male": 2 2 2 1 2 2 2 1 1 1 ...
+ $ scholarship    : num [1:145] 50 50 50 50 50 50 75 50 50 50 ...
+ $ additional_work: logi [1:145] TRUE TRUE FALSE TRUE FALSE FALSE ...
+ $ reading        : logi [1:145] TRUE TRUE FALSE FALSE TRUE TRUE ...
+ $ notes          : logi [1:145] TRUE FALSE FALSE TRUE FALSE FALSE ...
+ $ listening      : logi [1:145] FALSE TRUE FALSE FALSE TRUE TRUE ...
+ $ grade          : num [1:145] 4 4 4 4 4 4 2 4 2 0 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="data-cleaning-as-a-single-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-as-a-single-pipeline">Data cleaning as a single pipeline</h2>
+<p>Until now we didn’t save any of our data wrangling steps as new objects, so the original <code>data</code> object is still unchanged. If we want to save the cleaned data as a new object, we can assign the result of the pipe workflow to a new object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data_subset <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">21</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex)) <span class="sc">|&gt;</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, age, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="data-visualization" class="level1">
+<h1>Data visualization</h1>
+<section id="the-logic-of-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="the-logic-of-ggplot2">The logic of <code>ggplot2</code></h2>
+<p>The <code>ggplot2</code> package builds up figures in layers, by adding elements one at a time. You always start with a base <code>ggplot</code> where you specify the data used by the plot and possibly the variables to place on each axis. These variables are specified within an <code>aes()</code> function, which stands for aesthetics.</p>
+<p>The <code>ggplot()</code> function in itself only creates a blank canvas; we need to add so-called geoms to actually plot the data. You can choose from a wide range of geoms, and also use multiple geoms in one plot. You can add elements to a <code>ggplot</code> objects with the <code>+</code> sign. You should think of the <code>+</code> sign in <code>ggplot</code> workflows in the same way you think of the pipe operators in data wrangling workflows.</p>
+</section>
+<section id="univariate-plots" class="level2">
+<h2 class="anchored" data-anchor-id="univariate-plots">Univariate plots</h2>
+<p>You can plot a single continuous variable with a histogram, a density plot, or a boxplot. Other than the name of the dataset and the variable, no additional arguments need to be specified; but you can customize the plot by adding arguments to the <code>geom_</code> functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># binwidth or bins determine the number of bins</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with binwidth = 1, each bin is 1 year wide</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To compare the frequencies of discrete variables, you can use a bar plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> additional_work)) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bivariate-plots" class="level2">
+<h2 class="anchored" data-anchor-id="bivariate-plots">Bivariate plots</h2>
+<p>You can plot two continuous variables with a scatter plot. For example, you can plot the relationship between age and grade by specifying these variables as the x and y aesthetics:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> grade)) <span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Fitting a smooth curve or a linear regression line to the scatter plot can help you see the overall trend in the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> grade)) <span class="sc">+</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> grade)) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># method = "lm" fits a linear model, se = FALSE removes the confidence interval</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If points overlap a lot, it might be useful to add some jitter, i.e.&nbsp;random noise to distribute the points, by using <code>geom_jitter()</code> instead of <code>geom_point()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> grade)) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Categorical variables can be used to show the distribution of continuous variables by group. You can put a categorical variable on one of the axes, or use it on another aesthetic, such as the fill or color. Note that if a variable determines the fill, the color, and the shape of the points, that has to be specified inside an <code>aes()</code> function, while if the characteristic is pre-defined, then it goes outside the <code>aes()</code> function. Also note that if you specify aesthetics in the main <code>ggplot()</code> function, then they apply to all geoms, while if you specify them in a <code>geom_...()</code> function, they apply only to that geom.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">y =</span> additional_work)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">fill =</span> additional_work), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To plot two categorical variables, you can use a bar plot with an extra grouping argument specifying the fill of the bars. The next plot shows the number of students who do the class readings or not, and for each group we know whether they work take notes in class or not.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> reading, <span class="at">fill =</span> notes)) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to put the bars next to each other instead of on top, specify the position</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> reading, <span class="at">fill =</span> notes)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="customizing-plot-features" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-plot-features">Customizing plot features</h2>
+<p>The two largest advantages of <code>ggplot2</code> are the ability to layer multiple geoms on top of each other and the ability to extensively customize every plot by adding additional plot elements.</p>
+<p>You can make the plot more informative by adding titles and axis labels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">y =</span> reading)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Grade distribution based on whether the student does the reading"</span>,</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Grade"</span>,</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Student does the reading?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can also change the appearance of the plot by changing the theme, the color palette, and the axis scales.</p>
+<p>You can set the theme of the plot with one of the <code>theme_...()</code> functions, or set the theme for the entire R session with <code>theme_set()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">y =</span> reading)) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Grade distribution based on whether the student does the reading"</span>,</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Grade"</span>,</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Student does the reading?"</span>) <span class="sc">+</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set the theme of this plot to the pre-defined theme_light</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the theme of all future plots to the pre-defined theme_minimal</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can adjust the axis breaks and labels with the <code>scale_x_...()</code> and <code>scale_y_...()</code> functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">y =</span> reading)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Grade distribution based on whether the student does the reading"</span>,</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Grade"</span>,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Student does the reading?"</span>) <span class="sc">+</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define the axis tick positions on the continuous x axis</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># relabel the items on the discrete y axis</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="faculty_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="more-advanced-features" class="level2">
+<h2 class="anchored" data-anchor-id="more-advanced-features">More advanced features</h2>
+<p>The <a href="https://r-graph-gallery.com/">R Graph Gallery</a> provides a long list of common plot types, and so do Chapters 4 and 5 of <a href="https://rkabacoff.github.io/datavis/index.html"><em>Modern Data Visualization with R</em></a>. Both resources group geoms by the type of variable(s) plotted.</p>
+</section>
+<section id="saving-plots" class="level2">
+<h2 class="anchored" data-anchor-id="saving-plots">Saving plots</h2>
+<p>You can save <code>ggplot</code> objects to use outside of the R environment with the <code>ggsave</code> function. By default <code>ggsave()</code> saves the last plot displayed in your Plots panel. You always need to specify the file path of the saved plot, including the preferred file format (e.g.&nbsp;.png, .jpg, .pdf).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">y =</span> age)) <span class="sc">+</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save last plot</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/plot1.png"</span>, <span class="at">scale =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="summary-statistics" class="level1">
+<h1>Summary statistics</h1>
+<section id="summaries-in-the-console" class="level2">
+<h2 class="anchored" data-anchor-id="summaries-in-the-console">Summaries in the console</h2>
+<p>In the R console, the <code>summary()</code> function provides a quick overview of the data, showing the minimum, 1st quartile, median, mean, 3rd quartile, and maximum of each numerical variable, and levels for factors. The <code>count()</code> function provides a tibble of frequencies for any number of variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id            age            sex             scholarship    
+ Min.   :5001   Min.   :18.00   Length:145         Min.   : 25.00  
+ 1st Qu.:5037   1st Qu.:18.00   Class :character   1st Qu.: 50.00  
+ Median :5073   Median :19.00   Mode  :character   Median : 50.00  
+ Mean   :5073   Mean   :19.68                      Mean   : 64.76  
+ 3rd Qu.:5109   3rd Qu.:21.00                      3rd Qu.: 75.00  
+ Max.   :5145   Max.   :26.00                      Max.   :100.00  
+                                                   NA's   :1       
+ additional_work  reading          notes         listening      
+ Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+ FALSE:96        FALSE:76        FALSE:68        FALSE:70       
+ TRUE :49        TRUE :69        TRUE :77        TRUE :75       
+                                                                
+                                                                
+                                                                
+                                                                
+     grade      
+ Min.   :0.000  
+ 1st Qu.:1.500  
+ Median :3.000  
+ Mean   :2.755  
+ 3rd Qu.:4.000  
+ Max.   :4.000  
+                </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(data, sex, scholarship)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+  sex    scholarship     n
+  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;
+1 Female          50    26
+2 Female          75    19
+3 Female         100    13
+4 Male            25     3
+5 Male            50    50
+6 Male            75    23
+7 Male           100    10
+8 Male            NA     1</code></pre>
+</div>
+</div>
+</section>
+<section id="export-ready-summary-tables" class="level2">
+<h2 class="anchored" data-anchor-id="export-ready-summary-tables">Export-ready summary tables</h2>
+<p>The <code>gtsummary</code> package provides a more customizable way to create tables for publication with the <code>tbl_summary()</code> function. In addition, the <code>gtsave()</code> function from the <code>gt</code> package allows you to save the table in a variety of formats, including as a Word or TeX file. Make sure to install and load the <code>gtsummary</code> and <code>gt</code> packages before using them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("gtsummary")</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("gt")</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create a summary table of the data</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the by argument allows for stratification by a variable</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(data, <span class="at">by =</span> sex) <span class="sc">|&gt;</span> </span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert to gt object for export</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># export table as a Word file</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gtsave</span>(<span class="st">"summary_table.docx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="hypothesis-testing" class="level1">
+<h1>Hypothesis testing</h1>
+<p>Most of the simple statistical tests are from base R, so they don’t rely on tidy principles, but many are compatible with tidy workflows to at least some extent. Most of them use a formula interface, where the dependent variable is on the left side of the tilde <code>~</code> and the independent variable(s) on the right side.</p>
+<p>For example, a two-sided t-test requires a continuous dependent variable and a categorical independent variable inside the <code>t.test()</code> function. Similarly, the <code>lm()</code> function for linear regressions allows for multiple independent variables and automatically converts characters and factors to dummy variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two-sided t-test for grade differences based on doing the reading</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(grade <span class="sc">~</span> reading, <span class="at">data =</span> data)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># linear regression for grade based on age, scholarship, and doing the reading</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(grade <span class="sc">~</span> age <span class="sc">+</span> scholarship <span class="sc">+</span> reading, <span class="at">data =</span> data)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># linear regression based on all variables in the data</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(grade <span class="sc">~</span> ., <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To get more detailed information about the results of a hypothesis test, we can assign the result to an object and use the <code>summary()</code> function to get the full output. In addition, the <code>tbl_regression()</code> function from the <code>gtsummary</code> package provides a publication-ready regression table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(grade <span class="sc">~</span> ., <span class="at">data =</span> data)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

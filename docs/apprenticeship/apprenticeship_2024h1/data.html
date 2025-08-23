@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-06">
+
+<title>UCR Data Center - Data Center Apprenticeship: Working with external data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#importing-and-exporting-different-file-formats" id="toc-importing-and-exporting-different-file-formats" class="nav-link" data-scroll-target="#importing-and-exporting-different-file-formats">Importing and exporting different file formats</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#exporting-data" id="toc-exporting-data" class="nav-link" data-scroll-target="#exporting-data">Exporting data</a></li>
+  </ul></li>
+  <li><a href="#combining-dataframes" id="toc-combining-dataframes" class="nav-link" data-scroll-target="#combining-dataframes">Combining dataframes</a>
+  <ul class="collapse">
+  <li><a href="#row-and-column-binding" id="toc-row-and-column-binding" class="nav-link" data-scroll-target="#row-and-column-binding">Row and column binding</a></li>
+  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins">Joins</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Center Apprenticeship: Working with external data</h1>
+<p class="subtitle lead">Spring 2024</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- Note: to compile this file, download the data zip file from projects and extract the contents to ucrdatacenter.github.io/apprenticeship/data (that folder is in the gitignore to prevent uploading data files to the website repo). -->
+<p><em>Schedule:</em></p>
+<ul>
+<li>any unfinished data wrangling</li>
+<li>~1 hour: import/export</li>
+<li>~1 hour: combining data</li>
+<li>anything else to add here?</li>
+</ul>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This tutorial covers how to work with various types of external data in R. First we cover how to import and export from and to various file formats, and discuss a number of available packages to do so. Then you’ll also learn multiple ways of combining data from different sources into a single tibble.</p>
+</section>
+<section id="importing-and-exporting-different-file-formats" class="level1">
+<h1>Importing and exporting different file formats</h1>
+<p>Start by reading the introduction to importing the most common file types (text files, Excel, SPSS, Stata) <a href="../../../tutorials/r_adv_import">here</a>. It is good to be aware of the Import dataset button and use it when needed, but in the long run it is easier to be aware of the available import functions and use them directly.</p>
+<p>The following gives more information and examples of importing data from different file formats and different levels of tidiness.</p>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>We will use the following packages for importing different file formats:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) <span class="co"># for Excel</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven) <span class="co"># for SPSS, Stata, SAS</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite) <span class="co"># for JSON</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow) <span class="co"># for parquet, big data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>rio</code> package provides a generic import function, however, it is simply a wrapper for many of the other import functions shown below. While it may be easier to use the same import function for many file formats, <code>rio</code> redirects you to the original functions if you look for the possible function arguments. In some cases, <code>rio</code> can read URL file paths that <code>readr</code> (the <code>tidyverse</code> package for data import) can’t.</p>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>First, download <a href="https://github.com/ucrdatacenter/projects/tree/main/apprenticeship/2024h1/2_data">this</a> zip-file from GitHub, and extract it into a data folder within your apprenticeship project directory. We now import each file, explaining the packages, functions, and function arguments used. These files are all versions of the same dataset on student characteristics and grades at a university (<a href="https://www.kaggle.com/datasets/jacksondivakarr/student-classification-dataset?resource=download">original source</a>), each with only a subset of the observations and/or variables.</p>
+<p><code>student_male.csv</code> is a comma-separated text file. Opening it in a notepad or Excel shows that the column separators are semicolons (;). The <code>read_csv()</code> function from the previous workshop expects commas as a separator, while <code>read_csv()</code> expects semicolons. Since CSV files are a form of delimited text files, we can also use the more versatile <code>read_delim()</code> function specifying the delimiter as the argument.</p>
+<p>If you open the file in Excel or load it in R without additional arguments, you will see that the file does not contain variable names, so R treats the first observation as the variable names. To disable this behavior, you can use the <code>col_names</code> argument to either specify that the data does not contain variable names (<code>col_names = FALSE</code>), in which case R will assign automatic names, or you can specify a vector of names to use.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>student_male <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"data/student_male.csv"</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>student_male <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/student_male.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>student_female.tab</code> is also a delimited text file. Opening it in a notepad shows that the delimiter is a tab. The notation for tab whitespace is <code>\t</code>, which we can specify in the <code>delim</code> argument. Like the “.tab” file extension, “.tsv” is also a tab-separated text file, so the more specialized <code>read_tsv()</code> function also works.</p>
+<p>If you load this data without arguments, you’ll see that the <code>Scholarship</code> variable is treated as a number, while in the previous data it was a character due to the percentage signs and the occurrence of “None” as a value. You can use the <code>col_types</code> argument to specify a string that shows the type of each variable. In the example below “i” stands for integer columns and “c” for character columns. Often, especially if there are many columns but only a few have an incorrect type, it is easier to change the variable type with a <code>mutate()</code> function after importing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>student_female <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/student_female.tab"</span>, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">col_types =</span> <span class="fu">c</span>(<span class="st">"iicccccciccccc"</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>student_female <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/student_female.tab"</span>, <span class="at">col_types =</span> <span class="fu">c</span>(<span class="st">"iicccccciccccc"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To import Excel file we need the <code>read_excel()</code> function from the <code>read_excel()</code> package. With this function you can specify which sheet to use in addition to similar arguments as for delimited text files. Notice that by default R imports the “Metadata” sheet, so we can use the <code>sheet</code> argument to specify which sheet to import. In addition, the first two rows contain introductory text, not the data, so we can use the <code>skip</code> argument to skip those rows. You may also notice that previously the variable name for age was <code>Student_Age</code> and now it is <code>Student_age</code>. You can rename the variable either by giving a full list of column names in the import function, but often it is easier to use the <code>rename()</code> function after importing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>student_char_sports <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/student_char_sports.xlsx"</span>, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sheet =</span> <span class="st">"Data"</span>, <span class="at">skip =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Student_Age"</span> <span class="ot">=</span> Student_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>haven</code> package reads files in the data formats of Stata (.dta) and SPSS (.sav).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>student_char1_A <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/student_char1_A.dta"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>student_char2_A <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data/student_char2_A.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>RDS is an R-specific file format that saves all attributes of the dataframe as well (e.g.&nbsp;grouping, factor levels). It is particularly useful for saving intermediate data files, e.g.&nbsp;saving the cleaned data before analysis to avoid needing to run the data cleaning script repeatedly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>student_age_grades_working <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data/student_age_grades_working.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>JSON files (.json extension) are highly structured text files, and therefore often used to store data. If you open a JSON file as a simple text file, it can look quite confusing because it does not have the standard table structure as the file formats we looked at so far. Nevertheless, if you encounter a JSON file, you can import it to R as a dataframe using the <code>jsonlite</code> package by specifying the file path as the argument to the <code>fromJSON()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>student_grades <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"data/student_grades.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>parquet</p>
+<p>When you work with very large datasets, even loading the data can take considerable time. Therefore some file formats have been developed with the aim of working with big data more efficient. One example of such a file format is parquet, which is a tabular format like CSV, but with some key differences that make it easier to work with big data (see <a href="https://r4ds.hadley.nz/arrow#sec-parquet">R for Data Science (2e)</a> for more details). Parquet files are partitioned along some dimension of the data, and all files corresponding to a datafile are stored in the same folder. The <code>open_dataset()</code> function from the <code>arrow</code> package can load all parquet files from one folder if you specify the host folder as the function argument. In our case the student data (including some simulated observations) is partitioned by student age:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>student_more_id_age <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="st">"data/student_more_id_age"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exporting-data" class="level2">
+<h2 class="anchored" data-anchor-id="exporting-data">Exporting data</h2>
+<p>To export data from R, you can almost always use the <code>write_...()</code> function corresponding to the desired file format, e.g.&nbsp;<code>write_csv()</code> or <code>write_dta</code>. For Excel files the preferred export function is <code>read_xlsx()</code>. For other file format the generic <code>write()</code> function is useful; you can specify any file format, and if your input data is readable in the chosen format, the file will export properly. In all these <code>write_()</code> functions you need to specify the data you’d like to save (often in a pipe workflow) and the output file path including chosen file extension, with the exception of <code>write_dataset()</code> from <code>arrow</code>, where you specify the path to be a (new) folder, and you add a separate <code>format = "parquet"</code> argument. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(student_male, <span class="st">"data/new_csv_data.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>student_female <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_dataset</span>(<span class="st">"data/new_parquet_data"</span>, <span class="at">format =</span> <span class="st">"parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A few notes regarding importing and exporting data:</p>
+<ul>
+<li>Always make sure you know your current working directory and the relative path to your data directory. It is better to use relative rather than absolute file paths (i.e.&nbsp;<code>data/data.csv</code> instead of <code>C:/User/Project/data/data.csv</code>).</li>
+<li>Note that if you are using Windows, you may need to replace the backslashes (\) in the file path with forward slashes (/) to avoid errors.</li>
+<li>You can import files directly from URLs, although you often need the URL of a raw file. On Github you can access the URL of raw CSV files by clicking on the “Raw” button on the data preview page (see e.g.&nbsp;<a href="https://github.com/ucrdatacenter/projects/blob/main/apprenticeship/1_intro/surveys.csv">here</a>). If a file downloads immediately instead of opening in a raw format, you can try to copy that download link by right-clicking and selecting “Copy link address”; the <code>import()</code> function from <code>rio</code> might be successful with those links.</li>
+</ul>
+</section>
+</section>
+<section id="combining-dataframes" class="level1">
+<h1>Combining dataframes</h1>
+<p>Now we use the previously imported dataframes to learn the different ways of combining mutliple dataframes into one. Since many functions take a single dataframe as an input (think plots, summary statistics, statistical models), it is important to make sure that you choose the right function to combine dataframes in a way that makes sure that each row contains observations for the same case throughout the row.</p>
+<section id="row-and-column-binding" class="level2">
+<h2 class="anchored" data-anchor-id="row-and-column-binding">Row and column binding</h2>
+<p>The simplest way to combine dataframes is to use row or column binding. These functions append new data to your old data by adding it as new rows or new columns.</p>
+<p>An example where row binding is useful is to combine the <code>student_male</code> and <code>student_female</code> datasets. They both contain the same information on students (same variables), but they include different subsets of the data (one is only males, the other only females). So we can recreate the full data by row-binding the two dataframes.</p>
+<p>Notice that since the variable names don’t match, R can’t match up the variables. Therefore we should start by fixing the variable names of <code>student_male</code>: in this case we know it contains the exact same variables as <code>student_female</code> does, so we can extract the names from <code>student_female</code> and set that vector as the names of <code>student_male</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_full <span class="ot">&lt;-</span> student_male <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">names</span>(student_female)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(student_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Column binding, on the other hand, is useful if the two dataframes include the (exact) same observations, but different variables. Use column binding only if you are completely sure that both dataframes contain information on the same cases in the same order. In our case, the <code>student_char1_A</code> and <code>student_char2_A</code> contain characteristics of all students who got an “AA” final grade, and the ordering of the students is the same. The first dataframe contains numerical variables and the second characters, so to get a full data of the characteristics of all students who got “AA” grades, we can column-bind the dataframes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data_char_A <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(student_char1_A, student_char2_A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the <code>bind_rows()</code> and <code>bind_cols()</code> functions are the tidy versions of the base functions <code>rbind()</code> and <code>cbind()</code>. For dataframes the tidy versions have many advantages over the base functions, e.g.&nbsp;in preserving variable names. For matrices, <code>rbind()</code> and <code>cbind()</code> are still the preferred options, and the <code>c()</code> function also works for combining vectors and lists.</p>
+</section>
+<section id="joins" class="level2">
+<h2 class="anchored" data-anchor-id="joins">Joins</h2>
+<p>Mutating joins are a type of join operation that add columns from one data frame to another, based on matching values of some variables. They are useful when you want to combine information from different sources without mismatching observations or duplicating rows. In most cases your data contains an observation identifier that is consistent across data sources and therefore can be used for matching observations (think e.g.&nbsp;country codes or student numbers).</p>
+<p>There are four types of mutating joins: inner join, left join, right join, and full join. Their behavior differs only if there are unmatched rows in either dataframe. In addition, anti-join uses the same syntax as the other joins, but it is used to remove observations from a dataframe.</p>
+<p>Full join retains all observations that appear in at least one of the dataframes. In this case, <code>student_char_sports</code> contains the characteristics of students who play sports, and <code>student_age_grades_working</code> contains the age and grades of students who work. Some students both play sports and work, but not all. The resulting <code>data_work_or_sport_1</code> contains the data of all students who play sports or work, however, for those who don’t work, we grades are missing, and for those who don’t play sports, characteristics are missing.</p>
+<p>Also note that if you run the function without specifying the variable on which to join, the function automatically joins by all variables with the same name. In this case that is <code>Id</code> and <code>Student_Age</code>. If you instead specify the <code>by</code> argument to join only by <code>Id</code>, then R will retain both <code>Student_Age</code> variables as separate columns. You can also specify a vector of variables to join by (see <code>data_work_or_sport_2</code>), or, especially if the names of the identifier variable are different in the two dataframes, you can connect the two variable names by an equality sign (see <code>data_work_or_sport_3</code>). In our case the matching is not affected by whether we only match on ID or also on age, but if there are disparities between the dataframes or if a variable with the same name has a different meaning, then not specifying the <code>by</code> argument correctly can lead to mismatched observations. For now <code>data_work_or_sport_2</code> and <code>data_work_or_sport_3</code> are equivalent, and the only difference between them and <code>data_work_or_sport_1</code> is whether the age variable gets duplicated.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_work_or_sport_1 <span class="ot">&lt;-</span> <span class="fu">full_join</span>(student_char_sports, student_age_grades_working) <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Id)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>data_work_or_sport_2 <span class="ot">&lt;-</span> <span class="fu">full_join</span>(student_char_sports, student_age_grades_working, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">by =</span> <span class="st">"Id"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Id)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>data_work_or_sport_3 <span class="ot">&lt;-</span> <span class="fu">full_join</span>(student_char_sports, student_age_grades_working, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Id"</span> <span class="ot">=</span> <span class="st">"Id"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Inner join works the same way as full join, except it drops any observations that do not appear in both datasets. In our case that means that the resulting <code>data_work_and_sport</code> only contains the data of students who both play a sport and work.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_work_and_sport <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(student_char_sports, student_age_grades_working) <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Left and right joins keep all observations from the first or second dataframes respectively, and drop unmatched observations from the other input dataframe. <code>left_join(data1, data2)</code> is equivalent to <code>right_join(data2, data1)</code> (if needed also switching the order of the <code>by</code> argument). The reason why one function might be preferred over the other is if one of the inputs is the result of a longer pipe workflow, because in that case you can simply append the join to the workflow (like <code>data1 |&gt; ... |&gt; left_join(data2)</code>). In this example both joins retain the characteristics of all students who play sports, and add the grades of only the same students.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_sport <span class="ot">&lt;-</span> <span class="fu">left_join</span>(student_char_sports, student_grades)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data_sport <span class="ot">&lt;-</span> <span class="fu">right_join</span>(student_grades, student_char_sports)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Unlike the other join functions, <code>anti_join()</code> is more similar to the <code>filter()</code> function: it retains the observations of the first dataset only if those identifiers don’t appear in the second dataset. Anti-joins are particularly useful when observations are identified by the combination of multiple variables (e.g.&nbsp;location and time). In this example we retain the grades of students who don’t play sports by anti-joining the dataframe of all grades with the characteristics of students who play sports.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data_grades_nosport <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(student_grades, student_char_sports)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In addition to the examples above, you can find animations of which observations are retained and dropped by each join function <a href="https://www.garrickadenbuie.com/project/tidyexplain/#mutating-joins">here</a>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

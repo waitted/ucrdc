@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-17">
+
+<title>UCR Data Center - Neuroimaging in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#before-we-begin-a-little-recap-on-mri" id="toc-before-we-begin-a-little-recap-on-mri" class="nav-link" data-scroll-target="#before-we-begin-a-little-recap-on-mri">Before we begin: A little recap on MRI</a></li>
+  <li><a href="#description-of-the-arc-dataset" id="toc-description-of-the-arc-dataset" class="nav-link" data-scroll-target="#description-of-the-arc-dataset">Description of the ARC dataset</a></li>
+  <li><a href="#description-of-the-libraries-and-packages." id="toc-description-of-the-libraries-and-packages." class="nav-link" data-scroll-target="#description-of-the-libraries-and-packages.">Description of the libraries and packages.</a></li>
+  </ul></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a>
+  <ul class="collapse">
+  <li><a href="#loading-our-packages-and-files" id="toc-loading-our-packages-and-files" class="nav-link" data-scroll-target="#loading-our-packages-and-files">Loading our packages and files</a></li>
+  <li><a href="#checking-image-properties" id="toc-checking-image-properties" class="nav-link" data-scroll-target="#checking-image-properties">Checking image properties</a></li>
+  <li><a href="#visualizing-our-brain-images" id="toc-visualizing-our-brain-images" class="nav-link" data-scroll-target="#visualizing-our-brain-images">Visualizing our brain images</a></li>
+  <li><a href="#lesion-volume-calculation" id="toc-lesion-volume-calculation" class="nav-link" data-scroll-target="#lesion-volume-calculation">Lesion volume calculation</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Neuroimaging in R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This document gives a basic tutorial on how to work with structural MRI data stored in NIfTI files. The first half gives a recap of the theory behind MRI machines and what kind of data we are actually working with. The second half is about visualizing neuroimaging data and manipulating it to draw correlation between disease severity and pathological manifestation (more specifically lesion size), by using the dataset including people with post-stroke aphasia. Hope you find it interesting and this tutorial inspires you to explore the topic more! ☺️</p>
+<section id="before-we-begin-a-little-recap-on-mri" class="level2">
+<h2 class="anchored" data-anchor-id="before-we-begin-a-little-recap-on-mri">Before we begin: A little recap on MRI</h2>
+<p>To start working with neuroimaging, it’s important to understand the basics of MRI and what the images we see actually represent. The following text is based on <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1121941/">Berger’s</a> explanation and <a href="https://academic-oup-com.utrechtuniversity.idm.oclc.org/pmj/article/99/1174/894/7148067">Azhar &amp; Chong’s</a> paper on MRI imaging (Azhar &amp; Chong, 2023; <em>Magnetic Resonance Imaging - PMC</em>, n.d.). Feel free to check these out if something remains unclear!</p>
+<p>Magnetic Resonance Imaging (MRI) is a technique used to visualize the internal structures of the body, and in our case, the brain. What we’re trying to do is quantify the properties of different tissues, such as gray matter, white matter, cerebrospinal fluid (CSF), or lesions. To achieve this, we use weighted MRI images. These images don’t have absolute or objective brightness values; instead, their intensities are relative and depend on how the MRI sequence is set up. By using several types of weighted images, we can extract meaningful information.</p>
+<p>MRI works because water is magnetic, and our bodies are about 60% water. Each water molecule has two hydrogen atoms, and each hydrogen atom has a single proton at its nucleus, surrounded by one electron. These protons have a property called “spin” which gives a tiny magnetic field – like a miniature bar magnet.</p>
+<p>Under normal conditions, the magnetic fields of these protons are randomly oriented. But when someone is placed in the strong magnetic field of an MRI scanner, more of these protons align with or against the field. The protons that align with the magnetic field are said to be in a “low-energy state”, while the protons that align against the magnetic field are said to be in a “high-energy state”. However, there is an imbalance, as more protons are in the low-energy state (because this is more energetically favorable), so the magnetic fields of the protons aligned with the field don’t get completely cancelled out by the protons aligned against it. What is left, creates a net magnetization vector in the direction of the MRI scanner’s magnetic field. This is what the MRI uses as a “starting point”.</p>
+<p>The MRI scanner then uses a technique called resonance to gather information. It sends out radiofrequency (RF) pulses to the low-energy protons, causing them to flip to the high-energy state. When the RF pulse is turned off, the protons gradually return to their original alignment. As they do, they release a tiny amount of electromagnetic energy, which is picked up by RF coils placed around the body. These signals differ based on the type of tissue, the amount of water or fat it contains, and how the molecules behave. Stronger signals are associated with tissues that have more hydrogen atoms, like in areas of edema or inflammation, while the timing of the signal tells us about the environment and state of the tissue.</p>
+<p>Two important measurements in MRI are T1 and T2 relaxation times, which create contrast in the MRI image:</p>
+<ul>
+<li><p>T1 relaxation – How quickly protons realign with the magnetic field</p></li>
+<li><p>T2 relaxation – How quickly protons fall out of sync (lose phase coherence) with each other after the RF pulse, when protons are spinning together in coherence</p></li>
+</ul>
+<p>These two properties are used to generate T1-weighted and T2-weighted images, which emphasize different tissue characteristics.</p>
+<p><strong>T1-weighted</strong> imagesprovide a clear picture of brain anatomy and is excellent for structural imaging. When a contrast agent is used, active or inflamed lesions can become more visible. On T1 images, fat and suba-cute blood typically appear bright, while fluids like CSF, edema, and lesions appear dark. You can think of T1 like viewing the brain under regular lighting—it shows you structure and clarity.</p>
+<p><strong>T2-weighted</strong> images aremore sensitive to water content and is particularly good for spotting fluid, inflammation, or other pathological changes. In T2 images, things like CSF, edema, cysts, and lesions appear bright, while fat, calcifications, and bone tend to appear dark. You might imagine T2 as looking at the brain under blacklight—suddenly all the ‘wet’ or abnormal areas light up.</p>
+<p>Sometimes, T2 images are modified using a sequence called <strong>FLAIR</strong> (Fluid-Attenuated Inversion Recovery). CSF appears very bright on T2, which can make it hard to see subtle lesions near the ventricles or cortex. FLAIR solves this by suppressing the CSF signal, allowing small lesions to stand out while maintaining the T2 sensitivity of surrounding tissues. This makes FLAIR ideal for spotting MS plaques, small metastases, or cortical strokes. On FLAIR images, edema, demyelination, tumors, and strokes appear bright, while normal CSF appears dark—like turning off the glow from water to focus on hidden areas.</p>
+<p>See Figure 1. for a visual representation on how T1, T2 and FLAIR images appear from an MRI scan.</p>
+<p>There are of course also other types of sequences, but in this tutorial we will be mainly focusing on structural MRI and more specifically the T1 and T2 weighted images.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../assets/img/neuroimaging/MRI_T1_T2_FLAIR.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 1. MRI of a patient with acute hypoglycemia that mimicked symptoms of acute ischemic stroke, but did not show the usual pathologies on the brain scan.</strong> (A) T1 weighted image. Note that the CSF, appearing dark in the ventricles and between the meninges (B) T2 weighted image. Note the CSF appearing bright. (C) FLAIR image. Note that the CSF no longer appears bright, but dark and the signal is less exaggerated.</figcaption>
+</figure>
+</div>
+<p><em>Note</em>: the picture was taken from: Rodriguez-Hernandez A, Babici D, Campbell M, Carranza-Reneteria O, Hammond T. Hypoglycemic hemineglect a stroke mimic. eNeurologicalSci. 2023 Jan 17;30:100444.</p>
+<p>Now that we have the basics, let’s try to understand what kind of data is actually portrayed on these MRI scans and what we can do with them.</p>
+<p>An MRI picture is like a 3D map of our brain, which is built from approx. 7 million of tiny building blocks, called voxels. A voxel is a 3D pixel. It’s a little cube of brain tissue, and the MRI machine measures how water behaves in it and assigns it a number. That number becomes the shade of gray in the picture. <strong>Dark areas</strong> have <strong>low numbers</strong> (less signal), while <strong>bright areas</strong> have <strong>high numbers</strong> (more signal).&nbsp;</p>
+<p>However, whether something appears bright or dark depends on the contrast type (so if it’s T1 or T2 for example). What changes between T1 and T2 is what kind of tissue gives off a strong or weak signal. <em>For example</em>: in T1 the CSF appears dark, meaning it has a lower signal, and a lower number assigned. On the other hand, in the T2 the CSF appears bright, meaning it has a higher signal, and a higher number assigned. See Figure 2. of a single, axial slice of the brain, showing how to imagine the portrayal of the “data” on these MRI pictures. Although, here a single slice is presented for better understanding, keep in mind that we usually look at the whole of the brain, which is made up of many-many different slices.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../assets/img/neuroimaging/Voxels_dark_light_nmbrs.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 2. Voxels with assigned numbers corresponding to the highlighted area on an MRI axial scan of the brain.</strong> Note, that the areas appearing darker on the image have lower numbers, while areas that appear lighter have higher numbers.</figcaption>
+</figure>
+</div>
+<p><em>Note</em>: this picture was taken from the video: Elizabeth Sweeney -&nbsp; Neuroimaging Analysis in R [Internet]. 2019 [cited 2025 Apr 18]. Available from: <a href="https://www.youtube.com/watch?v=9HkEq01nrco" class="uri">https://www.youtube.com/watch?v=9HkEq01nrco</a></p>
+<p>In this tutorial we will be working with <strong>NIfTI files</strong> (in ‘nii.’ or ‘nii.gz’ formats), which is the standard file format for storing MRI brain imaging data (both the image data and metadata, like voxel size, orientation etc.). It is a <strong>3D array</strong> (X, Y, Z), where:</p>
+<ul>
+<li>X is the width (left to right in the brain)</li>
+<li>Y is the depth (front/back (anterior/posterior))</li>
+<li>and Z is the height (up/down (superior/inferior).</li>
+</ul>
+<p>Let’s say that we want to take a slice of the brain at the 125th index “deep” in the brain, including its whole width and height (creating a coronal view). Figure 3. shows how we can do this, and how you should imagine this in the 3D plane.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../assets/img/neuroimaging/3D_Brain_Axes.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 3. Visual representation about the different axes of the 3D arrays of NIfTI files.</strong> The axes are denoted in black. When we call these different slices we use a format like this: data [X, Y, Z]. If we want to include the whole width and height, we can just leave a comma at the place of X and Z. So, the red section represents the 125th slice along the Y axis (which is the axis of anterior-to-posterior), including its whole width and whole height (so represented as: [, 125 ,])</figcaption>
+</figure>
+</div>
+<p>For future reference, the different axes of the brain are also visualized in the figure below. It’s good to have this on hand when working with neuroimaging.</p>
+<p><img src="../../assets/img/neuroimaging/brain_axes.png" class="img-fluid"></p>
+</section>
+<section id="description-of-the-arc-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="description-of-the-arc-dataset">Description of the ARC dataset</h2>
+<p>For this tutorial we will be using the <a href="https://openneuro.org/datasets/ds004884/versions/1.0.1">Aphasia Recovery Cohort (ARC) Dataset</a>, which is a collection of data from multiple studies conducted over several years. This is a large, open-access neuroimaging dataset, that contains longitudinal data from 230 individuals with post-stroke aphasia. The dataset includes multimodal MRI data (T1, T2, FLAIR, fMRI, DWI),&nbsp; detailed behavioral assessments (via the Western Aphasia Battery (WAB)) and demographic information. The dataset contains scanning sessions across different time points, ranging from days to years post-stroke.&nbsp;</p>
+<p>Enrollment requirements included individuals who had experienced a left-hemisphere stroke at least 6 months (or 12 months for some studies) prior to enrollment, between the ages of 21 and 80 years old, with no contraindications to MRI or additional neurological impairments (such as multiple sclerosis, Parkinson’s, dementia, etc). It is important to note that many individuals participated in multiple studies.&nbsp;</p>
+<p>If you would like to learn more about a specific aspect of the study, see the <a href="https://www-nature-com.utrechtuniversity.idm.oclc.org/articles/s41597-024-03819-7">link</a> taking you to the publication.&nbsp;</p>
+<p>However, the scans that are included in the ARC dataset are raw MRI scans. This means that the scans came directly from the scanner, with no preprocessing applied. This means that the images are still in the original orientation and the position that the person’s head was during the scan. Because of this and also the variability of brains between individuals makes it difficult to compare multiple brains. Therefore, the MRI scans have to be “spatially normalized”, meaning that they have to be transformed to match a standard template (a common reference brain). Additionally, these images still include non-brain structures like the skull, which provide unnecessary data and thus interfere with our data analysis.</p>
+<p>If you are new to neuroimaging, working with raw data can be tricky, because it often need a lot of pre-processing before it can used in analysis or visualization.</p>
+<p>Luckily, the researchers behind the ARC dataset provided post-processed images for educational purposes that can be accessed through this&nbsp;<a href="https://github.com/neurolabusc/AphasiaRecoveryCohortDemo">link</a>. These images include:</p>
+<ul>
+<li>normalized brain scans, where each scan has been aligned to a standard template,</li>
+<li>lesion masks, which highlight the damaged brain regions in each participant’s brain,</li>
+<li>lesion incidence maps, which show which brain regions are most affected across the whole group.</li>
+</ul>
+<p>These post-processed images are what we’ll be using for the next steps of the tutorial, as they let us focus on interpreting results rather than struggling with preprocessing.</p>
+</section>
+<section id="description-of-the-libraries-and-packages." class="level2">
+<h2 class="anchored" data-anchor-id="description-of-the-libraries-and-packages.">Description of the libraries and packages.</h2>
+<p>We will be using these packages:</p>
+<ul>
+<li><p><code>oro.nifti</code> - This package is the core R package for working with NifTI files. It writes and loads NifTI files into R as 3D or 4D arrays. It’s basic functions include: <code>readNIfTI()</code> and <code>writeNifTI()</code></p></li>
+<li><p><code>neurobase</code> - This package is a part of the <a href="https://neuroconductor.org/">Neuroconductor</a> project, which hosts a collection of R packages specifically for neuroimaging analysis, building on R’s existing ecosystem. It builds on oro.nift, and adds helpful functions for image math, masks, plotting, etc.&nbsp;</p></li>
+</ul>
+<p>The earlier mentioned Neuroconductor system can also come in handy later for your future projects. If you type this in R you will be able to download and run an R script hosted on the Neuroconductor website:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"https://neuroconductor.org/neurocLite.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That script defines the <code>neuro_install()</code> function, which can be used to install any Neuroconductor package like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">neuro_install</span>(<span class="st">"neurobase"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So, let’s get started!</p>
+<p>As stated earlier, we will be using the post-processed images. For now let’s use the NifTi file that is called “wbsub-M2001_ses-1253x1076_T1w.nii.gz” and you will find it under ‘files’ within the project’s folder.</p>
+<p>Here is what each part of this file name means:</p>
+<ul>
+<li><p>‘sub-M2001’ corresponds to the subject ID</p></li>
+<li><p>‘ses-1253x1076’ means that they likely combined scans from session 1253 and session 1076. The numbers refer to how many days after the stroke the given imaging session took place, so in this case it was 1076 and 1253 days post-stroke</p></li>
+<li><p>‘T1w’ means the scan type.</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-started" class="level1">
+<h1>Getting Started</h1>
+<section id="loading-our-packages-and-files" class="level2">
+<h2 class="anchored" data-anchor-id="loading-our-packages-and-files">Loading our packages and files</h2>
+<p>First you will have to install the packages and only then will you be able to load them in from the library:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"oro.nifti"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"neurobase"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(oro.nifti) <span class="co"># handling NifTI images</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neurobase) <span class="co"># has additional neuroimaging analysis tools</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we will load in our NIfTI file from patient M2001. Since we are using one file for now, it is easier if you download it into your local folder, where your R file is also saved (! this is important). To load our file we will use the read NIfTI command from the <code>oro.nifti</code> package. You can download the file using <a href="https://github.com/ucrdatacenter/projects/raw/refs/heads/main/misc/neuroimaging_tutorial/lesion_masks/wsub-M2069_ses-5818_lesion.nii">this link</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>t1_img_M2001 <span class="ot">&lt;-</span> <span class="fu">readNIfTI</span>(<span class="st">"wbsub-M2001_ses-1253x1076_T1w.nii"</span>, <span class="at">reorient =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>reorient = TRUE</code> ensures that the image is aligned properly in a standard orientation, which is useful for consistency.</p>
+</section>
+<section id="checking-image-properties" class="level2">
+<h2 class="anchored" data-anchor-id="checking-image-properties">Checking image properties</h2>
+<p>Before we can do anything with pretty pictures, we have to inspect the properties of our NIfTI file. It’s good to know the physical size of the voxels, for accurate measurements of brain structures as well as understanding the orientation, so that the anatomical structures are correctly identified and the analyses are consistent across datasets.</p>
+<p>First, we can check the number of voxels along each axis. This helps us understand the resolution and size of the 3D image. Run this chunk of code and see the output:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(t1_img_M2001) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, maybe it is smarter to have a comprehensive summary of the NIfTI object, including data type (each voxel’s intensity is stored as a 16-bit signed integer), dimensions, (number of voxels in X,Y and Z planes), pixel dimension (indicates how much each voxel measures) and voxel units.This provides a quick overview of the image’s metadata and structure.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>t1_img_M2001</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we can also list all the metadata slots available in the NIfTI object, which allows us to see what additional information is stored and is accessible within the object. We can do this by typing this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slotNames</span>(t1_img_M2001)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From all of this the most important thing is that we know the dimension of the images: 157 × 189 × 156. This means that it comprises 157 voxels in the x-axis, 189 in the y-axis, and 156 in the z-axis.</p>
+</section>
+<section id="visualizing-our-brain-images" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-our-brain-images">Visualizing our brain images</h2>
+<p>Now let’s look at our image. We can do this two ways. If we want a quick visualization of our image, the <code>orthographic()</code> function from the oro.nift package displays NIfTI objects in an orthogonal view, across 3 different planes (axial, sagittal and coronal). This way of looking at our data is more neuroimaging-specific and offers a convenient way to inspect 3D images. The picture is also very cool, and could even be published! You will see the image under “Plots” in R. Run this code to see the visual output we get:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">orthographic</span>(t1_img_M2001)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The other option is to use the <code>image()</code> function from the <code>oro.nifti</code> package. This shows a mosaic view with all slices in a given orientation from a brain MRI. It might take a few minutes to run the code below. Can you recognize which view these are oriented in?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(t1_img_M2001)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we can see that it portrays consecutive slices row-wise from inferior to superior. We can see that the brain has been well pre-processed. The brain structures are symmetrical and clean, and there is no visible skull tissue, indicating successful brain extraction. There is also a good contrast between the white and gray matter. Keep in mind that this simplifies the portrayal of the brain into axial slices, but in reality we have a 3D array of voxels from the MRI scan.</p>
+<p>If we would like to extract a specific slice from the array we have to specify its position along the 3 axes. We can do this by using the <code>image()</code> function from the <code>oro.nifti</code> package.</p>
+<p>This line of code displays the sagittal slice at index 125 (so we have to specify which slice we want to get along the X axis, representing the left-to-right dimension). See the description in the beginning with the 3D picture of the brain and the annotations (Figure 3). This can be especially useful for examining structures along the mid-line of the brain or assessing lateralized features.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(t1_img_M2001[<span class="dv">125</span>,,]) </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the commas represent that we include all indexes along X and Y axes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The X and Y axis on this picture that is produced actually translates as:</p>
+<ul>
+<li><p>X axis (on output) is actually the Y plane of the brain (so left-to-right)</p></li>
+<li><p>Y axis (on output) is actually the Z plane of the brain (so front-to-back)</p></li>
+</ul>
+</section>
+<section id="lesion-volume-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="lesion-volume-calculation">Lesion volume calculation</h2>
+<p>Let’s say we would like to calculate the volume of the lesion this patient has.&nbsp;</p>
+<p>To do this, we would need a lesion mask. A lesion mask is a binary image used in neuroimaging to identify and isolate regions of brain tissue that have been damaged due to conditions such as stroke. In this mask, each voxel (a 3D pixel) is assigned a value:​</p>
+<ul>
+<li><p><strong>1</strong> indicates the presence of a lesion</p></li>
+<li><p><strong>0</strong> indicates healthy or unaffected tissue</p></li>
+</ul>
+<p>This allows for the calculation of lesion volume by summing the number of voxels labeled as lesions (so 1) and multiplying by the volume of each voxel.</p>
+<p>Lesion masks can be created from the MRI images, however it has to be done manually with external tools, like FSLeyes. Unfortunately, R does not provide built-in tools for manual lesion delineation.</p>
+<p>Although it is very interesting to learn how to use these tools, we will be working with a lesion mask that is already provided for subject M2001. This is also available on the GitHub page with the processed images (in the ‘NIfTI’ folder, if you search for your subject with Ctrl+F there will be two files corresponding, one is the MRI scan and one is the extracted brain lesion).</p>
+<p>We read this lesion mask, similar to how we did the MRI scan. You can download all lesion masks files we will work with from <a href="https://github.com/ucrdatacenter/projects/tree/main/misc/neuroimaging_tutorial/lesion_masks">GitHub</a>. In the same folder as your R script, create a folder called “lesion_masks”/. Then click on each file in the GitHub folder, and find the “Download raw file” button in the top right. Make sure to move the downloaded files into your lesion_masks folder. Then the following file path will work.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lesion_mask <span class="ot">&lt;-</span> <span class="fu">readNIfTI</span>(<span class="st">"lesion_masks/wsub-M2001_ses-1253x1076_lesion.nii"</span>, <span class="at">reorient =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we look at a summary of this NIfTI object. We can do this by simply running the variable we stored the lesion mask in. Keep an eye out on the ‘Pixel Dimension’ as we will need to use this later to calculate the lesion volume:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lesion_mask</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you are curious what this looks like just run <code>image(lesion_mask)</code> or <code>orthographic(lesion_mask)</code>.</p>
+<p>Okay now the calculating begins. First we will count the number of voxels labeled as 1 (remember that 1 indicates the presence of a lesion).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">orthographic</span>(lesion_mask)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>lesion_voxels <span class="ot">&lt;-</span> <span class="fu">sum</span>(lesion_mask <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we retrieve voxel dimensions (in mm) via the <code>pixdim()</code> function. The array in the NIfTI header contains scaling information for each dimension of the image data (you can get this information by running <code>lesion_mask@pixdim</code>).</p>
+<p>(The output if we run <code>lesion_mask\@pixdim</code> is : <code>-1 1 1 1 0 0 0 0</code>)</p>
+<ul>
+<li><p>The first value indicates the orientation of the image axes. For this example it would be -1, which suggests left-handed coordinate system (while 1 would indicate a right-handed system).</p></li>
+<li><p>The second, third and fourth value in this array indicates the voxel dimensions along the x, y, and z axes, respectively. In our case these are all 1.</p></li>
+<li><p>The rest of the values are usually used for other dimensions like time. In our case they are 0, indicating that they are not used in our dataset.</p></li>
+</ul>
+<p>So we are only interested in the second to fourth value from the ‘pixdim’ array, meaning we will have to filter these out with the use of the square-brackets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>voxel_dims <span class="ot">&lt;-</span> <span class="fu">pixdim</span>(lesion_mask)[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we calculate the volume of a single voxel in mm³. We will be doing this via the <code>prod()</code> function, which is part of R’s base package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>voxel_volume_mm3 <span class="ot">&lt;-</span> <span class="fu">prod</span>(voxel_dims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we calculate the product of the number of voxels (<code>lesion_voxels</code>) and the volume of a single voxel (<code>voxel_volume_mm3</code>) to get the total lesion volume. &nbsp;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lesion_volume_mm3 <span class="ot">&lt;-</span> lesion_voxels <span class="sc">*</span> voxel_volume_mm3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can have a nice output of our result by using the <code>cat()</code> base R function, which concatenates and outputs its arguments:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Lesion Volume:"</span>, lesion_volume_mm3, <span class="st">"mm³"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There is a table also linked to this dataset that contains participants’ information such as sex, age at stroke, race, the days after the stroke when participant took the WAB (Western Aphasia Battery) test, the Aphasia Quotient (AQ) from this test (which is a score out of 100, measuring language function in people with brain injury (like stroke) - see Table 1. on how to interpret the scores for the AQ part of the WAB) and the type of aphasia.</p>
+<p><strong>Table 1. WAB-AQ scores</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>AQ Score</strong></th>
+<th><strong>Severity</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0-25</td>
+<td>Very severe</td>
+</tr>
+<tr class="even">
+<td>26-50</td>
+<td>Severe</td>
+</tr>
+<tr class="odd">
+<td>51-75</td>
+<td>Moderate</td>
+</tr>
+<tr class="even">
+<td>76+</td>
+<td>Mild</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note</em>: The information for this table was taken from: <a href="https://strokengine.ca/en/assessments/western-aphasia-battery-wab/#Compositescores:">Western Aphasia Battery (WAB) – Strokengine</a></p>
+<p>We can load the table containing all this information by directly from GitHub with the following code. Hit <code>View(df)</code> to see the data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"https://github.com/ucrdatacenter/projects/raw/refs/heads/main/misc/neuroimaging_tutorial/participants.tsv"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s put to use what we learnt. Let’s say we want to see how lesion size and WAB-AQ scores correlate. We can do this by following these steps:</p>
+<p>Let’s pick subjects M2001, M2004, M2060 and M2069 who all have the same type of aphasia (anemic, which is a type of aphasia where patients find it hard to find words, but have near-normal speech).&nbsp;</p>
+<p>Let’s make a function to calculate the lesion volume using what we did for M2001. We can do this by:&nbsp;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>calculate_lesion_volume <span class="ot">&lt;-</span> <span class="cf">function</span>(mask_path) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  lesion_mask <span class="ot">&lt;-</span> <span class="fu">readNIfTI</span>(mask_path, <span class="at">reorient =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  lesion_voxels <span class="ot">&lt;-</span> <span class="fu">sum</span>(lesion_mask <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  voxel_dims <span class="ot">&lt;-</span> <span class="fu">pixdim</span>(lesion_mask)[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  voxel_volume_mm3 <span class="ot">&lt;-</span> <span class="fu">prod</span>(voxel_dims)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  lesion_voxels <span class="sc">*</span> voxel_volume_mm3</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>How this works is the following:</p>
+<ul>
+<li><p>the function is called: <code>calculate_lesion_volume</code></p></li>
+<li><p>this function will take a variable that is the path to the lesion mask: <code>function(mask_path)</code></p></li>
+<li><p>the following are just copied from what we did earlier:</p></li>
+</ul>
+<pre><code>lesion_mask &lt;- readNIfTI(mask_path, reorient = TRUE)
+lesion_voxels &lt;- sum(lesion_mask == 1)
+voxel_dims &lt;- pixdim(lesion_mask)[2:4]
+voxel_volume_mm3 &lt;- prod(voxel_dims)
+lesion_volume &lt;- lesion_voxels * voxel_volume_mm3</code></pre>
+<p>Now we will use these functions to compute lesion volume per subject. We call function for each subject’s lesion mask files (M2001, M2004, M2060, and M2069). This will return a number (volume in mm³ for each participant), which will be stored in named variables (lesion_volume_2001, lesion_volume_2004 etc. - see on the right under ‘Values’):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lesion_volume_M2001 <span class="ot">&lt;-</span> <span class="fu">calculate_lesion_volume</span>(<span class="st">"lesion_masks/wsub-M2001_ses-1253x1076_lesion.nii"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>lesion_volume_M2004 <span class="ot">&lt;-</span> <span class="fu">calculate_lesion_volume</span>(<span class="st">"lesion_masks/wsub-M2006_ses-2381x1773_lesion.nii"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>lesion_volume_M2060 <span class="ot">&lt;-</span> <span class="fu">calculate_lesion_volume</span>(<span class="st">"lesion_masks/wsub-M2060_ses-220_lesion.nii"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>lesion_volume_M2069 <span class="ot">&lt;-</span> <span class="fu">calculate_lesion_volume</span>(<span class="st">"lesion_masks/wsub-M2069_ses-5818_lesion.nii"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we will use the table with the participant information.</p>
+<p>We add the lesion volume variable to this table, but first we create a data frame where we store the participant id with the matching lesion volume. We create the new table like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lesion_volumes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participant_id =</span><span class="fu">c</span>(<span class="st">"sub-M2001"</span>, <span class="st">"sub-M2004"</span>, <span class="st">"sub-M2060"</span>, <span class="st">"sub-M2069"</span>),</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lesion_volume_mm3 =</span> <span class="fu">c</span>(lesion_volume_M2001, lesion_volume_M2004, lesion_volume_M2060, lesion_volume_M2069)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can merge this table with the bigger participants table (<code>df</code>) to do analysis. We do so by using the <code>inner_join()</code> function, which merges rows from the df and <code>lesion_volumes</code> table only where <code>participant_id</code> matches in both:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df, lesion_volumes, <span class="at">by =</span> <span class="st">"participant_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we can do our analysis. Let’s do a correlation analysis to see whether higher WAB-AQ scores correlate positively to higher lesion volumes. The <code>cor.test()</code> function performs a Pearson’s correlation test, using the lesion volume and WAB-AQ scores as arguments. This outputs the correlation coefficient, p-value and other statistics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(merged_data<span class="sc">$</span>lesion_volume_mm3, <span class="fu">as.numeric</span>(merged_data<span class="sc">$</span>wab_aq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So the correlation is a negative value (-0.5635701), indicating a trend where larger lesion volume indicates lower WAB-AQ scores. The p-value is &gt; 0.05 (it is 0.4364), meaning that this is not statistically significant. However, we have a very small sample size (4 participants) so that can explain why our results are so insignificant.</p>
+<p>However, it would be nice to visualize this correlation. Let’s create a scatter plot, using ggplot, with the lesion volume on the X-axis, and the WAB-AQ score on the Y-axis.</p>
+<p>To add a regression line we use geom_smooth, where we set method = “lm” to specify the linear model, and additionally set se=FALSE, to hide the shaded confidence interval around the line (optional).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> lesion_volume_mm3, <span class="at">y =</span> wab_aq, <span class="at">label =</span> participant_id)) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.6</span>) <span class="sc">+</span>  </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># participant labels</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Lesion Volume vs WAB-AQ"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Lesion Volume (mm³)"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"WAB-AQ Score"</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see a trend that could be negative correlation between higher WAB-AQ scores and larger lesion volumes. Is this a result you expected? You can also explore different aphasia types and see whether this correlation is also present in those.</p>
+<p>Hope you enjoyed this tutorial and you feel more inspired to explore its potential more in R.</p>
+<p>Some other useful resources if you are interested in neuroimaging:</p>
+<ul>
+<li><p>The Neuroconductor webpage has three online-courses: <a href="https://neuroconductor.org/courses">Courses | Neuroconductor</a>. I highly recommend the one called “Imaging in R”.</p></li>
+<li><p>There are two videos from Elizabeth Sweeney that give a very nice insight into what is possible with Neuroimaging in R. I recommend checking it out if you are interested:</p>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=9HkEq01nrco&amp;t=182s">Elizabeth Sweeney - Neuroimaging Analysis in R</a> (16:45 minutes)</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=6tDbdNTwEuA&amp;t=2288s">Neuroimaging Analysis in R: Image Preprocessing</a> (51:12 minutes)</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Azhar, S., &amp; Chong, L. R. (2023). Clinician’s guide to the basic principles of MRI. <em>Postgraduate Medical Journal</em>, <em>99</em>(1174), 894–903. <a href="https://doi.org/10.1136/pmj-2022-141998" class="uri">https://doi.org/10.1136/pmj-2022-141998</a></p>
+<p><em>Magnetic resonance imaging—PMC</em>. (n.d.). Retrieved 14 May 2025, from <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1121941/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC1121941/</a></p>
+<p>Rodriguez-Hernandez A, Babici D, Campbell M, Carranza-Reneteria O, Hammond T. Hypoglycemic hemineglect a stroke mimic. eNeurologicalSci. 2023 Jan 17;30:100444.</p>
+<p>Elizabeth Sweeney -&nbsp;Neuroimaging Analysis in R [Internet]. 2019 [cited 2025 Apr 18]. Available from:&nbsp;<a href="https://www.youtube.com/watch?v=9HkEq01nrco" class="uri">https://www.youtube.com/watch?v=9HkEq01nrco</a></p>
+<p><em>Neuroimaging Analysis in R: Image Preprocessing—YouTube</em>. (n.d.). Retrieved 2 May 2025, from <a href="https://www.youtube.com/watch?v=6tDbdNTwEuA&amp;t=2288s" class="uri">https://www.youtube.com/watch?v=6tDbdNTwEuA&amp;t=2288s</a></p>
+<p><em>APROCSA dataset</em>. (n.d.). Retrieved 2 May 2025, from <a href="https://langneurosci.org/aprocsa-dataset/" class="uri">https://langneurosci.org/aprocsa-dataset/</a></p>
+<p><em>Courses | Neuroconductor</em>. (n.d.). Retrieved 2 May 2025, from <a href="https://neuroconductor.org/courses" class="uri">https://neuroconductor.org/courses</a></p>
+<p><em>John Muschelli—About</em>. (n.d.). Retrieved 2 May 2025, from <a href="https://johnmuschelli.com/" class="uri">https://johnmuschelli.com/</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

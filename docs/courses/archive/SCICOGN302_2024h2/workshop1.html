@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-17">
+
+<title>UCR Data Center - SCICOGN302 workshop I: Introduction to the CHILDES dataset</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">UCR Data Center</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../tutorials_old.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../apprenticeship.html"> 
+<span class="menu-text">Apprenticeship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../ai.html"> 
+<span class="menu-text">Generative AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/ucrdatacenter" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.instagram.com/datacenterucr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#first-steps" id="toc-first-steps" class="nav-link" data-scroll-target="#first-steps">First steps</a></li>
+  <li><a href="#getting-data-from-the-childes-database" id="toc-getting-data-from-the-childes-database" class="nav-link" data-scroll-target="#getting-data-from-the-childes-database">Getting data from the CHILDES database</a></li>
+  <li><a href="#data-manipulation" id="toc-data-manipulation" class="nav-link" data-scroll-target="#data-manipulation">Data manipulation</a>
+  <ul class="collapse">
+  <li><a href="#counting-frequencies" id="toc-counting-frequencies" class="nav-link" data-scroll-target="#counting-frequencies">Counting frequencies</a></li>
+  <li><a href="#filtering-the-data" id="toc-filtering-the-data" class="nav-link" data-scroll-target="#filtering-the-data">Filtering the data</a></li>
+  <li><a href="#tidy-workflows" id="toc-tidy-workflows" class="nav-link" data-scroll-target="#tidy-workflows">Tidy workflows</a></li>
+  <li><a href="#regular-expressions-regex" id="toc-regular-expressions-regex" class="nav-link" data-scroll-target="#regular-expressions-regex">Regular expressions (regex)</a></li>
+  </ul></li>
+  <li><a href="#plotting-with-ggplot" id="toc-plotting-with-ggplot" class="nav-link" data-scroll-target="#plotting-with-ggplot">Plotting with <code>ggplot</code></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SCICOGN302 workshop I:<br> Introduction to the CHILDES dataset</h1>
+<p class="subtitle lead">Fall 2024</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="learning-outcomes" class="level1">
+<h1>Learning outcomes</h1>
+<p>In this tutorial you learn the steps needed to conduct basic text analysis in R using the CHILDES database of child language development. You will need these skills in the small homework assignment following this workshop, and in case you choose to complete a data assignment instead of an experiment for your final poster.</p>
+<p>You learn how to import data into R with the <code>childesr</code> package, how to use basic text analysis tools, and how to visualize your results using the <code>ggplot2</code> package.</p>
+</section>
+<section id="first-steps" class="level1">
+<h1>First steps</h1>
+<p>This tutorial assumes that you completed the preparatory steps listed <a href="../../SCICOGN302#first_workshop">here</a>.</p>
+<p>If you get stuck at any point, check the help files of functions (access by running <code>?functionname</code>), look at more extensive <a href="../../../tutorials">Data Center tutorials</a>, try googling your question, attend Data Center office hours (TBA) or email <a href="mailto:datacenter@ucr.nl">datacenter@ucr.nl</a>.</p>
+<p>The code used in this tutorial is also available on <a href="https://github.com/ucrdatacenter/projects/blob/main/SCICOGN302/2024h2/workshop1code.R">Github</a>.</p>
+</section>
+<section id="getting-data-from-the-childes-database" class="level1">
+<h1>Getting data from the CHILDES database</h1>
+<p>Open a new script and load the <code>tidyverse</code>, <code>tidytext</code> and <code>childesr</code> packages. We use <code>tidyverse</code> for data cleaning and plotting, <code>tidytext</code> for text analysis tools, and <code>childesr</code> to access the CHILDES database from within R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(childesr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The CHILDES database contains over 50 000 transcripts, featuring children at various ages and speaking various languages. To get an idea of what data is available, have a look at their <a href="https://sla.talkbank.org/TBB/childes">searchable online database</a>.</p>
+<p>In this tutorial use data from a single, English-speaking child called Amy, who has two transcripts available in the “VanKleeck” corpus. For your own project(s), you should explore the database further to find a suitable sample.</p>
+<p>In the online database transcripts are available as single raw text files, which would require some data cleaning before you can conveniently work with them in R. If you use the <code>childesr</code> package to load the data, then the transcripts will already load as clean dataframes.</p>
+<p>You have two options for how your data should look like:</p>
+<ul>
+<li>If you only conduct analysis on the word level, you should use the <code>get_tokens()</code> function. One row in your dataframe will correspond to one token (a token is generally a single word).</li>
+<li>If you want to analyse longer expressions (up to full sentences), you should use the <code>get_utterances()</code> function. One row in your dataframe will correspond to one utterance (an utterance is a phrase/expression/sentence (fragment))</li>
+</ul>
+<p>In this tutorial we show examples of how to work with both data types. For the case of studying the transcripts of Amy, you can load the token-based and utterance-based datasets as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="ot">&lt;-</span> <span class="fu">get_tokens</span>(<span class="at">token =</span> <span class="st">"*"</span>, <span class="at">collection =</span> <span class="st">"Eng-NA"</span>, <span class="at">target_child =</span> <span class="st">"Amy"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">corpus =</span> <span class="st">"VanKleeck"</span>, <span class="at">role =</span> <span class="st">"target_child"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>utterances <span class="ot">&lt;-</span> <span class="fu">get_utterances</span>(<span class="at">collection =</span> <span class="st">"Eng-NA"</span>, <span class="at">target_child =</span> <span class="st">"Amy"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">corpus =</span> <span class="st">"VanKleeck"</span>, <span class="at">role =</span> <span class="st">"target_child"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Some notes for using different samples:</p>
+<ul>
+<li><code>token = "*"</code> means to download all words in the transcript, and is a necessary argument of <code>get_tokens()</code>.</li>
+<li><code>collection</code> and <code>corpus</code> specify the location of the transcripts and correspond to the categories in the <a href="https://sla.talkbank.org/TBB/childes">online database</a>.</li>
+<li><code>role = "target_child"</code> means to download only the speech of the child, and not the parents or researchers having a conversation with the child. For other filters you can use, check the help files of the functions.</li>
+<li>Don’t try to download large sets of transcripts, such as an entire collection without adding filters. Check the <a href="https://sla.talkbank.org/TBB/childes">online database</a> to see whether the sample that you are considering has a reasonable size.</li>
+</ul>
+<p>You can view the downloaded dataframes by calling the <code>View()</code> function or clicking on the name of the dataframes in the Environment tab.</p>
+<p>The key variables of <code>tokens</code> (token-based dataframe) are</p>
+<ul>
+<li>gloss: token(/word) as used in the speech</li>
+<li>stem: stem of the word in gloss</li>
+<li>part_of_speech: syntactic function of the word</li>
+<li>language, corpus_…, collection_… speaker_…, target_child_…: transcript metadata</li>
+</ul>
+<p>The key variables of <code>utterances</code> (utterance-based dataframe) are</p>
+<ul>
+<li>gloss: utterance (built from tokens) as used in the speech</li>
+<li>stem: stem of each word in the utterance</li>
+<li>part_of_speech: syntactic structure of the utterance</li>
+<li>num_tokens: number of tokens in the utterance</li>
+<li>language, corpus_…, collection_… speaker_…, target_child_…: transcript metadata</li>
+</ul>
+</section>
+<section id="data-manipulation" class="level1">
+<h1>Data manipulation</h1>
+<section id="counting-frequencies" class="level2">
+<h2 class="anchored" data-anchor-id="counting-frequencies">Counting frequencies</h2>
+<p>Let’s say you want to know what words Amy uses most frequently. To count how many times each word occurs, you can use the <code>count()</code> function. You need to specify the data and the variable that you’d like to count as the function arguments, and assign the result to a new object to store it in R’s memory. We use the “stem” variable instead of “gloss” to ignore suffixes, conjugation, etc. and set <code>sort = TRUE</code> to display the results from most to least frequent. Then we can print the top 10 most common words.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_tokens <span class="ot">&lt;-</span> <span class="fu">count</span>(tokens, stem, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(n_tokens, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   stem      n
+   &lt;chr&gt; &lt;int&gt;
+ 1 "I"      51
+ 2 ""       30
+ 3 "it"     29
+ 4 "be"     28
+ 5 "go"     24
+ 6 "you"    21
+ 7 "the"    19
+ 8 "a"      18
+ 9 "in"     17
+10 "no"     13</code></pre>
+</div>
+</div>
+<p>You can see that these results do not tell us much. All of these words are very common and generic, and most don’t hold much meaning – they are so-called stopwords. In addition, the second most common token is blank (i.e.&nbsp;no intelligible word).</p>
+</section>
+<section id="filtering-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-the-data">Filtering the data</h2>
+<p>To make our results more useful, we should filter the dataset first to keep only relevant observations. One way to do that is with the <code>filter()</code> function, which specifies the criteria that the data should meet in order to remain in the filtered dataset using logical expressions. For text analysis the most important logical operators are</p>
+<ul>
+<li><code>==</code> to mean an exact match (e.g.&nbsp;<code>gloss == "cake"</code> would only keep observations where Amy said “cake”)</li>
+<li><code>%in%</code> to mean that the value matches one of multiple options (e.g.&nbsp;<code>gloss %in% c("cake", "presents")</code> would keep observations where Amy said “cake” OR “presents”)</li>
+<li><code>!</code> which negates whatever statement it precedes (for exact matches the negated operator becomes <code>!=</code>).</li>
+</ul>
+<p>You can also combine logical statements with <code>&amp;</code> (and) and <code>|</code> (or) connectors. For instance, <code>gloss %in% c("cake", "presents")</code> is equivalent to <code>gloss == "cake" | gloss == "presents"</code>. Used inside a <code>filter()</code> function, this would keep observations where Amy said “cake” OR “presents”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(tokens, gloss <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"cake"</span>, <span class="st">"presents"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 28
+      id gloss language token_order prefix part_of_speech stem  actual_phonology
+   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;           
+1 3.50e6 cake  eng                2 ""     n              cake  ""              
+2 3.50e6 pres… eng                1 ""     n              pres… ""              
+3 3.50e6 cake  eng                4 ""     n              cake  ""              
+# ℹ 20 more variables: model_phonology &lt;chr&gt;, suffix &lt;chr&gt;,
+#   num_morphemes &lt;int&gt;, english &lt;chr&gt;, clitic &lt;chr&gt;, utterance_type &lt;chr&gt;,
+#   corpus_name &lt;chr&gt;, speaker_code &lt;chr&gt;, speaker_name &lt;chr&gt;,
+#   speaker_role &lt;chr&gt;, target_child_name &lt;chr&gt;, target_child_age &lt;dbl&gt;,
+#   target_child_sex &lt;chr&gt;, collection_name &lt;chr&gt;, collection_id &lt;int&gt;,
+#   corpus_id &lt;int&gt;, speaker_id &lt;int&gt;, target_child_id &lt;int&gt;,
+#   transcript_id &lt;int&gt;, utterance_id &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Another way to filter a dataset is to use the <code>anti_join()</code> function. With this function, you can remove all observations that also occur in a different dataset. This function can be especially useful if you want to exclude particular combinations of multiple variables, but it can also be used to remove stopwords from your dataset.</p>
+<p>We can use the pre-defined dataset <code>stop_words</code> from the <code>stopwords</code> package to get a list of stopwords. This function creates a dataframe which has a variable <code>word</code> that serves as a list of stopwords. We can use the <code>anti_join()</code> function to keep only the words in <code>tokens</code> that are not in the stopword list. We need to specify the variables that we want to compare in the <code>by</code> argument. In our case, the <code>word</code> variable in the stop_words dataframe corresponds to the <code>stem</code> variable in the tokens dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tokens_filtered <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(tokens, stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"stem"</span> <span class="ot">=</span> <span class="st">"word"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can use the <code>count()</code> function on our filtered data, and the results are very different than before.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n_filtered <span class="ot">&lt;-</span> <span class="fu">count</span>(tokens_filtered, stem, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(n_filtered, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   stem           n
+   &lt;chr&gt;      &lt;int&gt;
+ 1 "I"           51
+ 2 ""            30
+ 3 "uhhuh"       10
+ 4 "blow"         7
+ 5 "play"         7
+ 6 "uhuh"         6
+ 7 "yum"          6
+ 8 "house"        5
+ 9 "yeah"         5
+10 "all_gone"     3</code></pre>
+</div>
+</div>
+<p>These words are less generic, and actually look like words that children likely say a lot.</p>
+</section>
+<section id="tidy-workflows" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-workflows">Tidy workflows</h2>
+<p>Instead of going through the previous previous two steps by assigning each intermediate result to a new object (see <code>tokens_filtered</code>), you can write a linear worflow where you start with your original data, apply each data manipulation step-by-step until you reach your final result.</p>
+<p>To create such a workflow, you need the pipe operator (<code>%&gt;%</code>): using it at the end of a line means that the next function uses the previous result as an input. In the following case, it takes the object <code>tokens</code> as the first argument of the <code>anti_join()</code> function, then introduces an additional filter to remove words where the stem is blank, and finally takes the resulting filtered data as the first argument of the <code>count()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n_filtered <span class="ot">&lt;-</span> tokens <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"stem"</span> <span class="ot">=</span> <span class="st">"word"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stem <span class="sc">!=</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(stem, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="regular-expressions-regex" class="level2">
+<h2 class="anchored" data-anchor-id="regular-expressions-regex">Regular expressions (regex)</h2>
+<p>When working with text data, looking for direct matches with logical operators is often not sufficient. For example if you want to find all utterances that include the phrase “he is”, <code>filter(gloss == "he is")</code> will not keep “he is tall”, because it only looks for exact matches. No more, no less.</p>
+<p>To get results that match a certain pattern (e.g.&nbsp;starting in a specific way or containing a particular sequence), we can use regular expressions. These expressions practically form a language of their own, and their advanced use can get very complex, but the basics are straightforward. You specify the pattern (e.g.&nbsp;contains “he is”), and specify the string in which you want to find that pattern (e.g.&nbsp;the gloss variable of the utt dataframe). Then you can use the <code>str_detect()</code> function to find matches: <code>str_detect()</code> returns a logical vector that you can use in the <code>filter()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>utterances <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(gloss, <span class="st">"he is"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 27
+      id gloss             stem  actual_phonology model_phonology type  language
+   &lt;int&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;   
+1 811024 she is my little… she … ""               ""              decl… eng     
+2 811700 he is xxx airpla… he b… ""               ""              decl… eng     
+3 811746 he is standing u… he b… ""               ""              decl… eng     
+4 811763 now he is gonna … now … ""               ""              decl… eng     
+# ℹ 20 more variables: num_morphemes &lt;int&gt;, num_tokens &lt;int&gt;,
+#   utterance_order &lt;int&gt;, corpus_name &lt;chr&gt;, part_of_speech &lt;chr&gt;,
+#   speaker_code &lt;chr&gt;, speaker_name &lt;chr&gt;, speaker_role &lt;chr&gt;,
+#   target_child_name &lt;chr&gt;, target_child_age &lt;dbl&gt;, target_child_sex &lt;chr&gt;,
+#   media_start &lt;dbl&gt;, media_end &lt;dbl&gt;, media_unit &lt;chr&gt;,
+#   collection_name &lt;chr&gt;, collection_id &lt;int&gt;, corpus_id &lt;int&gt;,
+#   speaker_id &lt;int&gt;, target_child_id &lt;int&gt;, transcript_id &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>As you can see, Amy said the phrase “he is” four times, of which one time she said “she is”. We can use regular expressions to further narrow down our results. Some of the most useful regex patterns are</p>
+<ul>
+<li><code>^x</code> starts with x</li>
+<li><code>x$</code> ends with x</li>
+<li><code>(x|y)</code> x or y</li>
+<li><code>.</code> any character</li>
+<li><code>x*</code> x any number of times</li>
+</ul>
+<p>So if we wanted to exclude “she is” from the previous results, the regular expression <code>"(^| )he is"</code> would do that: we look for the phrase “he is” either at the beginning of the phrase or preceded by whitespace.</p>
+<p>For other regex patterns, see the second page of <a href="https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf">this cheat sheet</a>.</p>
+</section>
+</section>
+<section id="plotting-with-ggplot" class="level1">
+<h1>Plotting with <code>ggplot</code></h1>
+<p>Figures made with <code>ggplot</code> are built from several layers. You always use the same basic code structure to create a wide range of figures:</p>
+<ol type="1">
+<li>The <code>ggplot()</code> function creates a blank canvas for you to work on.</li>
+<li>Geoms add the visual elements, such as points, lines, bars, or other shapes.</li>
+<li>Other specifications can include changing axis settings, setting the theme, adding labels, etc.</li>
+<li>You connect all these different specifications to each other using <code>+</code> signs (similarly as you’d use the pipe operator <code>%&gt;%</code>).</li>
+</ol>
+<p>The variables that you want to display on the graph must always be wrapped in an <code>aes()</code> function, which stands for aesthetics. This specification tells R to determine the value of the aesthetic (x and y axes, colors, groups, line types, etc.) based on the value of the variable. <code>aes()</code> can be specified both in the main <code>ggplot()</code> function (in which case it will apply to all geoms) or within a <code>geom_...()</code> function (then it only applies to that geom).</p>
+<p>Common plot types include</p>
+<ul>
+<li>scatterplots (<code>geom_point()</code>)</li>
+<li>line charts (<code>geom_line()</code>)</li>
+<li>bar charts (<code>geom_col()</code> and <code>geom_bar()</code>)</li>
+<li>histograms (<code>geom_histogram()</code>)</li>
+<li>fitted curves (<code>geom_smooth()</code>)</li>
+</ul>
+<p>For instance you can create a bar chart of the frequencies of the 10 most common words Amy uses. We can use the <code>reorder()</code> function to arrange the columns by frequency.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>n_filtered <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">reorder</span>(stem, n))) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Frequency"</span>, <span class="at">y =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To observe language development, it is interesting to look at how various measures change with age. Since we only observe Amy at one age, we can’t plot that here, but as an alternative we can use the <code>utterance_order</code> variable to see whether Amy’s speech patterns change over the course of one conversation.</p>
+<p>For example, we can plot the mean utterance length (equivalent to mean length of utterance (MLU), a common measure of language development) as a scatterplot with a fitted curve. Note that if you specify aesthetics in the <code>ggplot()</code> function, they apply to all geoms.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>utterances <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> utterance_order, <span class="at">y =</span> num_tokens)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Time in conversation"</span>, <span class="at">y =</span> <span class="st">"Mean length of utterance"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop1_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From this plot we can see that while there are some particularly long utterances Amy made during the conversations, there is no clear pattern of increasing or decreasing utterance length during the conversation.</p>
+<p>Since we have two transcripts from Amy, we can compare language development measures in the two transcripts (for your assignment yo can compare multiple children in a similar way). This figure is the same as the previous one, except that it specifies <code>transcript_id</code> as the grouping variable that should affect the color of the points, and therefore fits separate lines per transcript.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>utterances <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> utterance_order, <span class="at">y =</span> num_tokens, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="fu">as.character</span>(transcript_id))) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Time in conversation"</span>, <span class="at">y =</span> <span class="st">"Mean length of utterance"</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop1_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot tells us that the second transcript seems to have a slightly larger MLU, mainly because most of the particularly long utterances occurred in the second conversation.</p>
+<p>We can also use regular expressions to look for particular patterns. For instance, we can check which types of pronouns (denoted <code>pro:type</code>) Amy uses the most.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(part_of_speech, <span class="st">"pro:"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(part_of_speech) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> part_of_speech, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Pronoun type"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop1_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Subjective and personal pronouns (I, you, etc.) are clearly dominating Amy’s speech, however, she uses a wide range of different pronouns.</p>
+<p>If you would like a brief introduction to some more useful functions in calculating measures of linguistic development, have a look at the workshop <a href="../workshop1extra">additional materials</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ UCR Data Center  •  2025
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:datacenter@ucr.nl">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ucrdatacenter">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/datacenterucr">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
